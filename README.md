@@ -3,9 +3,9 @@ Software desktop usando CRUD para a matéria de Projeto Integrador do segundo se
             
 ### Grupo
 - Arthur Sakemi **(arthursakemi)**;
-- Diogo Souza **()**;
+- Diogo Souza **(DiogoSouza123)**;
 - Marcelo Arthur **(mablds)**;
-- Pedro Araújo **()**;
+- Pedro Araújo **(PedrooBelchior)**;
 - Roger **(X0Roger0X)**
 
 ##	Descrição
