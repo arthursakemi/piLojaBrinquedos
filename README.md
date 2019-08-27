@@ -1,6 +1,12 @@
 # piLojaBrinquedos
 Software desktop usando CRUD para a matéria de Projeto Integrador do segundo semestre de Análise e Desenvolvimento de Sistemas - SENAC.
-            Grupo: Arthur Sakemi (arthursakemi), Diogo Souza, Marcelo Arthur (mablds), Pedro Araújo e Roger.
+            
+### Grupo
+- Arthur Sakemi **(arthursakemi)**;
+- Diogo Souza **()**;
+- Marcelo Arthur **(mablds)**;
+- Pedro Araújo **()**;
+- Roger **(X0Roger0X)**
 
 ##	Descrição
 
