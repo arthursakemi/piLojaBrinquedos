@@ -95,13 +95,16 @@
                                           <Component id="txtAddress" alignment="0" min="-2" pref="398" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txtPhone" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
-                                                  <Component id="lblPhone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtCel" alignment="0" min="-2" pref="190" max="-2" attributes="0"/>
+                                                  <Component id="lblCel" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblCel" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="txtCel" max="32767" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="lblPhone" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="txtPhone" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -152,13 +155,13 @@
                   <Component id="txtBirth" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblAdress" min="-2" max="-2" attributes="0"/>
@@ -177,11 +180,12 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nome:"/>
+            <Property name="text" type="java.lang.String" value="Nome: *"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtName">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Digite seu nome..."/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[20, 400]"/>
             </Property>
@@ -195,7 +199,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblEmail">
           <Properties>
-            <Property name="text" type="java.lang.String" value="E-mail:"/>
+            <Property name="text" type="java.lang.String" value="E-mail: *"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
@@ -210,7 +214,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblBirth">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Data de Nascimento:"/>
+            <Property name="text" type="java.lang.String" value="Data de Nascimento: *"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRG">
@@ -249,7 +253,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblCPF">
           <Properties>
-            <Property name="text" type="java.lang.String" value="CPF:"/>
+            <Property name="text" type="java.lang.String" value="CPF: *"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRG">
@@ -269,6 +273,7 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
+            <Property name="text" type="java.lang.String" value=""/>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[4, 22]"/>
             </Property>
@@ -279,13 +284,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblCel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Celular:"/>
+            <Property name="text" type="java.lang.String" value="Celular: *"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtPhone">
+        <Component class="javax.swing.JFormattedTextField" name="txtCel">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="(##) ####-####" subtype="-1" type="5"/>
+              <Format format="(##) #####-####" subtype="-1" type="5"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[49, 25]"/>
@@ -294,13 +299,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblAdress">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
+            <Property name="text" type="java.lang.String" value="Endere&#xe7;o: *"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtCel">
+        <Component class="javax.swing.JFormattedTextField" name="txtPhone">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="(##) #####-####" subtype="-1" type="5"/>
+              <Format format="(##) ####-####" subtype="-1" type="5"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[52, 25]"/>
