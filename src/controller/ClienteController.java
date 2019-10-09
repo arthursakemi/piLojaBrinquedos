@@ -5,10 +5,9 @@
  */
 package controller;
 
-/**
- *
- * @author Sakemi
- */
+import DAO.ClienteDAO;
+import model.ClienteModel;
+
 public class ClienteController {
 
 }

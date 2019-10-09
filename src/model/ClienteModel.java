@@ -30,8 +30,10 @@ public class ClienteModel {
     public ClienteModel(String nome,
             String email,
             String cpf,
+            String rg,
             String nascimento,
             String celular,
+            String telefone,
             String endereco) {
 
         clientesCadastrados++;
@@ -39,8 +41,10 @@ public class ClienteModel {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+        this.rg = rg;
         this.nascimento = nascimento;
         this.celular = celular;
+        this.telefone = telefone;
         this.endereco = endereco;
     }
 

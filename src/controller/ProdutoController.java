@@ -5,10 +5,11 @@
  */
 package controller;
 
-/**
- *
- * @author Sakemi
- */
+import DAO.ProdutoDAO;
+import model.ProdutoModel;
+
 public class ProdutoController {
+
+    public static boolean salvar()
 
 }

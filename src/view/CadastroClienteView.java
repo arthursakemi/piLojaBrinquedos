@@ -42,12 +42,12 @@ public class CadastroClienteView extends javax.swing.JFrame {
         lblPhone = new javax.swing.JLabel();
         txtBirth = new javax.swing.JFormattedTextField();
         lblCel = new javax.swing.JLabel();
-        txtCel = new javax.swing.JFormattedTextField();
         lblAdress = new javax.swing.JLabel();
+        txtCel = new javax.swing.JFormattedTextField();
         txtPhone = new javax.swing.JFormattedTextField();
         txtAddress = new javax.swing.JTextField();
         lblID = new javax.swing.JLabel();
-        btnSave1 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -109,14 +109,14 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
         lblCel.setText("Celular: *");
 
+        lblAdress.setText("Endereço: *");
+
         try {
             txtCel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
         txtCel.setPreferredSize(new java.awt.Dimension(49, 25));
-
-        lblAdress.setText("Endereço: *");
 
         try {
             txtPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
@@ -129,10 +129,10 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
         lblID.setText("ID Cliente");
 
-        btnSave1.setText("Editar");
-        btnSave1.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("Editar");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSave1ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -167,7 +167,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
                             .addComponent(lblAdress)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(btnSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +225,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,9 +257,9 @@ public class CadastroClienteView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnSave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSave1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSave1ActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,8 +299,8 @@ public class CadastroClienteView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnSave1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAdress;
     private javax.swing.JLabel lblBirth;

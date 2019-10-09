@@ -30,7 +30,8 @@ public class ProdutoModel {
             String marca,
             String fornecedor,
             String valor,
-            String quantidade) {
+            String quantidade,
+            String descricao) {
 
         produtosCadastrados++;
         this.id = produtosCadastrados;
@@ -39,6 +40,7 @@ public class ProdutoModel {
         this.fornecedor = fornecedor;
         this.valor = valor;
         this.quantidade = quantidade;
+        this.descricao = descricao;
     }
 
     public int getId() {
