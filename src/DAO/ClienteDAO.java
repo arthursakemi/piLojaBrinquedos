@@ -5,9 +5,25 @@
  */
 package DAO;
 
-import model.ProdutoModel;
+import model.ClienteModel;
 import java.util.ArrayList;
 
 public class ClienteDAO {
+
+    public static boolean salvar(ClienteModel c) {
+        return SimulaDB.getInstance().salvarCliente(c);
+    }
+
+    public static boolean atualizar(ClienteModel c) {
+        return SimulaDB.getInstance().atualizarCliente(c);
+    }
+
+    public static boolean excluir(int cID) {
+        return SimulaDB.getInstance().excluirCliente(cID);
+    }
+
+    public static ArrayList<ClienteModel> getClientes() {
+        return SimulaDB.getInstance().getClientes();
+    }
 
 }
