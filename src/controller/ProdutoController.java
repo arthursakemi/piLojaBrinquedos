@@ -28,11 +28,11 @@ public class ProdutoController {
         return ProdutoDAO.salvar(p);
     }
 
-    public static boolean excluir(int pID) {
-        return ProdutoDAO.excluir(pID);
+    public static boolean excluir(int id) {
+        return ProdutoDAO.excluir(id);
     }
 
-    public static boolean atualizar(int pID,
+    public static boolean atualizar(int id,
             String nome,
             String marca,
             String fornecedor,
@@ -40,7 +40,7 @@ public class ProdutoController {
             int quantidade,
             String descricao) {
 
-        ProdutoModel p = new ProdutoModel(pID,
+        ProdutoModel p = new ProdutoModel(id,
                 nome,
                 marca,
                 fornecedor,

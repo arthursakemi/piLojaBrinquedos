@@ -48,6 +48,27 @@ public class ClienteModel {
         this.endereco = endereco;
     }
 
+    public ClienteModel(int id,
+            String nome,
+            String email,
+            String cpf,
+            String rg,
+            String nascimento,
+            String celular,
+            String telefone,
+            String endereco) {
+
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.nascimento = nascimento;
+        this.celular = celular;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
+
     public int getId() {
         return id;
     }
