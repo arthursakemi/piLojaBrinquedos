@@ -12,12 +12,11 @@ package model;
 public class ProdutoModel {
 
     public static int produtosCadastrados;
-    private int id;
+    private int id, quantidade;
+    private double valor;
     private String nome,
             marca,
             fornecedor,
-            valor,
-            quantidade,
             descricao;
 
     public ProdutoModel() {
@@ -29,12 +28,29 @@ public class ProdutoModel {
     public ProdutoModel(String nome,
             String marca,
             String fornecedor,
-            String valor,
-            String quantidade,
+            double valor,
+            int quantidade,
             String descricao) {
 
         produtosCadastrados++;
         this.id = produtosCadastrados;
+        this.nome = nome;
+        this.marca = marca;
+        this.fornecedor = fornecedor;
+        this.valor = valor;
+        this.quantidade = quantidade;
+        this.descricao = descricao;
+    }
+
+    public ProdutoModel(int pID,
+            String nome,
+            String marca,
+            String fornecedor,
+            double valor,
+            int quantidade,
+            String descricao) {
+
+        this.id = pID;
         this.nome = nome;
         this.marca = marca;
         this.fornecedor = fornecedor;
@@ -75,19 +91,19 @@ public class ProdutoModel {
         this.fornecedor = fornecedor;
     }
 
-    public String getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
-    public String getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(String quantidade) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 
