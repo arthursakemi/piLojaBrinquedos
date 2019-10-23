@@ -16,8 +16,9 @@ public class ClienteModel {
     private String nome,
             email,
             cpf,
-            rg,
             nascimento,
+            sexo,
+            estadoCivil,
             celular,
             telefone,
             endereco;
@@ -30,8 +31,9 @@ public class ClienteModel {
     public ClienteModel(String nome,
             String email,
             String cpf,
-            String rg,
             String nascimento,
+            String sexo,
+            String estadoCivil,
             String celular,
             String telefone,
             String endereco) {
@@ -41,8 +43,9 @@ public class ClienteModel {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        this.rg = rg;
         this.nascimento = nascimento;
+        this.sexo = sexo;
+        this.estadoCivil = estadoCivil;
         this.celular = celular;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -52,8 +55,9 @@ public class ClienteModel {
             String nome,
             String email,
             String cpf,
-            String rg,
             String nascimento,
+            String sexo,
+            String estadoCivil,
             String celular,
             String telefone,
             String endereco) {
@@ -62,8 +66,9 @@ public class ClienteModel {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
-        this.rg = rg;
         this.nascimento = nascimento;
+        this.sexo = sexo;
+        this.estadoCivil = estadoCivil;
         this.celular = celular;
         this.telefone = telefone;
         this.endereco = endereco;
@@ -101,12 +106,12 @@ public class ClienteModel {
         this.cpf = cpf;
     }
 
-    public String getRg() {
-        return rg;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getNascimento() {
@@ -139,6 +144,14 @@ public class ClienteModel {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(String estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
 }

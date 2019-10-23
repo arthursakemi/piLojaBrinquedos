@@ -54,8 +54,9 @@ public class SimulaDB {
                 item.setNome(c.getNome());
                 item.setEmail(c.getEmail());
                 item.setCpf(c.getCpf());
-                item.setRg(c.getRg());
                 item.setNascimento(c.getNascimento());
+                item.setSexo(c.getSexo());
+                item.setEstadoCivil(c.getEstadoCivil());
                 item.setCelular(c.getCelular());
                 item.setTelefone(c.getTelefone());
                 item.setEndereco(c.getEndereco());
