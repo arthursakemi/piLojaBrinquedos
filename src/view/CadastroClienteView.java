@@ -5,6 +5,7 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import model.ClienteModel;
 
 /**
@@ -72,7 +73,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
         txtSexo = new javax.swing.JTextField();
         txtEstadoCivil = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Cliente", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
@@ -293,16 +294,69 @@ public class CadastroClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        System.out.println(validarFormulario());
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         habilitarFormulario();
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private boolean validarFormulario() {
+        String cpf = txtCPF.getText().replace(".", "").replace("-", "").replace(" ", "");
+        String cel = txtCel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", "");
+        String data = txtNasc.getText().replace("/", "").replace(" ", "");
+
+        if (txtNome.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o nome do cliente!");
+            return false;
+        }
+
+        if (txtEmail.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o email do cliente!");
+            return false;
+        }
+
+        if (cpf.equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe o CPF do cliente!");
+            return false;
+        }
+
+        if (txtSexo.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o sexo do cliente!");
+            return false;
+        }
+
+        if (data.equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe a data de nascimento do cliente!");
+            return false;
+        }
+
+        if (txtEstadoCivil.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o estado civil do cliente!");
+            return false;
+        }
+
+        if (cel.equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe o número de celular do cliente!");
+            return false;
+        }
+
+        if (txtEndereco.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o Endereço do cliente!");
+            return false;
+        }
+
+        if (!util.Validador.validarData(txtNasc.getText())) {
+            JOptionPane.showMessageDialog(this, "Data Inválida!");
+            return false;
+        }
+
+        return true;
+    }
 
     private void desabilitarFormulario() {
         txtNome.setEditable(false);
@@ -371,7 +425,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroClienteView(c).setVisible(true);
+                new CadastroClienteView().setVisible(true);
             }
         });
     }
