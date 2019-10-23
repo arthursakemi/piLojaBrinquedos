@@ -16,6 +16,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
      */
     public TelaPrincipalView() {
         initComponents();
+
     }
 
     /**

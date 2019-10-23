@@ -16,6 +16,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
      */
     public CadastroClienteView() {
         initComponents();
+        lblID.setVisible(false);
     }
 
     /**
