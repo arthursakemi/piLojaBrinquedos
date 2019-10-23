@@ -5,14 +5,18 @@
  */
 package view;
 
+import controller.ClienteController;
 import javax.swing.JOptionPane;
 import model.ClienteModel;
+import util.Validador;
 
 /**
  *
  * @author marcelo.ablsantos
  */
 public class CadastroClienteView extends javax.swing.JFrame {
+
+    public static boolean editar = false;
 
     /**
      * Creates new form CadastroCliente
@@ -298,11 +302,48 @@ public class CadastroClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        System.out.println(validarFormulario());
+        if (validarFormulario()) {
+            if (editar) {
+                if (ClienteController.atualizar(Integer.parseInt(lblNumeroID.getText()),
+                        txtNome.getText(),
+                        txtEmail.getText(),
+                        txtCPF.getText().replace(".", "").replace("-", "").replace(" ", ""),
+                        txtNasc.getText(),
+                        txtSexo.getText(),
+                        txtEstadoCivil.getText(),
+                        txtCel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
+                        txtTel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
+                        txtEndereco.getText())) {
+
+                    JOptionPane.showMessageDialog(this, "Cliente atualizado com Sucesso!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao atualizar cliente!");
+                }
+            } else {
+                if (ClienteController.salvar(txtNome.getText(),
+                        txtEmail.getText(),
+                        txtCPF.getText().replace(".", "").replace("-", "").replace(" ", ""),
+                        txtNasc.getText(),
+                        txtSexo.getText(),
+                        txtEstadoCivil.getText(),
+                        txtCel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
+                        txtTel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
+                        txtEndereco.getText())) {
+
+                    JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao registrar cliente!");
+                }
+            }
+
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         habilitarFormulario();
+        editar = true;
     }//GEN-LAST:event_btnEditActionPerformed
 
     private boolean validarFormulario() {
@@ -350,7 +391,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
             return false;
         }
 
-        if (!util.Validador.validarData(txtNasc.getText())) {
+        if (!Validador.validarData(txtNasc.getText())) {
             JOptionPane.showMessageDialog(this, "Data Inválida!");
             return false;
         }
