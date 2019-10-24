@@ -231,15 +231,47 @@ public class CadastroProdutoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        habilitarFormulario();
+        editar = true;
+        btnEditar.setEnabled(false);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        if (validarFormulario()) {
+            if (editar) {
+                if (ProdutoController.atualizar(Integer.parseInt(lblNumeroID.getText()),
+                        txtNome.getText(),
+                        txtMarca.getText(),
+                        txtFornecedor.getText(),
+                        Double.parseDouble(txtValor.getText()),
+                        Integer.parseInt(txtQuantidade.getText()),
+                        txtDescricao.getText())) {
+
+                    JOptionPane.showMessageDialog(this, "Produto atualizado com Sucesso!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao atualizar produto!");
+                }
+            } else {
+                if (ProdutoController.salvar(txtNome.getText(),
+                        txtMarca.getText(),
+                        txtFornecedor.getText(),
+                        Double.parseDouble(txtValor.getText()),
+                        Integer.parseInt(txtQuantidade.getText()),
+                        txtDescricao.getText())) {
+
+                    JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao registrar produto!");
+                }
+            }
+
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private boolean validarFormulario() {
@@ -337,7 +369,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroProdutoView(p).setVisible(true);
+                new CadastroProdutoView().setVisible(true);
             }
         });
     }
