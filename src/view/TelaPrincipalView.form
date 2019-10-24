@@ -111,7 +111,7 @@
                           <Component id="jPanel7" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="AtualizarP" min="-2" pref="127" max="-2" attributes="0"/>
+                              <Component id="AtualizarProduto" min="-2" pref="127" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -126,7 +126,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane2" pref="377" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="AtualizarP" min="-2" max="-2" attributes="0"/>
+                      <Component id="AtualizarProduto" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -211,14 +211,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnBuscarP" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="btnBuscarProduto" min="-2" pref="125" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnNovoP" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="btnNovoProduto" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnVisualizarP" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarProduto" min="-2" pref="125" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnExcluirP" max="32767" attributes="0"/>
+                                      <Component id="btnExcluirProduto" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="7" max="32767" attributes="0"/>
@@ -230,13 +230,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnBuscarP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnNovoP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnNovoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnVisualizarP" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnExcluirP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnVisualizarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnExcluirProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
@@ -244,33 +244,36 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnBuscarP">
+                    <Component class="javax.swing.JButton" name="btnBuscarProduto">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Buscar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarProdutoActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnVisualizarP">
+                    <Component class="javax.swing.JButton" name="btnVisualizarProduto">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Visualizar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarPActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarProdutoActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnNovoP">
+                    <Component class="javax.swing.JButton" name="btnNovoProduto">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Novo"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoPActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoProdutoActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnExcluirP">
+                    <Component class="javax.swing.JButton" name="btnExcluirProduto">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Excluir"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirPActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirProdutoActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -299,12 +302,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="AtualizarP">
+            <Component class="javax.swing.JButton" name="AtualizarProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Atualizar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtualizarPActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtualizarProdutoActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -416,14 +419,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="btnBuscarC" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="btnBuscarCliente" min="-2" pref="125" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnNovoC" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="btnNovoCliente" min="-2" pref="125" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnVisualizarC" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Component id="btnVisualizarCliente" min="-2" pref="125" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnExcluirC" max="32767" attributes="0"/>
+                                      <Component id="btnExcluirCliente" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="7" max="32767" attributes="0"/>
@@ -435,13 +438,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnBuscarC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnNovoC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnNovoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnVisualizarC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnExcluirC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnVisualizarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnExcluirCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
@@ -449,33 +452,33 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnBuscarC">
+                    <Component class="javax.swing.JButton" name="btnBuscarCliente">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Buscar"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnVisualizarC">
+                    <Component class="javax.swing.JButton" name="btnVisualizarCliente">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Visualizar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarCActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisualizarClienteActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnNovoC">
+                    <Component class="javax.swing.JButton" name="btnNovoCliente">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Novo"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoCActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoClienteActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnExcluirC">
+                    <Component class="javax.swing.JButton" name="btnExcluirCliente">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Excluir"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirCActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirClienteActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -619,13 +622,13 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="txtPeriodo1" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtPeriodo2" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
                           <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

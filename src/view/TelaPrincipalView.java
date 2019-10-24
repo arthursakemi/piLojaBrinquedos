@@ -8,7 +8,9 @@ package view;
 import controller.ClienteController;
 import controller.ProdutoController;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.ProdutoModel;
 
 /**
  *
@@ -22,6 +24,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     public TelaPrincipalView() {
         initComponents();
         setLocationRelativeTo(null);
+        loadTableClientes();
+        loadTableProdutos();
 
     }
 
@@ -46,20 +50,20 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         txtIDP = new javax.swing.JTextField();
         lblIDP = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        btnBuscarP = new javax.swing.JButton();
-        btnVisualizarP = new javax.swing.JButton();
-        btnNovoP = new javax.swing.JButton();
-        btnExcluirP = new javax.swing.JButton();
+        btnBuscarProduto = new javax.swing.JButton();
+        btnVisualizarProduto = new javax.swing.JButton();
+        btnNovoProduto = new javax.swing.JButton();
+        btnExcluirProduto = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
-        AtualizarP = new javax.swing.JButton();
+        AtualizarProduto = new javax.swing.JButton();
         pnlClientes = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        btnBuscarC = new javax.swing.JButton();
-        btnVisualizarC = new javax.swing.JButton();
-        btnNovoC = new javax.swing.JButton();
-        btnExcluirC = new javax.swing.JButton();
+        btnBuscarCliente = new javax.swing.JButton();
+        btnVisualizarCliente = new javax.swing.JButton();
+        btnNovoCliente = new javax.swing.JButton();
+        btnExcluirCliente = new javax.swing.JButton();
         txtNomeC = new javax.swing.JTextField();
         lblNomeC = new javax.swing.JLabel();
         txtIDC = new javax.swing.JTextField();
@@ -114,26 +118,31 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         lblIDP.setText("ID do Produto:");
 
-        btnBuscarP.setText("Buscar");
-
-        btnVisualizarP.setText("Visualizar");
-        btnVisualizarP.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarProduto.setText("Buscar");
+        btnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarPActionPerformed(evt);
+                btnBuscarProdutoActionPerformed(evt);
             }
         });
 
-        btnNovoP.setText("Novo");
-        btnNovoP.addActionListener(new java.awt.event.ActionListener() {
+        btnVisualizarProduto.setText("Visualizar");
+        btnVisualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoPActionPerformed(evt);
+                btnVisualizarProdutoActionPerformed(evt);
             }
         });
 
-        btnExcluirP.setText("Excluir");
-        btnExcluirP.addActionListener(new java.awt.event.ActionListener() {
+        btnNovoProduto.setText("Novo");
+        btnNovoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirPActionPerformed(evt);
+                btnNovoProdutoActionPerformed(evt);
+            }
+        });
+
+        btnExcluirProduto.setText("Excluir");
+        btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirProdutoActionPerformed(evt);
             }
         });
 
@@ -145,13 +154,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(btnBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNovoP, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(btnVisualizarP, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVisualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluirP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnExcluirProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
@@ -159,12 +168,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscarP)
-                    .addComponent(btnNovoP))
+                    .addComponent(btnBuscarProduto)
+                    .addComponent(btnNovoProduto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisualizarP)
-                    .addComponent(btnExcluirP))
+                    .addComponent(btnVisualizarProduto)
+                    .addComponent(btnExcluirProduto))
                 .addGap(15, 15, 15))
         );
 
@@ -215,10 +224,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblProduto);
 
-        AtualizarP.setText("Atualizar");
-        AtualizarP.addActionListener(new java.awt.event.ActionListener() {
+        AtualizarProduto.setText("Atualizar");
+        AtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AtualizarPActionPerformed(evt);
+                AtualizarProdutoActionPerformed(evt);
             }
         });
 
@@ -233,7 +242,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProdutoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(AtualizarP, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(AtualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlProdutoLayout.setVerticalGroup(
@@ -244,7 +253,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AtualizarP)
+                .addComponent(AtualizarProduto)
                 .addContainerGap())
         );
 
@@ -252,26 +261,26 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         pnlClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        btnBuscarC.setText("Buscar");
+        btnBuscarCliente.setText("Buscar");
 
-        btnVisualizarC.setText("Visualizar");
-        btnVisualizarC.addActionListener(new java.awt.event.ActionListener() {
+        btnVisualizarCliente.setText("Visualizar");
+        btnVisualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVisualizarCActionPerformed(evt);
+                btnVisualizarClienteActionPerformed(evt);
             }
         });
 
-        btnNovoC.setText("Novo");
-        btnNovoC.addActionListener(new java.awt.event.ActionListener() {
+        btnNovoCliente.setText("Novo");
+        btnNovoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoCActionPerformed(evt);
+                btnNovoClienteActionPerformed(evt);
             }
         });
 
-        btnExcluirC.setText("Excluir");
-        btnExcluirC.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluirCliente.setText("Excluir");
+        btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirCActionPerformed(evt);
+                btnExcluirClienteActionPerformed(evt);
             }
         });
 
@@ -283,13 +292,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(btnBuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNovoC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnNovoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(btnVisualizarC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVisualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluirC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnExcluirCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -297,12 +306,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscarC)
-                    .addComponent(btnNovoC))
+                    .addComponent(btnBuscarCliente)
+                    .addComponent(btnNovoCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVisualizarC)
-                    .addComponent(btnExcluirC))
+                    .addComponent(btnVisualizarCliente)
+                    .addComponent(btnExcluirCliente))
                 .addGap(15, 15, 15))
         );
 
@@ -476,11 +485,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(txtPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jScrollPane4)
@@ -577,37 +586,93 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVisualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarCActionPerformed
+    private void btnVisualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVisualizarCActionPerformed
+    }//GEN-LAST:event_btnVisualizarClienteActionPerformed
 
-    private void btnNovoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoCActionPerformed
+    private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
         new CadastroClienteView().setVisible(true);
-    }//GEN-LAST:event_btnNovoCActionPerformed
+    }//GEN-LAST:event_btnNovoClienteActionPerformed
 
-    private void btnExcluirCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirCActionPerformed
+    private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
+        if (tblClientes.getRowCount() > 0) {
+            int linha = tblClientes.getSelectedRow();
 
-    private void btnVisualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVisualizarPActionPerformed
+            if (linha >= 0) {
+                int IDcliente = Integer.parseInt(tblClientes.getModel().getValueAt(linha, 0).toString());
 
-    private void btnNovoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPActionPerformed
+                if (ClienteController.excluir(IDcliente)) {
+                    loadTableClientes();
+                    JOptionPane.showMessageDialog(this, "Cliente excluido da base de dados!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao excluir o cliente!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione o cliente a ser excluído!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há clientes para excluir!");
+        }
+    }//GEN-LAST:event_btnExcluirClienteActionPerformed
+
+    private void btnVisualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarProdutoActionPerformed
+
+        if (tblProduto.getRowCount() > 0) {
+            int linha = tblProduto.getSelectedRow();
+
+            if (linha >= 0) {
+                ProdutoModel p = ProdutoController.visualizar(linha, tblProduto.getModel());
+                new CadastroProdutoView(p).setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um produto para visualizar!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos para visualizar!");
+        }
+
+    }//GEN-LAST:event_btnVisualizarProdutoActionPerformed
+
+    private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
         new CadastroProdutoView().setVisible(true);
-    }//GEN-LAST:event_btnNovoPActionPerformed
+    }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
-    private void btnExcluirPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcluirPActionPerformed
+    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
+        if (tblProduto.getRowCount() > 0) {
+            int linha = tblProduto.getSelectedRow();
 
-    private void AtualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarPActionPerformed
+            if (linha >= 0) {
+                int IDproduto = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 0).toString());
+
+                if (ProdutoController.excluir(IDproduto)) {
+                    loadTableProdutos();
+                    JOptionPane.showMessageDialog(this, "Produto excluido da base de dados!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao excluir o produto!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione o produto a ser excluído!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos para excluir!");
+        }
+    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
+
+    private void AtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarProdutoActionPerformed
         loadTableProdutos();
-    }//GEN-LAST:event_AtualizarPActionPerformed
+    }//GEN-LAST:event_AtualizarProdutoActionPerformed
 
     private void AtualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarCActionPerformed
         loadTableClientes();
     }//GEN-LAST:event_AtualizarCActionPerformed
+
+    private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
+        int id = Integer.parseInt(txtIDP.getText());
+
+        buscaProduto(id);
+    }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
     public void loadTableProdutos() {
 
@@ -684,6 +749,27 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     }
 
+    public void buscaProduto(int id) {
+        ArrayList<String[]> linhasProdutos = ProdutoController.buscaProduto(id);
+
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("Nome");
+        tmProdutos.addColumn("Marca");
+        tmProdutos.addColumn("Fornecedor");
+        tmProdutos.addColumn("Valor");
+        tmProdutos.addColumn("Quantidade");
+        tmProdutos.addColumn("Descrição");
+        tblProduto.setModel(tmProdutos);
+
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+
+        for (String[] p : linhasProdutos) {
+            tmProdutos.addRow(p);
+        }
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -715,22 +801,23 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 new TelaPrincipalView().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtualizarC;
-    private javax.swing.JButton AtualizarP;
+    private javax.swing.JButton AtualizarProduto;
     private javax.swing.JButton btnAtualizarV;
-    private javax.swing.JButton btnBuscarC;
-    private javax.swing.JButton btnBuscarP;
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnBuscarProduto;
     private javax.swing.JButton btnBuscarV;
-    private javax.swing.JButton btnExcluirC;
-    private javax.swing.JButton btnExcluirP;
+    private javax.swing.JButton btnExcluirCliente;
+    private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JButton btnNovaVenda;
-    private javax.swing.JButton btnNovoC;
-    private javax.swing.JButton btnNovoP;
-    private javax.swing.JButton btnVisualizarC;
-    private javax.swing.JButton btnVisualizarP;
+    private javax.swing.JButton btnNovoCliente;
+    private javax.swing.JButton btnNovoProduto;
+    private javax.swing.JButton btnVisualizarCliente;
+    private javax.swing.JButton btnVisualizarProduto;
     private javax.swing.JButton btnVisualizarV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

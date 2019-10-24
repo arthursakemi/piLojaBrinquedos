@@ -17,8 +17,8 @@ public class SimulaDB {
     private ArrayList<ProdutoModel> listaProdutos;
 
     private SimulaDB() {
-        listaClientes = new ArrayList<ClienteModel>();
-        listaProdutos = new ArrayList<ProdutoModel>();
+        listaClientes = new ArrayList<>();
+        listaProdutos = new ArrayList<>();
     }
 
     public static synchronized SimulaDB getInstance() {
@@ -46,6 +46,18 @@ public class SimulaDB {
 
     public ArrayList<ProdutoModel> getProdutos() {
         return this.listaProdutos;
+    }
+
+    public ArrayList<ProdutoModel> buscaProduto(int id) {
+        ArrayList<ProdutoModel> resultado = new ArrayList<>();
+
+        for (ProdutoModel p : listaProdutos) {
+            if (p.getId() == id) {
+                resultado.add(p);
+            }
+        }
+
+        return resultado;
     }
 
     public boolean atualizarCliente(ClienteModel c) {

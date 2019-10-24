@@ -8,6 +8,7 @@ package controller;
 import DAO.ProdutoDAO;
 import model.ProdutoModel;
 import java.util.ArrayList;
+import javax.swing.table.TableModel;
 
 public class ProdutoController {
 
@@ -51,6 +52,18 @@ public class ProdutoController {
         return ProdutoDAO.atualizar(p);
     }
 
+    public static ProdutoModel visualizar(int linha, TableModel tabela) {
+
+        ProdutoModel p = new ProdutoModel(Integer.parseInt(tabela.getValueAt(linha, 0).toString()),
+                tabela.getValueAt(linha, 1).toString(),
+                tabela.getValueAt(linha, 2).toString(),
+                tabela.getValueAt(linha, 3).toString(),
+                Double.parseDouble(tabela.getValueAt(linha, 4).toString()),
+                Integer.parseInt(tabela.getValueAt(linha, 5).toString()),
+                tabela.getValueAt(linha, 6).toString());
+        return p;
+    }
+
     public static ArrayList<String[]> getProdutos() {
         ArrayList<ProdutoModel> produtos = ProdutoDAO.getProdutos();
         ArrayList<String[]> listaProdutos = new ArrayList<>();
@@ -67,5 +80,25 @@ public class ProdutoController {
         }
 
         return listaProdutos;
+    }
+
+    public static ArrayList<String[]> buscaProduto(int id) {
+        ArrayList<ProdutoModel> produtos = ProdutoDAO.buscaProduto(id);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (ProdutoModel p : produtos) {
+            if (p.getId() == id) {
+                resultado.add(new String[]{
+                    String.valueOf(p.getId()),
+                    p.getNome(),
+                    p.getMarca(),
+                    p.getFornecedor(),
+                    String.valueOf(p.getValor()),
+                    String.valueOf(p.getQuantidade()),
+                    p.getDescricao()});
+            }
+        }
+        return resultado;
+
     }
 }

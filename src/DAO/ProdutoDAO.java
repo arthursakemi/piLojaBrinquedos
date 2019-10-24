@@ -18,8 +18,12 @@ public class ProdutoDAO {
         return SimulaDB.getInstance().atualizarProduto(p);
     }
 
-    public static boolean excluir(int pID) {
-        return SimulaDB.getInstance().excluirProduto(pID);
+    public static boolean excluir(int id) {
+        return SimulaDB.getInstance().excluirProduto(id);
+    }
+
+    public static ArrayList<ProdutoModel> buscaProduto(int id) {
+        return SimulaDB.getInstance().buscaProduto(id);
     }
 
     public static ArrayList<ProdutoModel> getProdutos() {
