@@ -242,6 +242,46 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private boolean validarFormulario() {
+
+        if (txtNome.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o nome do produto!");
+            return false;
+        }
+
+        if (txtMarca.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe a marca do produto!");
+            return false;
+        }
+
+        if (txtFornecedor.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o fornecedor do produto!");
+            return false;
+        }
+
+        if (txtValor.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe o valor do produto!");
+            return false;
+        }
+
+        if (txtQuantidade.getText().equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(this, "Informe a quantidade do produto!");
+            return false;
+        }
+
+        if (!Validador.validarDouble(txtValor.getText())) {
+            JOptionPane.showMessageDialog(this, "Valor Inválido!");
+            return false;
+        }
+
+        if (!Validador.validarInt(txtQuantidade.getText())) {
+            JOptionPane.showMessageDialog(this, "Quantidade Inválida!");
+            return false;
+        }
+
+        return true;
+    }
+
     private void desabilitarFormulario() {
         txtNome.setEditable(false);
         txtMarca.setEditable(false);
