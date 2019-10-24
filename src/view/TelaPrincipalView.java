@@ -5,6 +5,11 @@
  */
 package view;
 
+import controller.ClienteController;
+import controller.ProdutoController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sakemi
@@ -16,6 +21,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
      */
     public TelaPrincipalView() {
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 
@@ -46,6 +52,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnExcluirP = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
+        AtualizarP = new javax.swing.JButton();
         pnlClientes = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -59,6 +66,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         lblIDC = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblClientes = new javax.swing.JTable();
+        AtualizarC = new javax.swing.JButton();
         pnlRelatorios = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -77,6 +85,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnNovaVenda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblValorTotal = new javax.swing.JLabel();
+        btnAtualizarV = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -201,10 +210,17 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Cod", "Nome", "Marca", "Estoque", "Valor"
+                "ID", "Nome", "Marca", "Estoque", "Valor"
             }
         ));
         jScrollPane2.setViewportView(tblProduto);
+
+        AtualizarP.setText("Atualizar");
+        AtualizarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizarPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlProdutoLayout = new javax.swing.GroupLayout(pnlProduto);
         pnlProduto.setLayout(pnlProdutoLayout);
@@ -214,7 +230,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProdutoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(AtualizarP, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlProdutoLayout.setVerticalGroup(
@@ -223,7 +242,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AtualizarP)
                 .addContainerGap())
         );
 
@@ -342,6 +363,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblClientes);
 
+        AtualizarC.setText("Atualizar");
+        AtualizarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtualizarCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlClientesLayout = new javax.swing.GroupLayout(pnlClientes);
         pnlClientes.setLayout(pnlClientesLayout);
         pnlClientesLayout.setHorizontalGroup(
@@ -350,7 +378,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
+                    .addComponent(jScrollPane3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClientesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(AtualizarC, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlClientesLayout.setVerticalGroup(
@@ -359,7 +390,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AtualizarC)
                 .addContainerGap())
         );
 
@@ -390,7 +423,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscarV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVisualizarV))
+                .addComponent(btnVisualizarV)
+                .addContainerGap())
         );
 
         txtPeriodo1.setPreferredSize(new java.awt.Dimension(140, 25));
@@ -476,8 +510,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -488,6 +522,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         lblValorTotal.setText("xx.xx");
 
+        btnAtualizarV.setText("Nova Venda");
+
         javax.swing.GroupLayout pnlRelatoriosLayout = new javax.swing.GroupLayout(pnlRelatorios);
         pnlRelatorios.setLayout(pnlRelatoriosLayout);
         pnlRelatoriosLayout.setHorizontalGroup(
@@ -495,13 +531,15 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             .addGroup(pnlRelatoriosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRelatoriosLayout.createSequentialGroup()
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlRelatoriosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAtualizarV, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlRelatoriosLayout.setVerticalGroup(
@@ -511,9 +549,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlRelatoriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNovaVenda)
                     .addComponent(jLabel2)
-                    .addComponent(lblValorTotal))
+                    .addComponent(lblValorTotal)
+                    .addComponent(btnAtualizarV))
                 .addContainerGap())
         );
 
@@ -529,7 +568,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -542,7 +582,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarCActionPerformed
 
     private void btnNovoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoCActionPerformed
-        // TODO add your handling code here:
+        new CadastroClienteView().setVisible(true);
     }//GEN-LAST:event_btnNovoCActionPerformed
 
     private void btnExcluirCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCActionPerformed
@@ -554,16 +594,96 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarPActionPerformed
 
     private void btnNovoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPActionPerformed
-        // TODO add your handling code here:
+        new CadastroProdutoView().setVisible(true);
     }//GEN-LAST:event_btnNovoPActionPerformed
 
     private void btnExcluirPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirPActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void AtualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarPActionPerformed
+        loadTableProdutos();
+    }//GEN-LAST:event_AtualizarPActionPerformed
+
+    private void AtualizarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtualizarCActionPerformed
+        loadTableClientes();
+    }//GEN-LAST:event_AtualizarCActionPerformed
+
+    public void loadTableProdutos() {
+
+        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
+
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("Nome");
+        tmProdutos.addColumn("Marca");
+        tmProdutos.addColumn("Fornecedor");
+        tmProdutos.addColumn("Valor");
+        tmProdutos.addColumn("Estoque");
+        tmProdutos.addColumn("Descrição");
+        tblProduto.setModel(tmProdutos);
+
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+
+        for (String[] p : linhasProdutos) {
+            tmProdutos.addRow(p);
+        }
+
+    }
+
+    public void loadTableClientes() {
+
+        ArrayList<String[]> linhasClientes = ClienteController.getClientes();
+
+        DefaultTableModel tmClientes = new DefaultTableModel();
+        tmClientes.addColumn("ID");
+        tmClientes.addColumn("Nome");
+        tmClientes.addColumn("Email");
+        tmClientes.addColumn("CPF");
+        tmClientes.addColumn("Sexo");
+        tmClientes.addColumn("Nascimento");
+        tmClientes.addColumn("Estado Civil");
+        tmClientes.addColumn("Celular");
+        tmClientes.addColumn("Telefone");
+        tmClientes.addColumn("Endereço");
+        tblClientes.setModel(tmClientes);
+
+        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(4));
+        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(4));
+        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(4));
+        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(5));
+        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(5));
+
+        for (String[] p : linhasClientes) {
+            tmClientes.addRow(p);
+        }
+
+    }
+
+    public void loadTableVendas() { //alterar
+
+        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
+
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("Nome");
+        tmProdutos.addColumn("Marca");
+        tmProdutos.addColumn("Fornecedor");
+        tmProdutos.addColumn("Valor");
+        tmProdutos.addColumn("Quantidade");
+        tmProdutos.addColumn("Descrição");
+        tblProduto.setModel(tmProdutos);
+
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+
+        for (String[] p : linhasProdutos) {
+            tmProdutos.addRow(p);
+        }
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -572,7 +692,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -598,6 +718,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AtualizarC;
+    private javax.swing.JButton AtualizarP;
+    private javax.swing.JButton btnAtualizarV;
     private javax.swing.JButton btnBuscarC;
     private javax.swing.JButton btnBuscarP;
     private javax.swing.JButton btnBuscarV;

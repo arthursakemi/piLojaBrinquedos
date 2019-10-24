@@ -26,6 +26,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         lblID.setVisible(false);
         lblNumeroID.setVisible(false);
         btnEditar.setEnabled(false);
+        setLocationRelativeTo(null);
     }
 
     public CadastroProdutoView(ProdutoModel p) {
@@ -38,6 +39,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         txtQuantidade.setText(String.valueOf(p.getQuantidade()));
         txtDescricao.setText(p.getDescricao());
         desabilitarFormulario();
+        setLocationRelativeTo(null);
     }
 
     /**

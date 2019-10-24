@@ -26,6 +26,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
         lblID.setVisible(false);
         lblNumeroID.setVisible(false);
         btnEdit.setEnabled(false);
+        setLocationRelativeTo(null);
     }
 
     public CadastroClienteView(ClienteModel c) {
@@ -41,6 +42,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
         txtTel.setText(c.getTelefone());
         txtEndereco.setText(c.getEndereco());
         desabilitarFormulario();
+        setLocationRelativeTo(null);
     }
 
     /**
