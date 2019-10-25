@@ -9,6 +9,7 @@ import controller.ProdutoController;
 import javax.swing.JOptionPane;
 import model.ProdutoModel;
 import util.Validador;
+import view.TelaPrincipalView;
 
 /**
  *
@@ -17,6 +18,7 @@ import util.Validador;
 public class CadastroProdutoView extends javax.swing.JFrame {
 
     public static boolean editar = false;
+    TelaPrincipalView telaPrincipal;
 
     /**
      * Creates new form CadastroProduto
@@ -29,7 +31,16 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    public CadastroProdutoView(ProdutoModel p) {
+    public CadastroProdutoView(TelaPrincipalView tp) {
+        initComponents();
+        lblID.setVisible(false);
+        lblNumeroID.setVisible(false);
+        btnEditar.setEnabled(false);
+        setLocationRelativeTo(null);
+        telaPrincipal = tp;
+    }
+
+    public CadastroProdutoView(TelaPrincipalView tp, ProdutoModel p) {
         initComponents();
         lblNumeroID.setText(String.valueOf(p.getId()));
         txtNome.setText(p.getNome());
@@ -40,6 +51,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         txtDescricao.setText(p.getDescricao());
         desabilitarFormulario();
         setLocationRelativeTo(null);
+        telaPrincipal = tp;
     }
 
     /**
@@ -250,6 +262,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
                         txtDescricao.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Produto atualizado com Sucesso!");
+                    telaPrincipal.loadTableProdutos();
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Falha ao atualizar produto!");
@@ -263,6 +276,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
                         txtDescricao.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
+                    telaPrincipal.loadTableProdutos();
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Falha ao registrar produto!");

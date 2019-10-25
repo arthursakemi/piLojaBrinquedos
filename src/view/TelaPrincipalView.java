@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ProdutoModel;
+import util.Validador;
 
 /**
  *
@@ -45,10 +46,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlProduto = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        txtNomeP = new javax.swing.JTextField();
-        lblNomeP = new javax.swing.JLabel();
-        txtIDP = new javax.swing.JTextField();
-        lblIDP = new javax.swing.JLabel();
+        txtNomeProduto = new javax.swing.JTextField();
+        lblNomeProduto = new javax.swing.JLabel();
+        txtIDProduto = new javax.swing.JTextField();
+        lblIDProduto = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         btnBuscarProduto = new javax.swing.JButton();
         btnVisualizarProduto = new javax.swing.JButton();
@@ -110,13 +111,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        txtNomeP.setPreferredSize(new java.awt.Dimension(140, 25));
+        txtNomeProduto.setPreferredSize(new java.awt.Dimension(140, 25));
 
-        lblNomeP.setText("Nome:");
+        lblNomeProduto.setText("Nome:");
 
-        txtIDP.setPreferredSize(new java.awt.Dimension(140, 25));
+        txtIDProduto.setPreferredSize(new java.awt.Dimension(140, 25));
 
-        lblIDP.setText("ID do Produto:");
+        lblIDProduto.setText("ID do Produto:");
 
         btnBuscarProduto.setText("Buscar");
         btnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -184,12 +185,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIDP)
-                    .addComponent(txtIDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblIDProduto)
+                    .addComponent(txtIDProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblNomeP)
-                    .addComponent(txtNomeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNomeProduto)
+                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -200,13 +201,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(lblIDP)
+                        .addComponent(lblIDProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIDP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIDProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(lblNomeP)
+                        .addComponent(lblNomeProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 88, Short.MAX_VALUE)
         );
@@ -480,9 +481,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                     .addComponent(txtIDCbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(lblPeriodo)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblPeriodo)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(txtPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -623,7 +622,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
             if (linha >= 0) {
                 ProdutoModel p = ProdutoController.visualizar(linha, tblProduto.getModel());
-                new CadastroProdutoView(p).setVisible(true);
+                new CadastroProdutoView(this, p).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um produto para visualizar!");
             }
@@ -635,7 +634,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarProdutoActionPerformed
 
     private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
-        new CadastroProdutoView().setVisible(true);
+        CadastroProdutoView cp = new CadastroProdutoView(this);
+        cp.setVisible(true);
     }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
@@ -669,10 +669,37 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_AtualizarCActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
-        int id = Integer.parseInt(txtIDP.getText());
+        int id;
+        if (tblProduto.getRowCount() > 0) {
 
-        buscaProduto(id);
+            if (validarBuscaProduto()) {
+                if (txtNomeProduto.getText().equals("")) {
+                    id = Integer.parseInt(txtIDProduto.getText());
+
+                    buscaProduto(id);
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos para buscar!");
+        }
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
+
+    private boolean validarBuscaProduto() {
+        boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");
+        boolean nomePreenchido = !txtNomeProduto.getText().equalsIgnoreCase("");
+
+        if (!idPreenchido && !nomePreenchido) {
+            JOptionPane.showMessageDialog(this, "Informe o ID ou o Nome do produto!");
+            return false;
+
+        } else if (idPreenchido && !Validador.validarInt(txtIDProduto.getText())) {
+            JOptionPane.showMessageDialog(this, "ID inválido!");
+            return false;
+        }
+
+        return true;
+    }
 
     public void loadTableProdutos() {
 
@@ -752,22 +779,28 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     public void buscaProduto(int id) {
         ArrayList<String[]> linhasProdutos = ProdutoController.buscaProduto(id);
 
-        DefaultTableModel tmProdutos = new DefaultTableModel();
-        tmProdutos.addColumn("ID");
-        tmProdutos.addColumn("Nome");
-        tmProdutos.addColumn("Marca");
-        tmProdutos.addColumn("Fornecedor");
-        tmProdutos.addColumn("Valor");
-        tmProdutos.addColumn("Quantidade");
-        tmProdutos.addColumn("Descrição");
-        tblProduto.setModel(tmProdutos);
+        if (!linhasProdutos.isEmpty()) {
 
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+            DefaultTableModel tmProdutos = new DefaultTableModel();
+            tmProdutos.addColumn("ID");
+            tmProdutos.addColumn("Nome");
+            tmProdutos.addColumn("Marca");
+            tmProdutos.addColumn("Fornecedor");
+            tmProdutos.addColumn("Valor");
+            tmProdutos.addColumn("Quantidade");
+            tmProdutos.addColumn("Descrição");
 
-        for (String[] p : linhasProdutos) {
-            tmProdutos.addRow(p);
+            for (String[] p : linhasProdutos) {
+                tmProdutos.addRow(p);
+            }
+
+            tblProduto.setModel(tmProdutos);
+            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
+            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+        } else {
+            JOptionPane.showMessageDialog(this, "Produto não encontrado!");
         }
+
     }
 
     public static void main(String args[]) {
@@ -837,10 +870,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblIDC;
     private javax.swing.JLabel lblIDCbusca;
-    private javax.swing.JLabel lblIDP;
+    private javax.swing.JLabel lblIDProduto;
     private javax.swing.JLabel lblIDV;
     private javax.swing.JLabel lblNomeC;
-    private javax.swing.JLabel lblNomeP;
+    private javax.swing.JLabel lblNomeProduto;
     private javax.swing.JLabel lblPeriodo;
     private javax.swing.JLabel lblValorTotal;
     private javax.swing.JPanel pnlClientes;
@@ -851,10 +884,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JTable tblVendas;
     private javax.swing.JTextField txtIDC;
     private javax.swing.JTextField txtIDCbusca;
-    private javax.swing.JTextField txtIDP;
+    private javax.swing.JTextField txtIDProduto;
     private javax.swing.JTextField txtIDV;
     private javax.swing.JTextField txtNomeC;
-    private javax.swing.JTextField txtNomeP;
+    private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPeriodo1;
     private javax.swing.JTextField txtPeriodo2;
     // End of variables declaration//GEN-END:variables

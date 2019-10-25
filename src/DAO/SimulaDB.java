@@ -19,6 +19,12 @@ public class SimulaDB {
     private SimulaDB() {
         listaClientes = new ArrayList<>();
         listaProdutos = new ArrayList<>();
+
+        listaProdutos.add(new ProdutoModel(10, "LesPaul", "Gibson", "Gibson", 5000, 2, ""));
+        listaProdutos.add(new ProdutoModel(11, "Explorer", "Gibson", "Gibson", 4500, 2, ""));
+        listaProdutos.add(new ProdutoModel(12, "FlyingV", "Gibson", "Gibson", 4000, 2, ""));
+        listaProdutos.add(new ProdutoModel(13, "Stratocaster", "Fender", "Fender", 3500, 2, ""));
+        listaProdutos.add(new ProdutoModel(14, "Telecaster", "Fender", "Fender", 3000, 2, ""));
     }
 
     public static synchronized SimulaDB getInstance() {
@@ -54,6 +60,18 @@ public class SimulaDB {
         for (ProdutoModel p : listaProdutos) {
             if (p.getId() == id) {
                 resultado.add(p);
+            }
+        }
+
+        return resultado;
+    }
+
+    public ArrayList<ClienteModel> buscaCliente(int id) {
+        ArrayList<ClienteModel> resultado = new ArrayList<>();
+
+        for (ClienteModel c : listaClientes) {
+            if (c.getId() == id) {
+                resultado.add(c);
             }
         }
 

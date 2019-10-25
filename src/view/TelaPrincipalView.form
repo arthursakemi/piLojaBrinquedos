@@ -141,13 +141,13 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblIDP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtIDP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIDProduto" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtIDProduto" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblNomeP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtNomeP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNomeProduto" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNomeProduto" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="35" max="32767" attributes="0"/>
                           <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
@@ -161,14 +161,14 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblIDP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblIDProduto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtIDP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtIDProduto" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="lblNomeP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNomeProduto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtNomeP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNomeProduto" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="23" max="32767" attributes="0"/>
@@ -178,26 +178,26 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="txtNomeP">
+                <Component class="javax.swing.JTextField" name="txtNomeProduto">
                   <Properties>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[140, 25]"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblNomeP">
+                <Component class="javax.swing.JLabel" name="lblNomeProduto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Nome:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtIDP">
+                <Component class="javax.swing.JTextField" name="txtIDProduto">
                   <Properties>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[140, 25]"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblIDP">
+                <Component class="javax.swing.JLabel" name="lblIDProduto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ID do Produto:"/>
                   </Properties>
@@ -616,10 +616,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="lblPeriodo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="lblPeriodo" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="txtPeriodo1" min="-2" pref="100" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
