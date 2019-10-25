@@ -670,13 +670,18 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed
         int id;
+        String nome;
         if (tblProduto.getRowCount() > 0) {
 
             if (validarBuscaProduto()) {
-                if (txtNomeProduto.getText().equals("")) {
+                if (!txtIDProduto.getText().equals("")) {
                     id = Integer.parseInt(txtIDProduto.getText());
 
                     buscaProduto(id);
+                } else {
+                    nome = txtNomeProduto.getText().toLowerCase();
+
+                    buscaProduto(nome);
                 }
 
             }
@@ -772,6 +777,33 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         for (String[] p : linhasProdutos) {
             tmProdutos.addRow(p);
+        }
+
+    }
+
+    public void buscaProduto(String nome) {
+        ArrayList<String[]> linhasProdutos = ProdutoController.buscaProduto(nome);
+
+        if (!linhasProdutos.isEmpty()) {
+
+            DefaultTableModel tmProdutos = new DefaultTableModel();
+            tmProdutos.addColumn("ID");
+            tmProdutos.addColumn("Nome");
+            tmProdutos.addColumn("Marca");
+            tmProdutos.addColumn("Fornecedor");
+            tmProdutos.addColumn("Valor");
+            tmProdutos.addColumn("Quantidade");
+            tmProdutos.addColumn("Descrição");
+
+            for (String[] p : linhasProdutos) {
+                tmProdutos.addRow(p);
+            }
+
+            tblProduto.setModel(tmProdutos);
+            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
+            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+        } else {
+            JOptionPane.showMessageDialog(this, "Produto não encontrado!");
         }
 
     }

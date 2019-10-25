@@ -87,16 +87,33 @@ public class ProdutoController {
         ArrayList<String[]> resultado = new ArrayList<>();
 
         for (ProdutoModel p : produtos) {
-            if (p.getId() == id) {
-                resultado.add(new String[]{
-                    String.valueOf(p.getId()),
-                    p.getNome(),
-                    p.getMarca(),
-                    p.getFornecedor(),
-                    String.valueOf(p.getValor()),
-                    String.valueOf(p.getQuantidade()),
-                    p.getDescricao()});
-            }
+            resultado.add(new String[]{
+                String.valueOf(p.getId()),
+                p.getNome(),
+                p.getMarca(),
+                p.getFornecedor(),
+                String.valueOf(p.getValor()),
+                String.valueOf(p.getQuantidade()),
+                p.getDescricao()});
+        }
+        return resultado;
+
+    }
+
+    public static ArrayList<String[]> buscaProduto(String nome) {
+        ArrayList<ProdutoModel> produtos = ProdutoDAO.buscaProduto(nome);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (ProdutoModel p : produtos) {
+            resultado.add(new String[]{
+                String.valueOf(p.getId()),
+                p.getNome(),
+                p.getMarca(),
+                p.getFornecedor(),
+                String.valueOf(p.getValor()),
+                String.valueOf(p.getQuantidade()),
+                p.getDescricao()});
+
         }
         return resultado;
 

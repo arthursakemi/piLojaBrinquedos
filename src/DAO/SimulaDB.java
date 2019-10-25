@@ -66,6 +66,20 @@ public class SimulaDB {
         return resultado;
     }
 
+    public ArrayList<ProdutoModel> buscaProduto(String nome) {
+        ArrayList<ProdutoModel> resultado = new ArrayList<>();
+
+        for (ProdutoModel p : listaProdutos) {
+            System.out.println(p.getNome());
+            System.out.println(nome);
+            if (p.getNome().toLowerCase().contains(nome)) {
+                resultado.add(p);
+            }
+        }
+
+        return resultado;
+    }
+
     public ArrayList<ClienteModel> buscaCliente(int id) {
         ArrayList<ClienteModel> resultado = new ArrayList<>();
 
