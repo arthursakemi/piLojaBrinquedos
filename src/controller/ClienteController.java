@@ -8,6 +8,7 @@ package controller;
 import DAO.ClienteDAO;
 import model.ClienteModel;
 import java.util.ArrayList;
+import javax.swing.table.TableModel;
 
 public class ClienteController {
 
@@ -61,6 +62,64 @@ public class ClienteController {
                 endereco);
 
         return ClienteDAO.atualizar(c);
+    }
+
+    public static ClienteModel visualizar(int linha, TableModel tabela) {
+
+        ClienteModel c = new ClienteModel(Integer.parseInt(tabela.getValueAt(linha, 0).toString()),
+                tabela.getValueAt(linha, 1).toString(),
+                tabela.getValueAt(linha, 2).toString(),
+                tabela.getValueAt(linha, 3).toString(),
+                tabela.getValueAt(linha, 1).toString(),
+                tabela.getValueAt(linha, 2).toString(),
+                tabela.getValueAt(linha, 3).toString(),
+                tabela.getValueAt(linha, 1).toString(),
+                tabela.getValueAt(linha, 2).toString(),
+                tabela.getValueAt(linha, 3).toString());
+        return c;
+    }
+
+    public static ArrayList<String[]> buscaCliente(int id) {
+        ArrayList<ClienteModel> produtos = ClienteDAO.buscaCliente(id);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (ClienteModel c : produtos) {
+            resultado.add(new String[]{
+                String.valueOf(c.getId()),
+                c.getNome(),
+                c.getEmail(),
+                c.getCpf(),
+                c.getSexo(),
+                c.getNascimento(),
+                c.getEstadoCivil(),
+                c.getCelular(),
+                c.getTelefone(),
+                c.getEndereco()});
+        }
+        return resultado;
+
+    }
+
+    public static ArrayList<String[]> buscaCliente(String nome) {
+        ArrayList<ClienteModel> produtos = ClienteDAO.buscaCliente(nome);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (ClienteModel c : produtos) {
+            resultado.add(new String[]{
+                String.valueOf(c.getId()),
+                c.getNome(),
+                c.getEmail(),
+                c.getCpf(),
+                c.getSexo(),
+                c.getNascimento(),
+                c.getEstadoCivil(),
+                c.getCelular(),
+                c.getTelefone(),
+                c.getEndereco()});
+
+        }
+        return resultado;
+
     }
 
     public static ArrayList<String[]> getClientes() {

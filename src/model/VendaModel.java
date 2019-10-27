@@ -5,11 +5,13 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sakemi
  */
-public class RelatorioAnaliticoModel {
+public class VendaModel {
 
     private static int vendasCadastradas;
     private int IDVenda;
@@ -17,13 +19,14 @@ public class RelatorioAnaliticoModel {
     private String nomeCliente;
     private int quantidadeItens;
     private Double valorTotal;
+    private ArrayList<String[]> produtos;
 
-    public RelatorioAnaliticoModel() {
+    public VendaModel() {
         vendasCadastradas++;
         this.setIDVenda(vendasCadastradas);
     }
 
-    public RelatorioAnaliticoModel(String[] data,
+    public VendaModel(String[] data,
             String nomeCliente,
             int quantidadeItens,
             Double valorTotal) {
@@ -36,7 +39,7 @@ public class RelatorioAnaliticoModel {
         this.valorTotal = valorTotal;
     }
 
-    public RelatorioAnaliticoModel(int IDVenda, String[] data, String nomeCliente, int quantidadeItens, Double valorTotal) {
+    public VendaModel(int IDVenda, String[] data, String nomeCliente, int quantidadeItens, Double valorTotal) {
         this.IDVenda = IDVenda;
         this.data = data;
         this.nomeCliente = nomeCliente;

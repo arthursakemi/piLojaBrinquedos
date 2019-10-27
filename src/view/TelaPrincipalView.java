@@ -7,9 +7,11 @@ package view;
 
 import controller.ClienteController;
 import controller.ProdutoController;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.ClienteModel;
 import model.ProdutoModel;
 import util.Validador;
 
@@ -65,12 +67,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnVisualizarCliente = new javax.swing.JButton();
         btnNovoCliente = new javax.swing.JButton();
         btnExcluirCliente = new javax.swing.JButton();
-        txtNomeC = new javax.swing.JTextField();
+        txtNomeCliente = new javax.swing.JTextField();
         lblNomeC = new javax.swing.JLabel();
-        txtIDC = new javax.swing.JTextField();
+        txtIDCliente = new javax.swing.JTextField();
         lblIDC = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblClientes = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
         AtualizarC = new javax.swing.JButton();
         pnlRelatorios = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
@@ -263,6 +265,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         pnlClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clientes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
         btnVisualizarCliente.setText("Visualizar");
         btnVisualizarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -316,11 +323,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        txtNomeC.setPreferredSize(new java.awt.Dimension(140, 25));
+        txtNomeCliente.setPreferredSize(new java.awt.Dimension(140, 25));
 
         lblNomeC.setText("Nome:");
 
-        txtIDC.setPreferredSize(new java.awt.Dimension(140, 25));
+        txtIDCliente.setPreferredSize(new java.awt.Dimension(140, 25));
 
         lblIDC.setText("ID do Cliente:");
 
@@ -332,11 +339,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDC)
-                    .addComponent(txtIDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeC)
-                    .addComponent(txtNomeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -349,18 +356,18 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(lblIDC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIDC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtIDCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(lblNomeC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 82, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tblClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -368,10 +375,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Cod", "Nome", "CPF", "E-mail", "Celular"
+                "ID", "Nome", "CPF", "E-mail", "Celular"
             }
         ));
-        jScrollPane3.setViewportView(tblClientes);
+        jScrollPane3.setViewportView(tblCliente);
 
         AtualizarC.setText("Atualizar");
         AtualizarC.addActionListener(new java.awt.event.ActionListener() {
@@ -586,7 +593,19 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVisualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarClienteActionPerformed
-        // TODO add your handling code here:
+        if (tblCliente.getRowCount() > 0) {
+            int linha = tblCliente.getSelectedRow();
+
+            if (linha >= 0) {
+                ClienteModel c = ClienteController.visualizar(linha, tblCliente.getModel());
+                new CadastroClienteView(this, c).setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um produto para visualizar!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos para visualizar!");
+        }
     }//GEN-LAST:event_btnVisualizarClienteActionPerformed
 
     private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
@@ -594,11 +613,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoClienteActionPerformed
 
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
-        if (tblClientes.getRowCount() > 0) {
-            int linha = tblClientes.getSelectedRow();
+        if (tblCliente.getRowCount() > 0) {
+            int linha = tblCliente.getSelectedRow();
 
             if (linha >= 0) {
-                int IDcliente = Integer.parseInt(tblClientes.getModel().getValueAt(linha, 0).toString());
+                int IDcliente = Integer.parseInt(tblCliente.getModel().getValueAt(linha, 0).toString());
 
                 if (ClienteController.excluir(IDcliente)) {
                     loadTableClientes();
@@ -690,6 +709,28 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarProdutoActionPerformed
 
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        int id;
+        String nome;
+        if (tblProduto.getRowCount() > 0) {
+
+            if (validarBuscaCliente()) {
+                if (!txtIDCliente.getText().equals("")) {
+                    id = Integer.parseInt(txtIDCliente.getText());
+
+                    buscaCliente(id);
+                } else {
+                    nome = txtNomeCliente.getText().toLowerCase();
+
+                    buscaCliente(nome);
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há clientes para buscar!");
+        }
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
     private boolean validarBuscaProduto() {
         boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");
         boolean nomePreenchido = !txtNomeProduto.getText().equalsIgnoreCase("");
@@ -699,6 +740,22 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             return false;
 
         } else if (idPreenchido && !Validador.validarInt(txtIDProduto.getText())) {
+            JOptionPane.showMessageDialog(this, "ID inválido!");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarBuscaCliente() {
+        boolean idPreenchido = !txtIDCliente.getText().equalsIgnoreCase("");
+        boolean nomePreenchido = !txtNomeCliente.getText().equalsIgnoreCase("");
+
+        if (!idPreenchido && !nomePreenchido) {
+            JOptionPane.showMessageDialog(this, "Informe o ID ou o Nome do cliente!");
+            return false;
+
+        } else if (idPreenchido && !Validador.validarInt(txtIDCliente.getText())) {
             JOptionPane.showMessageDialog(this, "ID inválido!");
             return false;
         }
@@ -744,13 +801,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         tmClientes.addColumn("Celular");
         tmClientes.addColumn("Telefone");
         tmClientes.addColumn("Endereço");
-        tblClientes.setModel(tmClientes);
+        tblCliente.setModel(tmClientes);
 
-        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(4));
-        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(4));
-        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(4));
-        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(5));
-        tblClientes.removeColumn(tblClientes.getColumnModel().getColumn(5));
+        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
 
         for (String[] p : linhasClientes) {
             tmClientes.addRow(p);
@@ -832,6 +889,72 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Produto não encontrado!");
         }
+    }
+
+    public void buscaCliente(String nome) {
+        ArrayList<String[]> linhasProdutos = ClienteController.buscaCliente(nome);
+
+        if (!linhasProdutos.isEmpty()) {
+
+            DefaultTableModel tmClientes = new DefaultTableModel();
+            tmClientes.addColumn("ID");
+            tmClientes.addColumn("Nome");
+            tmClientes.addColumn("Email");
+            tmClientes.addColumn("CPF");
+            tmClientes.addColumn("Sexo");
+            tmClientes.addColumn("Nascimento");
+            tmClientes.addColumn("Estado Civil");
+            tmClientes.addColumn("Celular");
+            tmClientes.addColumn("Telefone");
+            tmClientes.addColumn("Endereço");
+
+            for (String[] p : linhasProdutos) {
+                tmClientes.addRow(p);
+            }
+//id, nome, cpf, email, celular
+            tblCliente.setModel(tmClientes);
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+        }
+
+    }
+
+    public void buscaCliente(int id) {
+        ArrayList<String[]> linhasClientes = ClienteController.buscaCliente(id);
+
+        if (!linhasClientes.isEmpty()) {
+
+            DefaultTableModel tmClientes = new DefaultTableModel();
+            tmClientes.addColumn("ID");
+            tmClientes.addColumn("Nome");
+            tmClientes.addColumn("Email");
+            tmClientes.addColumn("CPF");
+            tmClientes.addColumn("Sexo");
+            tmClientes.addColumn("Nascimento");
+            tmClientes.addColumn("Estado Civil");
+            tmClientes.addColumn("Celular");
+            tmClientes.addColumn("Telefone");
+            tmClientes.addColumn("Endereço");
+
+            for (String[] c : linhasClientes) {
+                tmClientes.addRow(c);
+            }
+
+            tblCliente.setModel(tmClientes);
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+        } else {
+            JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+        }
 
     }
 
@@ -911,14 +1034,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlClientes;
     private javax.swing.JPanel pnlProduto;
     private javax.swing.JPanel pnlRelatorios;
-    private javax.swing.JTable tblClientes;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblVendas;
-    private javax.swing.JTextField txtIDC;
     private javax.swing.JTextField txtIDCbusca;
+    private javax.swing.JTextField txtIDCliente;
     private javax.swing.JTextField txtIDProduto;
     private javax.swing.JTextField txtIDV;
-    private javax.swing.JTextField txtNomeC;
+    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPeriodo1;
     private javax.swing.JTextField txtPeriodo2;
