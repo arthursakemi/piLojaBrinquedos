@@ -574,7 +574,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblValorTotal" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnAtualizarV" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="btnAtualizarVenda" min="-2" pref="139" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnNovaVenda" min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
@@ -593,7 +593,7 @@
                           <Component id="btnNovaVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblValorTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAtualizarV" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAtualizarVenda" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -794,6 +794,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nova Venda"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovaVendaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -808,9 +811,9 @@
                 <Property name="text" type="java.lang.String" value="xx.xx"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnAtualizarV">
+            <Component class="javax.swing.JButton" name="btnAtualizarVenda">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nova Venda"/>
+                <Property name="text" type="java.lang.String" value="Atualizar"/>
               </Properties>
             </Component>
           </SubComponents>

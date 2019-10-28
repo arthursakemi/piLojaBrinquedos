@@ -322,8 +322,8 @@ public class CadastroClienteView extends javax.swing.JFrame {
                         txtNasc.getText(),
                         txtSexo.getText(),
                         txtEstadoCivil.getText(),
-                        txtCel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
-                        txtTel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
+                        txtCel.getText(),
+                        txtTel.getText(),
                         txtEndereco.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Cliente atualizado com Sucesso!");
@@ -335,12 +335,12 @@ public class CadastroClienteView extends javax.swing.JFrame {
             } else {
                 if (ClienteController.salvar(txtNome.getText(),
                         txtEmail.getText(),
-                        txtCPF.getText().replace(".", "").replace("-", "").replace(" ", ""),
+                        txtCPF.getText(),
                         txtNasc.getText(),
                         txtSexo.getText(),
                         txtEstadoCivil.getText(),
-                        txtCel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
-                        txtTel.getText().replace("(", "").replace(")", "").replace("-", "").replace(" ", ""),
+                        txtCel.getText(),
+                        txtTel.getText(),
                         txtEndereco.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");

@@ -92,7 +92,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnNovaVenda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblValorTotal = new javax.swing.JLabel();
-        btnAtualizarV = new javax.swing.JButton();
+        btnAtualizarVenda = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -531,13 +531,18 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         );
 
         btnNovaVenda.setText("Nova Venda");
+        btnNovaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaVendaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Total: R$ ");
 
         lblValorTotal.setText("xx.xx");
 
-        btnAtualizarV.setText("Nova Venda");
+        btnAtualizarVenda.setText("Atualizar");
 
         javax.swing.GroupLayout pnlRelatoriosLayout = new javax.swing.GroupLayout(pnlRelatorios);
         pnlRelatorios.setLayout(pnlRelatoriosLayout);
@@ -552,7 +557,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblValorTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAtualizarV, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAtualizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNovaVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -567,7 +572,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                     .addComponent(btnNovaVenda)
                     .addComponent(jLabel2)
                     .addComponent(lblValorTotal)
-                    .addComponent(btnAtualizarV))
+                    .addComponent(btnAtualizarVenda))
                 .addContainerGap())
         );
 
@@ -638,7 +643,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         if (tblProduto.getRowCount() > 0) {
             int linha = tblProduto.getSelectedRow();
-
             if (linha >= 0) {
                 ProdutoModel p = ProdutoController.visualizar(linha, tblProduto.getModel());
                 new CadastroProdutoView(this, p).setVisible(true);
@@ -730,6 +734,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não há clientes para buscar!");
         }
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    private void btnNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaVendaActionPerformed
+        VendaView v = new VendaView();
+        v.setVisible(true);
+    }//GEN-LAST:event_btnNovaVendaActionPerformed
 
     private boolean validarBuscaProduto() {
         boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");
@@ -995,7 +1004,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtualizarC;
     private javax.swing.JButton AtualizarProduto;
-    private javax.swing.JButton btnAtualizarV;
+    private javax.swing.JButton btnAtualizarVenda;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProduto;
     private javax.swing.JButton btnBuscarV;

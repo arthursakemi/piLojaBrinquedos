@@ -5,19 +5,41 @@
  */
 package view;
 
+import controller.ProdutoController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sakemi
  */
 public class VendaView extends javax.swing.JFrame {
 
+    TelaPrincipalView telaPrincipal;
+
     /**
      * Creates new form VendaView
      */
     public VendaView() {
         initComponents();
+        setLocationRelativeTo(null);
+        loadTableProdutos();
+        jLabel7.setVisible(false);
     }
 
+    public VendaView(TelaPrincipalView tp) {
+        initComponents();
+        setLocationRelativeTo(null);
+        jLabel7.setVisible(false);
+        loadTableProdutos();
+        telaPrincipal = tp;
+    }
+
+//    public VendaView() {
+//        initComponents();
+//        setLocationRelativeTo(null);
+//        jLabel7.setVisible(false);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,7 +71,7 @@ public class VendaView extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblProduto = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jTextField6 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -231,7 +253,7 @@ public class VendaView extends javax.swing.JFrame {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -242,7 +264,7 @@ public class VendaView extends javax.swing.JFrame {
                 "Cod", "Nome", "Marca", "Estoque", "Valor"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblProduto);
 
         jTextField6.setPreferredSize(new java.awt.Dimension(140, 25));
 
@@ -361,6 +383,29 @@ public class VendaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
 
+    public void loadTableProdutos() {
+
+        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
+
+        DefaultTableModel tmProdutos = new DefaultTableModel();
+        tmProdutos.addColumn("ID");
+        tmProdutos.addColumn("Nome");
+        tmProdutos.addColumn("Marca");
+        tmProdutos.addColumn("Fornecedor");
+        tmProdutos.addColumn("Valor");
+        tmProdutos.addColumn("Estoque");
+        tmProdutos.addColumn("Descrição");
+        tblProduto.setModel(tmProdutos);
+
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
+        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+
+        for (String[] p : linhasProdutos) {
+            tmProdutos.addRow(p);
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -425,9 +470,9 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tblProduto;
     // End of variables declaration//GEN-END:variables
 }

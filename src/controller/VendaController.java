@@ -16,7 +16,7 @@ import javax.swing.table.TableModel;
  */
 public class VendaController {
 
-    public static boolean salvar(String[] data,
+    public static boolean salvar(int[] data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
@@ -30,7 +30,7 @@ public class VendaController {
     }
 
     public static boolean atualizar(int id,
-            String[] data,
+            int[] data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
