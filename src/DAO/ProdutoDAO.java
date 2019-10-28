@@ -8,6 +8,10 @@ package DAO;
 import model.ProdutoModel;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Sakemi
+ */
 public class ProdutoDAO {
 
     public static boolean salvar(ProdutoModel p) {

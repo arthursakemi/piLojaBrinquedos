@@ -14,45 +14,49 @@ import java.util.ArrayList;
 public class VendaModel {
 
     private static int vendasCadastradas;
-    private int IDVenda;
+    private int id;
     private String[] data;
     private String nomeCliente;
-    private int quantidadeItens;
+    private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, total}
     private Double valorTotal;
-    private ArrayList<String[]> produtos;
 
     public VendaModel() {
         vendasCadastradas++;
-        this.setIDVenda(vendasCadastradas);
+        id = vendasCadastradas;
     }
 
     public VendaModel(String[] data,
             String nomeCliente,
-            int quantidadeItens,
+            ArrayList<String[]> produtos,
             Double valorTotal) {
 
         vendasCadastradas++;
-        this.setIDVenda(vendasCadastradas);
+        this.id = vendasCadastradas;
         this.data = data;
         this.nomeCliente = nomeCliente;
-        this.quantidadeItens = quantidadeItens;
+        this.produtos = produtos;
         this.valorTotal = valorTotal;
     }
 
-    public VendaModel(int IDVenda, String[] data, String nomeCliente, int quantidadeItens, Double valorTotal) {
-        this.IDVenda = IDVenda;
+    public VendaModel(int id,
+            String[] data,
+            String nomeCliente,
+            ArrayList<String[]> produtos,
+            Double valorTotal) {
+
+        this.id = id;
         this.data = data;
         this.nomeCliente = nomeCliente;
-        this.quantidadeItens = quantidadeItens;
+        this.produtos = produtos;
         this.valorTotal = valorTotal;
     }
 
-    public int getIDVenda() {
-        return IDVenda;
+    public int getId() {
+        return id;
     }
 
-    public void setIDVenda(int IDVenda) {
-        this.IDVenda = IDVenda;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String[] getData() {
@@ -71,12 +75,12 @@ public class VendaModel {
         this.nomeCliente = nomeCliente;
     }
 
-    public int getQuantidadeItens() {
-        return quantidadeItens;
+    public ArrayList<String[]> getProdutos() {
+        return produtos;
     }
 
-    public void setQuantidadeItens(int quantidadeItens) {
-        this.quantidadeItens = quantidadeItens;
+    public void setProdutos(ArrayList<String[]> produtos) {
+        this.produtos = produtos;
     }
 
     public Double getValorTotal() {

@@ -123,6 +123,29 @@ public class SimulaDB {
         return resultado;
     }
 
+    public ArrayList<VendaModel> buscaVenda(int id) {
+        ArrayList<VendaModel> resultado = new ArrayList<>();
+
+        for (VendaModel v : listaVendas) {
+            if (v.getId() == id) {
+                resultado.add(v);
+            }
+        }
+
+        return resultado;
+    }
+
+//    public ArrayList<ClienteModel> buscaVenda(String[] data) {
+//        ArrayList<VendaModel> resultado = new ArrayList<>();
+//
+//        for (VendaModel v : listaVendas) {
+//            if (v.getNome().toLowerCase().contains(nome)) {
+//                resultado.add(v);
+//            }
+//        }
+//
+//        return resultado;
+//    }
     public boolean atualizarCliente(ClienteModel c) {
         for (ClienteModel item : listaClientes) {
             if (item.getId() == c.getId()) {
@@ -149,6 +172,18 @@ public class SimulaDB {
                 item.setValor(p.getValor());
                 item.setQuantidade(p.getQuantidade());
                 item.setDescricao(p.getDescricao());
+            }
+        }
+        return true;
+    }
+
+    public boolean atualizarVenda(VendaModel v) {
+        for (VendaModel item : listaVendas) {
+            if (item.getId() == v.getId()) {
+                item.setData(v.getData());
+                item.setNomeCliente(v.getNomeCliente());
+                item.setProdutos(v.getProdutos());
+                item.setValorTotal(v.getValorTotal());
             }
         }
         return true;
