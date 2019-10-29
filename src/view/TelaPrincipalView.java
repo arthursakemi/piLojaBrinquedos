@@ -543,6 +543,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         lblValorTotal.setText("xx.xx");
 
         btnAtualizarVenda.setText("Atualizar");
+        btnAtualizarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarVendaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlRelatoriosLayout = new javax.swing.GroupLayout(pnlRelatorios);
         pnlRelatorios.setLayout(pnlRelatoriosLayout);
@@ -739,6 +744,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         VendaView v = new VendaView();
         v.setVisible(true);
     }//GEN-LAST:event_btnNovaVendaActionPerformed
+
+    private void btnAtualizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtualizarVendaActionPerformed
 
     private boolean validarBuscaProduto() {
         boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");

@@ -16,6 +16,8 @@ import javax.swing.table.TableModel;
  */
 public class VendaController {
 
+    private static ArrayList<String[]> carrinho;
+
     public static boolean salvar(int[] data,
             String nomeCliente,
             ArrayList<String[]> produtos,
