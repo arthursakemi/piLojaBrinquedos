@@ -15,7 +15,7 @@ public class VendaModel {
 
     private static int vendasCadastradas;
     private int id;
-    private int[] data;
+    private String data;
     private String nomeCliente;
     private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, total}
     private Double valorTotal;
@@ -25,7 +25,7 @@ public class VendaModel {
         id = vendasCadastradas;
     }
 
-    public VendaModel(int[] data,
+    public VendaModel(String data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
@@ -39,7 +39,7 @@ public class VendaModel {
     }
 
     public VendaModel(int id,
-            int[] data,
+            String data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
@@ -59,11 +59,11 @@ public class VendaModel {
         this.id = id;
     }
 
-    public int[] getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(int[] data) {
+    public void setData(String data) {
         this.data = data;
     }
 

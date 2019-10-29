@@ -18,7 +18,7 @@ public class VendaController {
 
     private static ArrayList<String[]> carrinho;
 
-    public static boolean salvar(int[] data,
+    public static boolean salvar(String data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
@@ -32,7 +32,7 @@ public class VendaController {
     }
 
     public static boolean atualizar(int id,
-            int[] data,
+            String data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {

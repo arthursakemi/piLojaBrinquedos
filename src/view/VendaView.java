@@ -426,6 +426,7 @@ public class VendaView extends javax.swing.JFrame {
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         int linha = tblProduto.getSelectedRow();
         addCarrinho(linha, Integer.parseInt(txtQuantidade.getText()));
+        loadTableProdutos();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed

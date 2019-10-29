@@ -25,43 +25,23 @@ public class SimulaDB {
         listaProdutos = new ArrayList<>();
         listaVendas = new ArrayList<>();
 
-        int[] data = {01 / 01 / 2001};
+        listaProdutos.add(new ProdutoModel(10, "LesPaul", "Gibson", "Gibson", 5000, 2, ""));
+        listaProdutos.add(new ProdutoModel(11, "Explorer", "Gibson", "Gibson", 4500, 2, ""));
+        listaProdutos.add(new ProdutoModel(12, "FlyingV", "Gibson", "Gibson", 4000, 2, ""));
+        listaProdutos.add(new ProdutoModel(13, "Stratocaster", "Fender", "Fender", 3500, 2, ""));
+        listaProdutos.add(new ProdutoModel(14, "Telecaster", "Fender", "Fender", 3000, 2, ""));
 
-        ProdutoModel p1 = new ProdutoModel(10, "LesPaul", "Gibson", "Gibson", 5000, 2, ""),
-                p2 = new ProdutoModel(11, "Explorer", "Gibson", "Gibson", 4500, 2, ""),
-                p3 = new ProdutoModel(12, "FlyingV", "Gibson", "Gibson", 4000, 2, ""),
-                p4 = new ProdutoModel(13, "Stratocaster", "Fender", "Fender", 3500, 2, ""),
-                p5 = new ProdutoModel(14, "Telecaster", "Fender", "Fender", 3000, 2, "");
+        listaClientes.add(new ClienteModel(10, "Bob", "bob@mail.com", "11111111111", "Masculino", "01/01/2001", "Solteiro", "11111111111", "", "Rua 1, 01"));
+        listaClientes.add(new ClienteModel(11, "Zakk", "zakk@mail.com", "22222222222", "Masculino", "02/02/2002", "Divorciado", "12222222222", "", "Rua 2, 02"));
+        listaClientes.add(new ClienteModel(12, "Jack", "jack@mail.com", "33333333333", "Masculino", "03/03/2003", "Casado", "1333333333", "", "Rua 3, 03"));
+        listaClientes.add(new ClienteModel(13, "Meggy", "meggy@mail.com", "44444444444", "Feminino", "04/04/2004", "Solteira", "14444444444", "", "Rua 4, 04"));
+        listaClientes.add(new ClienteModel(14, "Laura", "laura@mail.com", "55555555555", "Feminino", "05/05/2005", "Viuva", "15555555555", "", "Rua 5, 05"));
 
-        ClienteModel c1 = new ClienteModel(10, "Bob", "bob@mail.com", "11111111111", "Masculino", "01/01/2001", "Solteiro", "11111111111", "", "Rua 1, 01"),
-                c2 = new ClienteModel(11, "Zack", "zack@mail.com", "22222222222", "Masculino", "02/02/2002", "Divorciado", "12222222222", "", "Rua 2, 02"),
-                c3 = new ClienteModel(12, "Jack", "jack@mail.com", "33333333333", "Masculino", "03/03/2003", "Casado", "1333333333", "", "Rua 3, 03"),
-                c4 = new ClienteModel(13, "Meggy", "meggy@mail.com", "44444444444", "Feminino", "04/04/2004", "Solteira", "14444444444", "", "Rua 4, 04"),
-                c5 = new ClienteModel(14, "Laura", "laura@mail.com", "55555555555", "Feminino", "05/05/2005", "Viuva", "15555555555", "", "Rua 5, 05");
-
-        VendaModel v1 = new VendaModel(10, data, "Bob", carrinho, 500.0),
-                v2 = new VendaModel(11, data, "Zack", carrinho, 500.0),
-                v3 = new VendaModel(12, data, "Jack", carrinho, 500.0),
-                v4 = new VendaModel(13, data, "Meggy", carrinho, 500.0),
-                v5 = new VendaModel(14, data, "Laura", carrinho, 500.0);
-
-        listaProdutos.add(p1);
-        listaProdutos.add(p2);
-        listaProdutos.add(p3);
-        listaProdutos.add(p4);
-        listaProdutos.add(p5);
-
-        listaClientes.add(c1);
-        listaClientes.add(c2);
-        listaClientes.add(c3);
-        listaClientes.add(c4);
-        listaClientes.add(c5);
-
-        listaVendas.add(v1);
-        listaVendas.add(v2);
-        listaVendas.add(v3);
-        listaVendas.add(v4);
-        listaVendas.add(v5);
+        listaVendas.add(new VendaModel(10, "01/01/2001", "Bob", carrinho, 500.0));
+        listaVendas.add(new VendaModel(11, "02/02/2002", "Zakk", carrinho, 500.0));
+        listaVendas.add(new VendaModel(12, "03/03/2003", "Jack", carrinho, 500.0));
+        listaVendas.add(new VendaModel(13, "04/04/2004", "Meggy", carrinho, 500.0));
+        listaVendas.add(new VendaModel(14, "05/05/2005", "Laura", carrinho, 500.0));
 
     }
 
