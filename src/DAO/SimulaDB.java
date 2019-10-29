@@ -33,11 +33,11 @@ public class SimulaDB {
                 p4 = new ProdutoModel(13, "Stratocaster", "Fender", "Fender", 3500, 2, ""),
                 p5 = new ProdutoModel(14, "Telecaster", "Fender", "Fender", 3000, 2, "");
 
-        ClienteModel c1 = new ClienteModel(10, "Bob", "bob@mail.com", "11111111111", "01/01/2001", "Masculino", "Solteiro", "11111111111", "", "Rua 1, 01"),
-                c2 = new ClienteModel(11, "Zack", "zack@mail.com", "22222222222", "02/02/2002", "Masculino", "Divorciado", "12222222222", "", "Rua 2, 02"),
-                c3 = new ClienteModel(12, "Jack", "jack@mail.com", "33333333333", "03/03/2003", "Masculino", "Casado", "1333333333", "", "Rua 3, 03"),
-                c4 = new ClienteModel(13, "Meggy", "meggy@mail.com", "44444444444", "04/04/2004", "Feminino", "Solteira", "14444444444", "", "Rua 4, 04"),
-                c5 = new ClienteModel(14, "Laura", "laura@mail.com", "55555555555", "05/05/2005", "Feminino", "Viuva", "15555555555", "", "Rua 5, 05");
+        ClienteModel c1 = new ClienteModel(10, "Bob", "bob@mail.com", "11111111111", "Masculino", "01/01/2001", "Solteiro", "11111111111", "", "Rua 1, 01"),
+                c2 = new ClienteModel(11, "Zack", "zack@mail.com", "22222222222", "Masculino", "02/02/2002", "Divorciado", "12222222222", "", "Rua 2, 02"),
+                c3 = new ClienteModel(12, "Jack", "jack@mail.com", "33333333333", "Masculino", "03/03/2003", "Casado", "1333333333", "", "Rua 3, 03"),
+                c4 = new ClienteModel(13, "Meggy", "meggy@mail.com", "44444444444", "Feminino", "04/04/2004", "Solteira", "14444444444", "", "Rua 4, 04"),
+                c5 = new ClienteModel(14, "Laura", "laura@mail.com", "55555555555", "Feminino", "05/05/2005", "Viuva", "15555555555", "", "Rua 5, 05");
 
         VendaModel v1 = new VendaModel(10, data, "Bob", carrinho, 500.0),
                 v2 = new VendaModel(11, data, "Zack", carrinho, 500.0),
