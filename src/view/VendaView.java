@@ -425,8 +425,24 @@ public class VendaView extends javax.swing.JFrame {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         int linha = tblProduto.getSelectedRow();
-        addCarrinho(linha, Integer.parseInt(txtQuantidade.getText()));
-        loadTableProdutos();
+
+        if (tblProduto.getRowCount() < 0) {
+            JOptionPane.showMessageDialog(this, "Não há produtos para adicionar!");
+            return;
+        }
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione um item para adicionar!");
+            return;
+        }
+
+        if (!txtQuantidade.getText().equals("")) {
+            addCarrinho(linha, Integer.parseInt(txtQuantidade.getText()));
+            loadTableProdutos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Informe a quantidade desejada!");
+        }
+
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProdutoActionPerformed

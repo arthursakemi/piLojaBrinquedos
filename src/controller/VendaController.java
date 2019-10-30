@@ -18,32 +18,19 @@ public class VendaController {
 
     private static ArrayList<String[]> carrinho;
 
-    public static boolean salvar(String data,
-            String nomeCliente,
-            ArrayList<String[]> produtos,
-            Double valorTotal) {
-
-        VendaModel v = new VendaModel(data,
-                nomeCliente,
-                produtos,
-                valorTotal);
-
-        return VendaDAO.salvar(v);
-    }
-
-    public static boolean atualizar(int id,
+    public static boolean salvar(int idCliente,
             String data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
-        VendaModel v = new VendaModel(id,
+        VendaModel v = new VendaModel(idCliente,
                 data,
                 nomeCliente,
                 produtos,
                 valorTotal);
 
-        return VendaDAO.atualizar(v);
+        return VendaDAO.salvar(v);
     }
 
 }

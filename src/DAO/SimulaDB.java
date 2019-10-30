@@ -9,7 +9,6 @@ import model.ClienteModel;
 import model.ProdutoModel;
 import java.util.ArrayList;
 import model.VendaModel;
-import view.VendaView;
 
 public class SimulaDB {
 
@@ -36,12 +35,6 @@ public class SimulaDB {
         listaClientes.add(new ClienteModel(12, "Jack", "jack@mail.com", "33333333333", "Masculino", "03/03/2003", "Casado", "1333333333", "", "Rua 3, 03"));
         listaClientes.add(new ClienteModel(13, "Meggy", "meggy@mail.com", "44444444444", "Feminino", "04/04/2004", "Solteira", "14444444444", "", "Rua 4, 04"));
         listaClientes.add(new ClienteModel(14, "Laura", "laura@mail.com", "55555555555", "Feminino", "05/05/2005", "Viuva", "15555555555", "", "Rua 5, 05"));
-
-        listaVendas.add(new VendaModel(10, "01/01/2001", "Bob", carrinho, 500.0));
-        listaVendas.add(new VendaModel(11, "02/02/2002", "Zakk", carrinho, 500.0));
-        listaVendas.add(new VendaModel(12, "03/03/2003", "Jack", carrinho, 500.0));
-        listaVendas.add(new VendaModel(13, "04/04/2004", "Meggy", carrinho, 500.0));
-        listaVendas.add(new VendaModel(14, "05/05/2005", "Laura", carrinho, 500.0));
 
     }
 
@@ -134,7 +127,7 @@ public class SimulaDB {
         ArrayList<VendaModel> resultado = new ArrayList<>();
 
         for (VendaModel v : listaVendas) {
-            if (v.getId() == id) {
+            if (v.getIdVenda() == id) {
                 resultado.add(v);
             }
         }
@@ -179,18 +172,6 @@ public class SimulaDB {
                 item.setValor(p.getValor());
                 item.setQuantidade(p.getQuantidade());
                 item.setDescricao(p.getDescricao());
-            }
-        }
-        return true;
-    }
-
-    public boolean atualizarVenda(VendaModel v) {
-        for (VendaModel item : listaVendas) {
-            if (item.getId() == v.getId()) {
-                item.setData(v.getData());
-                item.setNomeCliente(v.getNomeCliente());
-                item.setProdutos(v.getProdutos());
-                item.setValorTotal(v.getValorTotal());
             }
         }
         return true;

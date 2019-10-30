@@ -14,49 +14,63 @@ import java.util.ArrayList;
 public class VendaModel {
 
     private static int vendasCadastradas;
-    private int id;
-    private String data;
-    private String nomeCliente;
+
+    private int idVenda,
+            idCliente;
+    private String data,
+            nomeCliente;
     private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, total}
     private Double valorTotal;
 
     public VendaModel() {
         vendasCadastradas++;
-        id = vendasCadastradas;
+        idVenda = vendasCadastradas;
     }
 
-    public VendaModel(String data,
-            String nomeCliente,
-            ArrayList<String[]> produtos,
-            Double valorTotal) {
-
-        vendasCadastradas++;
-        this.id = vendasCadastradas;
-        this.data = data;
-        this.nomeCliente = nomeCliente;
-        this.produtos = produtos;
-        this.valorTotal = valorTotal;
-    }
-
-    public VendaModel(int id,
+    public VendaModel(int idCliente,
             String data,
             String nomeCliente,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
-        this.id = id;
+        vendasCadastradas++;
+        this.idVenda = vendasCadastradas;
+        this.idCliente = idCliente;
         this.data = data;
         this.nomeCliente = nomeCliente;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
     }
 
-    public int getId() {
-        return id;
+    public VendaModel(int idVenda,
+            int idCliente,
+            String data,
+            String nomeCliente,
+            ArrayList<String[]> produtos,
+            Double valorTotal) {
+
+        this.idVenda = idVenda;
+        this.idCliente = idCliente;
+        this.data = data;
+        this.nomeCliente = nomeCliente;
+        this.produtos = produtos;
+        this.valorTotal = valorTotal;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdVenda() {
+        return idVenda;
+    }
+
+    public void setIdVenda(int idVenda) {
+        this.idVenda = idVenda;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getData() {

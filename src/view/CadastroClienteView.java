@@ -9,6 +9,7 @@ import controller.ClienteController;
 import javax.swing.JOptionPane;
 import model.ClienteModel;
 import util.Validador;
+import view.TelaPrincipalView;
 
 /**
  *
@@ -16,7 +17,7 @@ import util.Validador;
  */
 public class CadastroClienteView extends javax.swing.JFrame {
 
-    public static boolean editar = false;
+    private boolean editar = false;
     TelaPrincipalView telaPrincipal;
 
     /**
@@ -37,6 +38,7 @@ public class CadastroClienteView extends javax.swing.JFrame {
         btnEdit.setEnabled(false);
         setLocationRelativeTo(null);
         telaPrincipal = tp;
+        editar = false;
     }
 
     public CadastroClienteView(TelaPrincipalView tp, ClienteModel c) {
@@ -319,16 +321,16 @@ public class CadastroClienteView extends javax.swing.JFrame {
                         txtNome.getText(),
                         txtEmail.getText(),
                         txtCPF.getText().replace(".", "").replace("-", "").replace(" ", ""),
-                        txtNasc.getText(),
                         txtSexo.getText(),
+                        txtNasc.getText(),
                         txtEstadoCivil.getText(),
                         txtCel.getText(),
                         txtTel.getText(),
                         txtEndereco.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Cliente atualizado com Sucesso!");
-                    telaPrincipal.loadTableProdutos();
-                    this.dispose();
+                    telaPrincipal.loadTableClientes();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Falha ao atualizar cliente!");
                 }
@@ -336,16 +338,16 @@ public class CadastroClienteView extends javax.swing.JFrame {
                 if (ClienteController.salvar(txtNome.getText(),
                         txtEmail.getText(),
                         txtCPF.getText(),
-                        txtNasc.getText(),
                         txtSexo.getText(),
+                        txtNasc.getText(),
                         txtEstadoCivil.getText(),
                         txtCel.getText(),
                         txtTel.getText(),
                         txtEndereco.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
-                    telaPrincipal.loadTableProdutos();
-                    this.dispose();
+                    telaPrincipal.loadTableClientes();
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Falha ao registrar cliente!");
                 }

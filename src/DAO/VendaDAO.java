@@ -20,10 +20,6 @@ public class VendaDAO {
         return SimulaDB.getInstance().salvarVenda(v);
     }
 
-    public static boolean atualizar(VendaModel v) {
-        return SimulaDB.getInstance().atualizarVenda(v);
-    }
-
     public static ArrayList<VendaModel> buscaVenda(int id) {
         return SimulaDB.getInstance().buscaVenda(id);
     }

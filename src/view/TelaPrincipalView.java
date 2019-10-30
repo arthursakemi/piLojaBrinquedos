@@ -610,16 +610,16 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 ClienteModel c = ClienteController.visualizar(linha, tblCliente.getModel());
                 new CadastroClienteView(this, c).setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(this, "Selecione um produto para visualizar!");
+                JOptionPane.showMessageDialog(this, "Selecione um cliente para visualizar!");
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Não há produtos para visualizar!");
+            JOptionPane.showMessageDialog(this, "Não há cliente para visualizar!");
         }
     }//GEN-LAST:event_btnVisualizarClienteActionPerformed
 
     private void btnNovoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoClienteActionPerformed
-        new CadastroClienteView().setVisible(true);
+        new CadastroClienteView(this).setVisible(true);
     }//GEN-LAST:event_btnNovoClienteActionPerformed
 
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
