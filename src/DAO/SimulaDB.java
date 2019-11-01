@@ -123,6 +123,20 @@ public class SimulaDB {
         return resultado;
     }
 
+    public ArrayList<ClienteModel> buscaCliente(long cpfLong) {
+        ArrayList<ClienteModel> resultado = new ArrayList<>();
+
+        String cpf = String.valueOf(cpfLong);
+
+        for (ClienteModel c : listaClientes) {
+            if (c.getCpf().equals(cpf)) {
+                resultado.add(c);
+            }
+        }
+
+        return resultado;
+    }
+
     public ArrayList<VendaModel> buscaVenda(int id) {
         ArrayList<VendaModel> resultado = new ArrayList<>();
 

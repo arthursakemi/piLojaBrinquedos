@@ -34,4 +34,8 @@ public class ClienteDAO {
         return SimulaDB.getInstance().buscaCliente(nome);
     }
 
+    public static ArrayList<ClienteModel> buscaCliente(long cpf) {
+        return SimulaDB.getInstance().buscaCliente(cpf);
+    }
+
 }

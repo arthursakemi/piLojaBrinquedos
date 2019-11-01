@@ -17,8 +17,9 @@ import view.TelaPrincipalView;
  */
 public class CadastroClienteView extends javax.swing.JFrame {
 
-    private boolean editar = false;
     TelaPrincipalView telaPrincipal;
+
+    private boolean editar = false;
 
     /**
      * Creates new form CadastroCliente

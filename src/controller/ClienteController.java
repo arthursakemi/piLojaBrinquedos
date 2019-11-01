@@ -101,10 +101,10 @@ public class ClienteController {
     }
 
     public static ArrayList<String[]> buscaCliente(String nome) {
-        ArrayList<ClienteModel> produtos = ClienteDAO.buscaCliente(nome);
+        ArrayList<ClienteModel> clientes = ClienteDAO.buscaCliente(nome);
         ArrayList<String[]> resultado = new ArrayList<>();
 
-        for (ClienteModel c : produtos) {
+        for (ClienteModel c : clientes) {
             resultado.add(new String[]{
                 String.valueOf(c.getId()),
                 c.getNome(),
@@ -120,6 +120,32 @@ public class ClienteController {
         }
         return resultado;
 
+    }
+
+    public static ArrayList<String[]> buscaCliente(long cpf) {
+        ArrayList<ClienteModel> clientes = ClienteDAO.buscaCliente(cpf);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (ClienteModel c : clientes) {
+            resultado.add(new String[]{
+                String.valueOf(c.getId()),
+                c.getNome(),
+                c.getEmail(),
+                c.getCpf(),
+                c.getSexo(),
+                c.getNascimento(),
+                c.getEstadoCivil(),
+                c.getCelular(),
+                c.getTelefone(),
+                c.getEndereco()});
+
+        }
+        return resultado;
+
+    }
+
+    public static ArrayList<ClienteModel> buscaClienteVenda(long cpf) {
+        return ClienteDAO.buscaCliente(cpf);
     }
 
     public static ArrayList<String[]> getClientes() {

@@ -5,11 +5,14 @@
  */
 package view;
 
+import controller.ClienteController;
 import controller.ProdutoController;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import model.ClienteModel;
+import model.VendaModel;
 import util.Validador;
 
 /**
@@ -20,6 +23,7 @@ public class VendaView extends javax.swing.JFrame {
 
     private DefaultTableModel tmCarrinho = new DefaultTableModel();
     private TelaPrincipalView telaPrincipal;
+    private ClienteModel c;
 
     /**
      * Creates new form VendaView
@@ -29,6 +33,7 @@ public class VendaView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         loadTableProdutos();
         lblNomeCliente.setVisible(false);
+        lblIDVenda.setText(String.valueOf(VendaModel.getVendasCadastradas() + 1));
 
         tmCarrinho.addColumn("ID");
         tmCarrinho.addColumn("Nome");
@@ -110,6 +115,11 @@ public class VendaView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblCarrinho);
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         try {
             txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###/##")));
@@ -474,6 +484,30 @@ public class VendaView extends javax.swing.JFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String cpfString = txtCPF.getText().replace(".", "").replace("/", "").replace(" ", "");
+        long cpf;
+        if (!cpfString.equals("")) {
+            if (Validador.validarCPF(cpfString)) {
+                cpf = Long.parseLong(cpfString);
+                ArrayList<ClienteModel> clientes = ClienteController.buscaClienteVenda(cpf);
+                if (clientes.size() > 0) {
+                    c = clientes.get(0);
+                    lblNomeCliente.setVisible(true);
+                    lblNomeCliente.setText(c.getNome());
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Não há clientes cadastrados!");
+                }
+            } else {
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Informe o CPF do Cliente!");
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     public void loadTableProdutos() {
 

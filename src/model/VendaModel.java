@@ -18,7 +18,8 @@ public class VendaModel {
     private int idVenda,
             idCliente;
     private String data,
-            nomeCliente;
+            nomeCliente,
+            cpfCliente;
     private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, total}
     private Double valorTotal;
 
@@ -55,6 +56,14 @@ public class VendaModel {
         this.nomeCliente = nomeCliente;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
+    }
+
+    public String getCpfCliente() {
+        return cpfCliente;
+    }
+
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
     }
 
     public int getIdVenda() {
@@ -103,6 +112,14 @@ public class VendaModel {
 
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public static int getVendasCadastradas() {
+        return vendasCadastradas;
+    }
+
+    public static void setVendasCadastradas(int vendasCadastradas) {
+        VendaModel.vendasCadastradas = vendasCadastradas;
     }
 
 }

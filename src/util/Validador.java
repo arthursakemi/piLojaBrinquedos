@@ -53,4 +53,16 @@ public class Validador {
         return true;
     }
 
+    public static boolean validarCPF(String cpf) {
+        if (cpf.length() < 11) {
+            return false;
+        }
+        try {
+            long n = Long.parseLong(cpf);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
 }
