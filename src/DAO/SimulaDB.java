@@ -24,11 +24,11 @@ public class SimulaDB {
         listaProdutos = new ArrayList<>();
         listaVendas = new ArrayList<>();
 
-        listaProdutos.add(new ProdutoModel(10, "LesPaul", "Gibson", "Gibson", 5000, 2, ""));
-        listaProdutos.add(new ProdutoModel(11, "Explorer", "Gibson", "Gibson", 4500, 2, ""));
-        listaProdutos.add(new ProdutoModel(12, "FlyingV", "Gibson", "Gibson", 4000, 2, ""));
-        listaProdutos.add(new ProdutoModel(13, "Stratocaster", "Fender", "Fender", 3500, 2, ""));
-        listaProdutos.add(new ProdutoModel(14, "Telecaster", "Fender", "Fender", 3000, 2, ""));
+        listaProdutos.add(new ProdutoModel(10, "Boneco Homem Aranha", "Pizi Toys", "Pizi Toys", 2, 59.99, " Apresenta um visual inspirado no cinema com cinco pontos de articulação"));
+        listaProdutos.add(new ProdutoModel(11, "War - Tabuleiro", "Grow", "Grow", 2, 74.61, "Cada jogador precisa usar toda sua habilidade militar para conquistar territórios e continentes e derrotar seus adversários."));
+        listaProdutos.add(new ProdutoModel(12, "Imagem & Ação - Tabuleiro", "Grow", "Grow", 2, 87.99, "Jogo de desenho e adivinhação, agora com um timer que derruba uma carta por vez, fazendo de cada partida uma corrida contra o tempo!"));
+        listaProdutos.add(new ProdutoModel(13, "Gurps - RPG", "Steve Jackson Games", "Devir", 2, 89.00, "GURPS – ou Generic Universal Role-Playing System – foi criado para ser um game universal, totalmente genérico e que permite muitas adaptações. Com um dos livros da série em mãos, os jogadores aproveitam qualquer gênero de jogo (desde fantasia até terror) em mundos infinitos e com diversas variações."));
+        listaProdutos.add(new ProdutoModel(14, "Vampiro A Máscara - RPG", "White Wolf", "Devir", 2, 149.90, "Criado em 1991 pelo designer de jogos Mark Rein-Hagen, o jogo, que foi percursor do sistema Storyteller, foca na temática dos vampiros e explora diversas nuances em um mundo punk-gótico, como: horror, depravação, salvação e a condição humana."));
 
         listaClientes.add(new ClienteModel(10, "Bob", "bob@mail.com", "11111111111", "Masculino", "01/01/2001", "Solteiro", "11111111111", "", "Rua 1, 01"));
         listaClientes.add(new ClienteModel(11, "Zakk", "zakk@mail.com", "22222222222", "Masculino", "02/02/2002", "Divorciado", "12222222222", "", "Rua 2, 02"));

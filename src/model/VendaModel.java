@@ -20,7 +20,7 @@ public class VendaModel {
     private String data,
             nomeCliente,
             cpfCliente;
-    private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, total}
+    private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario}
     private Double valorTotal;
 
     public VendaModel() {
@@ -31,6 +31,7 @@ public class VendaModel {
     public VendaModel(int idCliente,
             String data,
             String nomeCliente,
+            String cpf,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
@@ -39,6 +40,7 @@ public class VendaModel {
         this.idCliente = idCliente;
         this.data = data;
         this.nomeCliente = nomeCliente;
+        this.cpfCliente = cpf;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
     }
@@ -47,12 +49,14 @@ public class VendaModel {
             int idCliente,
             String data,
             String nomeCliente,
+            String cpf,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
         this.idVenda = idVenda;
         this.idCliente = idCliente;
         this.data = data;
+        this.cpfCliente = cpf;
         this.nomeCliente = nomeCliente;
         this.produtos = produtos;
         this.valorTotal = valorTotal;

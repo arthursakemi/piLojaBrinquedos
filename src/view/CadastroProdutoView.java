@@ -112,7 +112,9 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         lblDescricao.setText("Descrição:");
 
         txtDescricao.setColumns(20);
+        txtDescricao.setLineWrap(true);
         txtDescricao.setRows(5);
+        txtDescricao.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txtDescricao);
 
         btnSalvar.setText("Salvar");

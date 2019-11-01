@@ -28,8 +28,8 @@ public class ProdutoModel {
     public ProdutoModel(String nome,
             String marca,
             String fornecedor,
-            double valor,
             int quantidade,
+            double valor,
             String descricao) {
 
         produtosCadastrados++;
@@ -46,8 +46,8 @@ public class ProdutoModel {
             String nome,
             String marca,
             String fornecedor,
-            double valor,
             int quantidade,
+            double valor,
             String descricao) {
 
         this.id = pID;

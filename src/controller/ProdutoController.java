@@ -22,8 +22,8 @@ public class ProdutoController {
         ProdutoModel p = new ProdutoModel(nome,
                 marca,
                 fornecedor,
-                valor,
                 quantidade,
+                valor,
                 descricao);
 
         return ProdutoDAO.salvar(p);
@@ -45,8 +45,8 @@ public class ProdutoController {
                 nome,
                 marca,
                 fornecedor,
-                valor,
                 quantidade,
+                valor,
                 descricao);
 
         return ProdutoDAO.atualizar(p);
@@ -58,8 +58,8 @@ public class ProdutoController {
                 tabela.getValueAt(linha, 1).toString(),
                 tabela.getValueAt(linha, 2).toString(),
                 tabela.getValueAt(linha, 3).toString(),
-                Double.parseDouble(tabela.getValueAt(linha, 4).toString()),
-                Integer.parseInt(tabela.getValueAt(linha, 5).toString()),
+                Integer.parseInt(tabela.getValueAt(linha, 4).toString()),
+                Double.parseDouble(tabela.getValueAt(linha, 5).toString()),
                 tabela.getValueAt(linha, 6).toString());
         return p;
     }
@@ -74,8 +74,8 @@ public class ProdutoController {
                 produtos.get(i).getNome(),
                 produtos.get(i).getMarca(),
                 produtos.get(i).getFornecedor(),
-                String.valueOf(produtos.get(i).getValor()),
                 String.valueOf(produtos.get(i).getQuantidade()),
+                String.valueOf(produtos.get(i).getValor()),
                 produtos.get(i).getDescricao()});
         }
 
@@ -92,8 +92,8 @@ public class ProdutoController {
                 p.getNome(),
                 p.getMarca(),
                 p.getFornecedor(),
-                String.valueOf(p.getValor()),
                 String.valueOf(p.getQuantidade()),
+                String.valueOf(p.getValor()),
                 p.getDescricao()});
         }
         return resultado;

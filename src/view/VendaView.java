@@ -7,6 +7,7 @@ package view;
 
 import controller.ClienteController;
 import controller.ProdutoController;
+import controller.VendaController;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class VendaView extends javax.swing.JFrame {
     private DefaultTableModel tmCarrinho = new DefaultTableModel();
     private TelaPrincipalView telaPrincipal;
     private ClienteModel c;
+    private boolean clienteEncontrado = false;
 
     /**
      * Creates new form VendaView
@@ -51,8 +53,18 @@ public class VendaView extends javax.swing.JFrame {
     public VendaView(TelaPrincipalView tp) {
         initComponents();
         setLocationRelativeTo(null);
-        lblNomeCliente.setVisible(false);
         loadTableProdutos();
+        lblNomeCliente.setVisible(false);
+        lblIDVenda.setText(String.valueOf(VendaModel.getVendasCadastradas() + 1));
+
+        tmCarrinho.addColumn("ID");
+        tmCarrinho.addColumn("Nome");
+        tmCarrinho.addColumn("Quantidade");
+        tmCarrinho.addColumn("Valor");
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        lblData.setText(dateFormat.format(date));
         telaPrincipal = tp;
     }
 
@@ -105,10 +117,7 @@ public class VendaView extends javax.swing.JFrame {
 
         tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Quantidade", "Valor"
@@ -132,7 +141,7 @@ public class VendaView extends javax.swing.JFrame {
 
         jLabel8.setText("CPF:");
 
-        lblNomeCliente.setText("Nome Cliente");
+        lblNomeCliente.setText("Nome");
 
         lblIDVenda.setText("xx");
 
@@ -171,7 +180,7 @@ public class VendaView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,6 +210,11 @@ public class VendaView extends javax.swing.JFrame {
         );
 
         btnConcluir.setText("Concluir");
+        btnConcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluirActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -281,10 +295,7 @@ public class VendaView extends javax.swing.JFrame {
 
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Cod", "Nome", "Marca", "Estoque", "Valor"
@@ -490,9 +501,11 @@ public class VendaView extends javax.swing.JFrame {
                     c = clientes.get(0);
                     lblNomeCliente.setVisible(true);
                     lblNomeCliente.setText(c.getNome());
+                    clienteEncontrado = true;
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "Não há clientes cadastrados!");
+                    JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
+                    clienteEncontrado = false;
                 }
             } else {
                 return;
@@ -503,6 +516,37 @@ public class VendaView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+        ArrayList<String[]> produtos = new ArrayList<>();
+
+        if (tblCarrinho.getRowCount() > 0) {
+            if (clienteEncontrado) {
+
+                for (int i = 0; i < tblCarrinho.getRowCount(); i++) {
+                    String[] linha = {tblCarrinho.getModel().getValueAt(i, 0).toString(),
+                        tblCarrinho.getModel().getValueAt(i, 1).toString(),
+                        tblCarrinho.getModel().getValueAt(i, 2).toString(),
+                        tblCarrinho.getModel().getValueAt(i, 3).toString()};
+
+                    produtos.add(linha);
+                }
+
+                VendaController.salvar(c.getId(),
+                        lblData.getText(),
+                        c.getNome(),
+                        c.getCpf(),
+                        produtos,
+                        Double.parseDouble(lblTotal.getText()));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Informe o CPF do cliente!");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há produtos no carrinho!");
+        }
+    }//GEN-LAST:event_btnConcluirActionPerformed
+
     public void loadTableProdutos() {
 
         ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
@@ -512,8 +556,8 @@ public class VendaView extends javax.swing.JFrame {
         tmProdutos.addColumn("Nome");
         tmProdutos.addColumn("Marca");
         tmProdutos.addColumn("Fornecedor");
-        tmProdutos.addColumn("Valor");
         tmProdutos.addColumn("Estoque");
+        tmProdutos.addColumn("Valor");
         tmProdutos.addColumn("Descrição");
         tblProduto.setModel(tmProdutos);
 
@@ -544,7 +588,7 @@ public class VendaView extends javax.swing.JFrame {
         produto[0] = tblProduto.getModel().getValueAt(linha, 0).toString();
         produto[1] = tblProduto.getModel().getValueAt(linha, 1).toString();
         produto[2] = String.valueOf(quantidade);
-        produto[3] = tblProduto.getModel().getValueAt(linha, 4).toString();
+        produto[3] = tblProduto.getModel().getValueAt(linha, 5).toString();
 
         tblCarrinho.setModel(tmCarrinho);
 

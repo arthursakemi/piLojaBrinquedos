@@ -116,6 +116,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnBuscarV.setText("Buscar");
 
         btnVisualizarV.setText("Visualizar");
+        btnVisualizarV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisualizarVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -747,6 +752,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAtualizarVendaActionPerformed
 
+    private void btnVisualizarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVisualizarVActionPerformed
+
     private boolean validarBuscaProduto() {
         boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");
         boolean nomePreenchido = !txtNomeProduto.getText().equalsIgnoreCase("");
@@ -788,8 +797,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         tmProdutos.addColumn("Nome");
         tmProdutos.addColumn("Marca");
         tmProdutos.addColumn("Fornecedor");
-        tmProdutos.addColumn("Valor");
         tmProdutos.addColumn("Estoque");
+        tmProdutos.addColumn("Valor");
         tmProdutos.addColumn("Descrição");
         tblProduto.setModel(tmProdutos);
 
@@ -864,8 +873,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             tmProdutos.addColumn("Nome");
             tmProdutos.addColumn("Marca");
             tmProdutos.addColumn("Fornecedor");
+            tmProdutos.addColumn("Estoque");
             tmProdutos.addColumn("Valor");
-            tmProdutos.addColumn("Quantidade");
             tmProdutos.addColumn("Descrição");
 
             for (String[] p : linhasProdutos) {
@@ -891,8 +900,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             tmProdutos.addColumn("Nome");
             tmProdutos.addColumn("Marca");
             tmProdutos.addColumn("Fornecedor");
-            tmProdutos.addColumn("Valor");
             tmProdutos.addColumn("Quantidade");
+            tmProdutos.addColumn("Valor");
             tmProdutos.addColumn("Descrição");
 
             for (String[] p : linhasProdutos) {

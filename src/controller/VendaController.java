@@ -21,12 +21,14 @@ public class VendaController {
     public static boolean salvar(int idCliente,
             String data,
             String nomeCliente,
+            String cpf,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
         VendaModel v = new VendaModel(idCliente,
                 data,
                 nomeCliente,
+                cpf,
                 produtos,
                 valorTotal);
 
