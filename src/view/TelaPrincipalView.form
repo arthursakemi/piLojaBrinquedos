@@ -317,7 +317,7 @@
                     <Component class="javax.swing.JTable" name="tblVendas">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="true" title="Cod. Venda" type="java.lang.Object"/>
                             <Column editable="true" title="Cod. Cliente" type="java.lang.Object"/>
                             <Column editable="true" title="Data" type="java.lang.Object"/>

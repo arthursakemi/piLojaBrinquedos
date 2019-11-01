@@ -7,7 +7,10 @@ package view;
 
 import controller.ClienteController;
 import controller.ProdutoController;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -39,6 +42,10 @@ public class VendaView extends javax.swing.JFrame {
         tmCarrinho.addColumn("Nome");
         tmCarrinho.addColumn("Quantidade");
         tmCarrinho.addColumn("Valor");
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        lblData.setText(dateFormat.format(date));
     }
 
     public VendaView(TelaPrincipalView tp) {
@@ -49,11 +56,6 @@ public class VendaView extends javax.swing.JFrame {
         telaPrincipal = tp;
     }
 
-//    public VendaView() {
-//        initComponents();
-//        setLocationRelativeTo(null);
-//        jLabel7.setVisible(false);
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,11 +73,11 @@ public class VendaView extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         txtCPF = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtData = new javax.swing.JFormattedTextField();
         lblNomeCliente = new javax.swing.JLabel();
         lblIDVenda = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        Data = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btnConcluir = new javax.swing.JButton();
@@ -130,9 +132,6 @@ public class VendaView extends javax.swing.JFrame {
 
         jLabel8.setText("CPF:");
 
-        txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yyyy"))));
-        txtData.setPreferredSize(new java.awt.Dimension(4, 25));
-
         lblNomeCliente.setText("Nome Cliente");
 
         lblIDVenda.setText("xx");
@@ -141,13 +140,15 @@ public class VendaView extends javax.swing.JFrame {
 
         jLabel4.setText("Cliente:");
 
-        lblData.setText("Data:");
+        Data.setText("Data:");
+
+        lblData.setText("lblDate");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -160,18 +161,17 @@ public class VendaView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNomeCliente))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblData)
+                        .addComponent(Data)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblData)))
+                .addGap(352, 352, 352)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,14 +188,14 @@ public class VendaView extends javax.swing.JFrame {
                             .addComponent(lblNomeCliente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblData)
-                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Data)
+                            .addComponent(lblData)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscar)
-                            .addComponent(jLabel8))))
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
         );
@@ -383,7 +383,7 @@ public class VendaView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -395,7 +395,7 @@ public class VendaView extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -664,6 +664,7 @@ public class VendaView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Data;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnBuscar;
@@ -693,7 +694,6 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JTable tblCarrinho;
     private javax.swing.JTable tblProduto;
     private javax.swing.JFormattedTextField txtCPF;
-    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtIDProduto;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtQuantidade;

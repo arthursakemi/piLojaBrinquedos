@@ -158,10 +158,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         tblVendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Cod. Venda", "Cod. Cliente", "Data", "Valor"
