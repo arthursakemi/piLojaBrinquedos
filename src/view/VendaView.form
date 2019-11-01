@@ -482,9 +482,6 @@
                   <Dimension value="[140, 25]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeProdutoActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarProduto">
               <Properties>

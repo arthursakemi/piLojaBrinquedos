@@ -303,11 +303,6 @@ public class VendaView extends javax.swing.JFrame {
         lblQuantidade.setText("Quantidade:");
 
         txtNomeProduto.setPreferredSize(new java.awt.Dimension(140, 25));
-        txtNomeProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeProdutoActionPerformed(evt);
-            }
-        });
 
         btnBuscarProduto.setText("Buscar");
         btnBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -426,12 +421,11 @@ public class VendaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        int linha = tblCarrinho.getSelectedRow();
+        tmCarrinho.removeRow(linha);
+        tblCarrinho.setModel(tmCarrinho);
+        getTotal();
     }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeProdutoActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         int linha = tblProduto.getSelectedRow();
