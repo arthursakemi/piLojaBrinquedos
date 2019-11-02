@@ -35,4 +35,19 @@ public class VendaController {
         return VendaDAO.salvar(v);
     }
 
+    public static ArrayList<String[]> getVendas() {
+        ArrayList<VendaModel> vendas = VendaDAO.getVendas();
+        ArrayList<String[]> listaVendas = new ArrayList<>();
+
+        for (int i = 0; i < vendas.size(); i++) {
+            listaVendas.add(new String[]{
+                String.valueOf(vendas.get(i).getIdVenda()),
+                vendas.get(i).getCpfCliente(),
+                vendas.get(i).getData(),
+                String.valueOf(vendas.get(i).getValorTotal())});
+        }
+
+        return listaVendas;
+    }
+
 }

@@ -43,7 +43,8 @@ public class VendaView extends javax.swing.JFrame {
         tmCarrinho.addColumn("ID");
         tmCarrinho.addColumn("Nome");
         tmCarrinho.addColumn("Quantidade");
-        tmCarrinho.addColumn("Valor");
+        tmCarrinho.addColumn("Valor Un.");
+        tmCarrinho.addColumn("Total Parcial");
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -60,7 +61,8 @@ public class VendaView extends javax.swing.JFrame {
         tmCarrinho.addColumn("ID");
         tmCarrinho.addColumn("Nome");
         tmCarrinho.addColumn("Quantidade");
-        tmCarrinho.addColumn("Valor");
+        tmCarrinho.addColumn("Valor Un.");
+        tmCarrinho.addColumn("Total Parcial");
 
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -120,7 +122,7 @@ public class VendaView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Quantidade", "Valor"
+                "ID", "Nome", "Quantidade", "Valor Un.", "Total Parcial"
             }
         ));
         jScrollPane1.setViewportView(tblCarrinho);
@@ -349,10 +351,11 @@ public class VendaView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblQuantidade)
-                            .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                            .addGroup(jPanelLayout.createSequentialGroup()
+                                .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,8 +373,8 @@ public class VendaView extends javax.swing.JFrame {
                     .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdicionar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         btnAtualizar.setText("Atualizar");
@@ -433,12 +436,14 @@ public class VendaView extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int linha = tblCarrinho.getSelectedRow();
+
         tmCarrinho.removeRow(linha);
         tblCarrinho.setModel(tmCarrinho);
         getTotal();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        int quantidade, estoque;
         int linha = tblProduto.getSelectedRow();
 
         if (tblProduto.getRowCount() < 0) {
@@ -446,14 +451,22 @@ public class VendaView extends javax.swing.JFrame {
             return;
         }
 
-        if (linha < 0) {
-            JOptionPane.showMessageDialog(this, "Selecione um item para adicionar!");
+        if (!validarQuantidade(linha)) {
             return;
         }
 
+        quantidade = Integer.parseInt(txtQuantidade.getText());
+        estoque = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 4).toString());
+
         if (!txtQuantidade.getText().equals("")) {
-            addCarrinho(linha, Integer.parseInt(txtQuantidade.getText()));
-            loadTableProdutos();
+
+            if (quantidade > estoque) {
+                JOptionPane.showMessageDialog(this, "Estoque insuficiente!");
+            } else {
+                addCarrinho(linha, quantidade, estoque);
+                loadTableProdutos();
+            }
+
         } else {
             JOptionPane.showMessageDialog(this, "Informe a quantidade desejada!");
         }
@@ -531,12 +544,20 @@ public class VendaView extends javax.swing.JFrame {
                     produtos.add(linha);
                 }
 
-                VendaController.salvar(c.getId(),
+                if (VendaController.salvar(c.getId(),
                         lblData.getText(),
                         c.getNome(),
                         c.getCpf(),
                         produtos,
-                        Double.parseDouble(lblTotal.getText()));
+                        Double.parseDouble(lblTotal.getText().replace(",", "")))) {
+
+                    JOptionPane.showMessageDialog(this, "Venda concluída com sucesso!");
+                    telaPrincipal.loadTableVendas();
+                    dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Falha ao registrar a venda!");
+                }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Informe o CPF do cliente!");
@@ -579,25 +600,81 @@ public class VendaView extends javax.swing.JFrame {
             total += valor * quantidade;
         }
 
-        lblTotal.setText(String.valueOf(total));
+        lblTotal.setText(String.format("%.2f", total));
     }
 
-    public void addCarrinho(int linha, int quantidade) {
-        String[] produto = new String[4];
+    public void addCarrinho(int linha, int quantidade, int estoque) {
+        String[] produto = new String[5];
+        int novaQuantidade, posicaoAdicionada;
+        double novoTotal;
+        int id = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 0).toString());
 
-        produto[0] = tblProduto.getModel().getValueAt(linha, 0).toString();
+        produto[0] = String.valueOf(id);
         produto[1] = tblProduto.getModel().getValueAt(linha, 1).toString();
         produto[2] = String.valueOf(quantidade);
         produto[3] = tblProduto.getModel().getValueAt(linha, 5).toString();
+        produto[4] = String.valueOf(quantidade * Double.parseDouble(produto[3]));
+
+        posicaoAdicionada = adicionado(id);
+
+        if (posicaoAdicionada != -1) {
+            novaQuantidade = Integer.parseInt(tblCarrinho.getModel().getValueAt(posicaoAdicionada, 2).toString()) + quantidade;
+
+            if (novaQuantidade > estoque) {
+                JOptionPane.showMessageDialog(this, "Estoque insuficiente!");
+                return;
+            }
+
+            novoTotal = novaQuantidade * Double.parseDouble(produto[3]);
+
+            produto[2] = String.valueOf(novaQuantidade);
+            produto[4] = String.valueOf(novoTotal);
+            tmCarrinho.removeRow(posicaoAdicionada);
+
+        }
 
         tblCarrinho.setModel(tmCarrinho);
-
         tmCarrinho.addRow(produto);
-
         getTotal();
     }
 
-    private boolean validarBuscaProduto() {
+    public int adicionado(int id) {
+        for (int i = 0; i < tblCarrinho.getRowCount(); i++) {
+            int idAdicionado = Integer.parseInt(tblCarrinho.getModel().getValueAt(i, 0).toString());
+
+            if (id == idAdicionado) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean validarQuantidade(int linha) {
+        String quantidade = txtQuantidade.getText().toLowerCase();
+
+        if (linha < 0) {
+            JOptionPane.showMessageDialog(this, "Selecione o produto a ser adicionado!");
+            return false;
+        }
+
+        int estoque = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 4).toString());
+
+        if (quantidade.equals("")) {
+            JOptionPane.showMessageDialog(this, "Informe a quantidade desejada");
+            return false;
+        }
+        if (!Validador.validarInt(quantidade)) {
+            JOptionPane.showMessageDialog(this, "Quantidade Inválida");
+            return false;
+        }
+        if (Integer.parseInt(quantidade) > estoque) {
+            JOptionPane.showMessageDialog(this, "Não há estoque suficiente");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarBuscaProduto() {
         boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");
         boolean nomePreenchido = !txtNomeProduto.getText().equalsIgnoreCase("");
 

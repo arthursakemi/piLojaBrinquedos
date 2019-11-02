@@ -8,7 +8,6 @@ package view;
 import controller.ClienteController;
 import controller.ProdutoController;
 import controller.VendaController;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -168,7 +167,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod. Venda", "Cod. Cliente", "Data", "Valor"
+                "ID Venda", "CPF Cliente", "Data", "Valor Total"
             }
         ));
         jScrollPane4.setViewportView(tblVendas);
@@ -388,10 +387,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "Marca", "Estoque", "Valor"
@@ -541,10 +537,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nome", "CPF", "E-mail", "Celular"
@@ -746,16 +739,17 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaVendaActionPerformed
-        VendaView v = new VendaView();
+        VendaView v = new VendaView(this);
         v.setVisible(true);
     }//GEN-LAST:event_btnNovaVendaActionPerformed
 
     private void btnAtualizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarVendaActionPerformed
-        // TODO add your handling code here:
+        loadTableVendas();
     }//GEN-LAST:event_btnAtualizarVendaActionPerformed
 
     private void btnVisualizarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarVActionPerformed
-        // TODO add your handling code here:
+        int linha = tblVendas.getSelectedRow();
+        int id = Integer.parseInt(tblVendas.getModel().getValueAt(linha, 0).toString());
     }//GEN-LAST:event_btnVisualizarVActionPerformed
 
     private boolean validarBuscaProduto() {
@@ -847,17 +841,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         ArrayList<String[]> linhasVendas = VendaController.getVendas();
 
         DefaultTableModel tmVendas = new DefaultTableModel();
-        tmVendas.addColumn("Cod.Venda");
-        tmVendas.addColumn("Cod.Cliente");
+        tmVendas.addColumn("IDVenda");
+        tmVendas.addColumn("CPF Cliente");
         tmVendas.addColumn("Data");
-        tmVendas.addColumn("Valor");
+        tmVendas.addColumn("Valor Total");
         tblVendas.setModel(tmVendas);
-        /*
-        tblVendas.removeColumn(tblVendas.getColumnModel().getColumn(3));
-        tblVendas.removeColumn(tblVendas.getColumnModel().getColumn(5));
-         */
-        for (String[] p : linhasVendas) {
-            tmVendas.addRow(p);
+
+        for (String[] v : linhasVendas) {
+            tmVendas.addRow(v);
         }
 
     }

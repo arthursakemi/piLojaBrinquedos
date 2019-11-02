@@ -227,7 +227,7 @@
                         <Column editable="true" title="Produto" type="java.lang.Object"/>
                         <Column editable="true" title="Quantidade" type="java.lang.Object"/>
                         <Column editable="true" title="Valor Unit&#xe1;rio" type="java.lang.Object"/>
-                        <Column editable="true" title="Valor Total" type="java.lang.Object"/>
+                        <Column editable="true" title="Total Parcial" type="java.lang.Object"/>
                       </Table>
                     </Property>
                   </Properties>

@@ -88,7 +88,7 @@ public class RelatórioView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Produto", "Quantidade", "Valor Unitário", "Valor Total"
+                "ID", "Produto", "Quantidade", "Valor Unitário", "Total Parcial"
             }
         ));
         jScrollPane2.setViewportView(tblProdutos);
