@@ -7,6 +7,7 @@ package view;
 
 import controller.ClienteController;
 import controller.ProdutoController;
+import controller.VendaController;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -29,6 +30,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         loadTableClientes();
         loadTableProdutos();
+        loadTableVendas();
 
     }
 
@@ -842,23 +844,20 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     public void loadTableVendas() { //alterar
 
-        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
+        ArrayList<String[]> linhasVendas = VendaController.getVendas();
 
-        DefaultTableModel tmProdutos = new DefaultTableModel();
-        tmProdutos.addColumn("ID");
-        tmProdutos.addColumn("Nome");
-        tmProdutos.addColumn("Marca");
-        tmProdutos.addColumn("Fornecedor");
-        tmProdutos.addColumn("Valor");
-        tmProdutos.addColumn("Quantidade");
-        tmProdutos.addColumn("Descrição");
-        tblProduto.setModel(tmProdutos);
-
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
-
-        for (String[] p : linhasProdutos) {
-            tmProdutos.addRow(p);
+        DefaultTableModel tmVendas = new DefaultTableModel();
+        tmVendas.addColumn("Cod.Venda");
+        tmVendas.addColumn("Cod.Cliente");
+        tmVendas.addColumn("Data");
+        tmVendas.addColumn("Valor");
+        tblVendas.setModel(tmVendas);
+        /*
+        tblVendas.removeColumn(tblVendas.getColumnModel().getColumn(3));
+        tblVendas.removeColumn(tblVendas.getColumnModel().getColumn(5));
+         */
+        for (String[] p : linhasVendas) {
+            tmVendas.addRow(p);
         }
 
     }
