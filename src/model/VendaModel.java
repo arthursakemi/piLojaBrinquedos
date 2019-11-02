@@ -20,7 +20,7 @@ public class VendaModel {
     private String data,
             nomeCliente,
             cpfCliente;
-    private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario}
+    private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, subtotal}
     private Double valorTotal;
 
     public VendaModel() {

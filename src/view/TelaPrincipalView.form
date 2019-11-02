@@ -150,7 +150,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblIDV" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtIDV" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="txtIDVenda" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -185,7 +185,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="lblIDV" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtIDV" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtIDVenda" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="lblIDCbusca" min="-2" max="-2" attributes="0"/>
@@ -226,7 +226,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnVisualizarV" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnBuscarV" min="-2" pref="126" max="-2" attributes="0"/>
+                                      <Component id="btnBuscarVenda" min="-2" pref="126" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -238,7 +238,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnBuscarV" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBuscarVenda" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnVisualizarV" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -247,10 +247,13 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnBuscarV">
+                    <Component class="javax.swing.JButton" name="btnBuscarVenda">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Buscar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarVendaActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnVisualizarV">
                       <Properties>
@@ -286,7 +289,7 @@
                     <Property name="text" type="java.lang.String" value="CPF Cliente:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtIDV">
+                <Component class="javax.swing.JTextField" name="txtIDVenda">
                   <Properties>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[140, 25]"/>
@@ -351,6 +354,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblValorTotal">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="18" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="xx.xx"/>
               </Properties>
             </Component>

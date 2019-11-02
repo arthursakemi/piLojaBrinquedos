@@ -50,8 +50,50 @@ public class VendaController {
         return listaVendas;
     }
 
-    public static ArrayList<VendaModel> buscaVenda(int id) {
+    public static ArrayList<VendaModel> visualizarVenda(int id) {
         return VendaDAO.buscaVenda(id);
+    }
+
+    public static ArrayList<String[]> buscaVenda(String inicio, String fim) {
+        ArrayList<VendaModel> vendas = VendaDAO.buscaVenda(inicio, fim);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (VendaModel v : vendas) {
+            resultado.add(new String[]{String.valueOf(v.getIdVenda()),
+                v.getCpfCliente(),
+                v.getData(),
+                String.valueOf(v.getValorTotal())});
+        }
+
+        return resultado;
+    }
+
+    public static ArrayList<String[]> buscaVenda(int id) {
+        ArrayList<VendaModel> vendas = VendaDAO.buscaVenda(id);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (VendaModel v : vendas) {
+            resultado.add(new String[]{String.valueOf(v.getIdVenda()),
+                v.getCpfCliente(),
+                v.getData(),
+                String.valueOf(v.getValorTotal())});
+        }
+
+        return resultado;
+    }
+
+    public static ArrayList<String[]> buscaVenda(String cpf) {
+        ArrayList<VendaModel> vendas = VendaDAO.buscaVenda(cpf);
+        ArrayList<String[]> resultado = new ArrayList<>();
+
+        for (VendaModel v : vendas) {
+            resultado.add(new String[]{String.valueOf(v.getIdVenda()),
+                v.getCpfCliente(),
+                v.getData(),
+                String.valueOf(v.getValorTotal())});
+        }
+
+        return resultado;
     }
 
 }

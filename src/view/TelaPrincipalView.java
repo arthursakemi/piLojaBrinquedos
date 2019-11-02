@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ClienteModel;
 import model.ProdutoModel;
+import util.Utilidades;
 import util.Validador;
 
 /**
@@ -50,13 +51,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         pnlVendas = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
-        btnBuscarV = new javax.swing.JButton();
+        btnBuscarVenda = new javax.swing.JButton();
         btnVisualizarV = new javax.swing.JButton();
         txtPeriodo1 = new javax.swing.JTextField();
         txtCPFbusca = new javax.swing.JTextField();
         lblPeriodo = new javax.swing.JLabel();
         lblIDCbusca = new javax.swing.JLabel();
-        txtIDV = new javax.swing.JTextField();
+        txtIDVenda = new javax.swing.JTextField();
         lblIDV = new javax.swing.JLabel();
         txtPeriodo2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -114,7 +115,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         pnlVendas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Relatório de Vendas", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        btnBuscarV.setText("Buscar");
+        btnBuscarVenda.setText("Buscar");
+        btnBuscarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarVendaActionPerformed(evt);
+            }
+        });
 
         btnVisualizarV.setText("Visualizar");
         btnVisualizarV.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +138,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVisualizarV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(btnBuscarV, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -140,7 +146,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarV)
+                .addComponent(btnBuscarVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVisualizarV)
                 .addContainerGap())
@@ -154,7 +160,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         lblIDCbusca.setText("CPF Cliente:");
 
-        txtIDV.setPreferredSize(new java.awt.Dimension(140, 25));
+        txtIDVenda.setPreferredSize(new java.awt.Dimension(140, 25));
 
         lblIDV.setText("ID Venda:");
 
@@ -180,7 +186,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDV)
-                    .addComponent(txtIDV, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDCbusca)
@@ -209,7 +215,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblIDV)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtIDVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblIDCbusca)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,6 +245,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Total: R$ ");
 
+        lblValorTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblValorTotal.setText("xx.xx");
 
         btnAtualizarVenda.setText("Atualizar");
@@ -724,7 +731,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             if (validarBuscaCliente()) {
                 if (!txtCPF.getText().equals("")) {
                     cpf = Long.parseLong(txtCPF.getText());
-
                     buscaCliente(cpf);
                 } else {
                     nome = txtNomeCliente.getText().toLowerCase();
@@ -745,14 +751,73 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     private void btnAtualizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarVendaActionPerformed
         loadTableVendas();
+        getTotalVendas();
     }//GEN-LAST:event_btnAtualizarVendaActionPerformed
 
     private void btnVisualizarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarVActionPerformed
-        int linha = tblVendas.getSelectedRow();
-        int id = Integer.parseInt(tblVendas.getModel().getValueAt(linha, 0).toString());
+        int linha;
 
-        new RelatórioView(id).setVisible(true);
+        if (tblVendas.getRowCount() > 0) {
+            linha = tblVendas.getSelectedRow();
+            if (linha >= 0) {
+                int id = Integer.parseInt(tblVendas.getModel().getValueAt(linha, 0).toString());
+
+                new RelatórioView(id).setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione uma venda para visualizar!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há vendas para visualizar!");
+        }
+        getTotalVendas();
+
     }//GEN-LAST:event_btnVisualizarVActionPerformed
+
+    private void btnBuscarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVendaActionPerformed
+
+        if (validarBuscaVendas()) {
+            if (!txtIDVenda.getText().equalsIgnoreCase("")) {
+                buscaVendas(Integer.parseInt(txtIDVenda.getText()));
+            } else if (!txtCPFbusca.getText().equalsIgnoreCase("")) {
+                buscaVendas(txtCPFbusca.getText());
+            } else {
+                buscaVendas(txtPeriodo1.getText(), txtPeriodo2.getText());
+            }
+        }
+
+        getTotalVendas();
+
+    }//GEN-LAST:event_btnBuscarVendaActionPerformed
+
+    private boolean validarBuscaVendas() {
+        boolean idPreenchido = !txtIDVenda.getText().equalsIgnoreCase(""),
+                cpfPreenchido = !txtCPFbusca.getText().equalsIgnoreCase(""),
+                inicioPeriodo = !txtPeriodo1.getText().replace("/", "").equalsIgnoreCase(""),
+                fimPeriodo = !txtPeriodo2.getText().replace("/", "").equalsIgnoreCase("");
+
+        if (idPreenchido || cpfPreenchido || (inicioPeriodo && fimPeriodo)) {
+            if (idPreenchido && !Validador.validarInt(txtIDVenda.getText())) {
+                JOptionPane.showMessageDialog(this, "ID de venda Inválido!");
+                return false;
+            }
+            if (cpfPreenchido && !Validador.validarCPF(txtCPFbusca.getText())) {
+                JOptionPane.showMessageDialog(this, "CPF Inválido!");
+                return false;
+            }
+            if (inicioPeriodo && fimPeriodo && !Validador.validarData(txtPeriodo1.getText()) && !Validador.validarData(txtPeriodo2.getText())) {
+                JOptionPane.showMessageDialog(this, "Período Inválido!");
+                return false;
+            }
+            if (inicioPeriodo && fimPeriodo && Utilidades.dataPosterior(txtPeriodo1.getText().split("/"), txtPeriodo2.getText().split("/"))) {
+                JOptionPane.showMessageDialog(this, "Período Inválido!");
+                return false;
+            }
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Informe o ID da venda, CPF do cliente ou o período a ser pesquisado!");
+            return false;
+        }
+    }
 
     private boolean validarBuscaProduto() {
         boolean idPreenchido = !txtIDProduto.getText().equalsIgnoreCase("");
@@ -852,7 +917,61 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         for (String[] v : linhasVendas) {
             tmVendas.addRow(v);
         }
+        getTotalVendas();
 
+    }
+
+    public void getTotalVendas() {
+        double total = 00.00;
+        int linhas = tblVendas.getRowCount();
+        for (int i = 0; i < linhas; i++) {
+            double valor = Double.parseDouble(tblVendas.getModel().getValueAt(i, 3).toString());
+            total += valor;
+        }
+
+        lblValorTotal.setText(String.format("%.2f", total));
+    }
+
+    public void buscaVendas(int id) {
+        ArrayList<String[]> linhasVendas = VendaController.buscaVenda(id);
+        DefaultTableModel tmVendas = new DefaultTableModel();
+        tmVendas.addColumn("IDVenda");
+        tmVendas.addColumn("CPF Cliente");
+        tmVendas.addColumn("Data");
+        tmVendas.addColumn("Valor Total");
+        tblVendas.setModel(tmVendas);
+
+        for (String[] v : linhasVendas) {
+            tmVendas.addRow(v);
+        }
+    }
+
+    public void buscaVendas(String dataInicio, String dataFim) {
+        ArrayList<String[]> linhasVendas = VendaController.buscaVenda(dataInicio, dataFim);
+        DefaultTableModel tmVendas = new DefaultTableModel();
+        tmVendas.addColumn("IDVenda");
+        tmVendas.addColumn("CPF Cliente");
+        tmVendas.addColumn("Data");
+        tmVendas.addColumn("Valor Total");
+        tblVendas.setModel(tmVendas);
+
+        for (String[] v : linhasVendas) {
+            tmVendas.addRow(v);
+        }
+    }
+
+    public void buscaVendas(String cpf) {
+        ArrayList<String[]> linhasVendas = VendaController.buscaVenda(cpf);
+        DefaultTableModel tmVendas = new DefaultTableModel();
+        tmVendas.addColumn("IDVenda");
+        tmVendas.addColumn("CPF Cliente");
+        tmVendas.addColumn("Data");
+        tmVendas.addColumn("Valor Total");
+        tblVendas.setModel(tmVendas);
+
+        for (String[] v : linhasVendas) {
+            tmVendas.addRow(v);
+        }
     }
 
     public void buscaProduto(String nome) {
@@ -1015,7 +1134,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizarVenda;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProduto;
-    private javax.swing.JButton btnBuscarV;
+    private javax.swing.JButton btnBuscarVenda;
     private javax.swing.JButton btnExcluirCliente;
     private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JButton btnNovaVenda;
@@ -1057,7 +1176,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCPFbusca;
     private javax.swing.JTextField txtIDProduto;
-    private javax.swing.JTextField txtIDV;
+    private javax.swing.JTextField txtIDVenda;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPeriodo1;

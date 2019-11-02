@@ -24,9 +24,14 @@ public class VendaDAO {
         return SimulaDB.getInstance().buscaVenda(id);
     }
 
-//    public static ArrayList<VendaModel> buscaProduto(String[] data) {
-//        return SimulaDB.getInstance().buscaVenda(data);
-//    }
+    public static ArrayList<VendaModel> buscaVenda(String cpf) {
+        return SimulaDB.getInstance().buscaVenda(cpf);
+    }
+
+    public static ArrayList<VendaModel> buscaVenda(String inicio, String fim) {
+        return SimulaDB.getInstance().buscaVenda(inicio, fim);
+    }
+
     public static ArrayList<VendaModel> getVendas() {
         return SimulaDB.getInstance().getVendas();
     }

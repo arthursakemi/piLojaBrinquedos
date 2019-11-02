@@ -9,6 +9,7 @@ import model.ClienteModel;
 import model.ProdutoModel;
 import java.util.ArrayList;
 import model.VendaModel;
+import util.Utilidades;
 
 public class SimulaDB {
 
@@ -17,12 +18,15 @@ public class SimulaDB {
     private ArrayList<ClienteModel> listaClientes;
     private ArrayList<ProdutoModel> listaProdutos;
     private ArrayList<VendaModel> listaVendas;
-    private ArrayList<String[]> carrinho;
+    private ArrayList<String[]> carrinho1;
+    private ArrayList<String[]> carrinho2;
 
     private SimulaDB() {
         listaClientes = new ArrayList<>();
         listaProdutos = new ArrayList<>();
         listaVendas = new ArrayList<>();
+        carrinho1 = new ArrayList<>();
+        carrinho2 = new ArrayList<>();
 
         listaProdutos.add(new ProdutoModel(10, "Boneco Homem Aranha", "Pizi Toys", "Pizi Toys", 2, 59.99, " Apresenta um visual inspirado no cinema com cinco pontos de articulação"));
         listaProdutos.add(new ProdutoModel(11, "War - Tabuleiro", "Grow", "Grow", 2, 74.61, "Cada jogador precisa usar toda sua habilidade militar para conquistar territórios e continentes e derrotar seus adversários."));
@@ -35,6 +39,19 @@ public class SimulaDB {
         listaClientes.add(new ClienteModel(12, "Jack", "jack@mail.com", "33333333333", "Masculino", "03/03/2003", "Casado", "1333333333", "", "Rua 3, 03"));
         listaClientes.add(new ClienteModel(13, "Meggy", "meggy@mail.com", "44444444444", "Feminino", "04/04/2004", "Solteira", "14444444444", "", "Rua 4, 04"));
         listaClientes.add(new ClienteModel(14, "Laura", "laura@mail.com", "55555555555", "Feminino", "05/05/2005", "Viuva", "15555555555", "", "Rua 5, 05"));
+
+        String[] item1 = {"13", "Gurps - RPG", "1", "89.00", "89.00"},
+                item2 = {"14", "Vampiro A Máscara - RPG", "1", "149.90", "149.90"},
+                item3 = {"11", "War - Tabuleiro", "1", "74.61", "74.61"};
+
+        carrinho1.add(item1);
+        carrinho1.add(item2);
+
+        carrinho2.add(item3);
+
+        listaVendas.add(new VendaModel(10, 13, "01/10/2016", "Meggy", "44444444444", carrinho2, 74.61));
+        listaVendas.add(new VendaModel(11, 14, "16/07/2015", "Laura", "55555555555", carrinho1, 238.90));
+        listaVendas.add(new VendaModel(12, 11, "30/10/2016", "Zakk", "22222222222", carrinho2, 74.61));
 
     }
 
@@ -149,17 +166,29 @@ public class SimulaDB {
         return resultado;
     }
 
-//    public ArrayList<ClienteModel> buscaVenda(String[] data) {
-//        ArrayList<VendaModel> resultado = new ArrayList<>();
-//
-//        for (VendaModel v : listaVendas) {
-//            if (v.getNome().toLowerCase().contains(nome)) {
-//                resultado.add(v);
-//            }
-//        }
-//
-//        return resultado;
-//    }
+    public ArrayList<VendaModel> buscaVenda(String cpf) {
+        ArrayList<VendaModel> resultado = new ArrayList<>();
+
+        for (VendaModel v : listaVendas) {
+            if (v.getCpfCliente().equals(cpf)) {
+                resultado.add(v);
+            }
+        }
+
+        return resultado;
+    }
+
+    public ArrayList<VendaModel> buscaVenda(String dataInicio, String dataFim) {
+        ArrayList<VendaModel> resultado = new ArrayList<>();
+
+        for (VendaModel v : listaVendas) {
+            if (Utilidades.buscaPeriodo(v.getData(), dataInicio, dataFim)) {
+                resultado.add(v);
+            }
+        }
+        return resultado;
+    }
+
     public boolean atualizarCliente(ClienteModel c) {
         for (ClienteModel item : listaClientes) {
             if (item.getId() == c.getId()) {

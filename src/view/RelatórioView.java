@@ -9,6 +9,7 @@ import controller.VendaController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.VendaModel;
+import util.Utilidades;
 
 /**
  *
@@ -29,27 +30,27 @@ public class RelatórioView extends javax.swing.JFrame {
     public RelatórioView(int id) {
         initComponents();
 
-        listaVendas = VendaController.buscaVenda(id);
+        listaVendas = VendaController.visualizarVenda(id);
         venda = listaVendas.get(0);
 
         lblIDVenda.setText(String.valueOf(venda.getIdVenda()));
         lblDataVenda.setText(venda.getData());
         lblNomeCliente.setText(venda.getNomeCliente());
-        lblCPFcliente.setText(venda.getCpfCliente());
         lblValorTotal.setText(String.format("%.2f", venda.getValorTotal()));
+        lblCPFcliente.setText(Utilidades.formatCPF(venda.getCpfCliente()));
         loadTableProdutos();
-        setTotal();
+        setQuantidadeProdutos();
 
     }
 
-    public void setTotal() {
-        double total = 0;
+    public void setQuantidadeProdutos() {
+        int total = 0;
         for (int i = 0; i < tblProdutos.getRowCount(); i++) {
-            double subTotal = Double.parseDouble(tblProdutos.getModel().getValueAt(i, 4).toString());
+            int subTotal = Integer.parseInt(tblProdutos.getModel().getValueAt(i, 2).toString());
             total += subTotal;
         }
 
-        lblValorTotal.setText(String.format("%.2f", total));
+        lblQuantidadeItens.setText(String.valueOf(total));
     }
 
     public void loadTableProdutos() { //alterar
