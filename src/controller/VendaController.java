@@ -50,4 +50,8 @@ public class VendaController {
         return listaVendas;
     }
 
+    public static ArrayList<VendaModel> buscaVenda(int id) {
+        return VendaDAO.buscaVenda(id);
+    }
+
 }

@@ -536,10 +536,14 @@ public class VendaView extends javax.swing.JFrame {
             if (clienteEncontrado) {
 
                 for (int i = 0; i < tblCarrinho.getRowCount(); i++) {
+                    int quantidade = Integer.parseInt(tblCarrinho.getModel().getValueAt(i, 2).toString());
+                    Double valorUnitario = Double.parseDouble(tblCarrinho.getModel().getValueAt(i, 3).toString());
+
                     String[] linha = {tblCarrinho.getModel().getValueAt(i, 0).toString(),
                         tblCarrinho.getModel().getValueAt(i, 1).toString(),
-                        tblCarrinho.getModel().getValueAt(i, 2).toString(),
-                        tblCarrinho.getModel().getValueAt(i, 3).toString()};
+                        String.valueOf(quantidade),
+                        String.valueOf(valorUnitario),
+                        String.valueOf(quantidade * valorUnitario)};
 
                     produtos.add(linha);
                 }
@@ -549,7 +553,7 @@ public class VendaView extends javax.swing.JFrame {
                         c.getNome(),
                         c.getCpf(),
                         produtos,
-                        Double.parseDouble(lblTotal.getText().replace(",", "")))) {
+                        Double.parseDouble(lblTotal.getText().replace(",", ".")))) {
 
                     JOptionPane.showMessageDialog(this, "Venda concluída com sucesso!");
                     telaPrincipal.loadTableVendas();

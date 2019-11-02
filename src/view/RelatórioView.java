@@ -5,17 +5,69 @@
  */
 package view;
 
+import controller.VendaController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.VendaModel;
+
 /**
  *
  * @author Sakemi
  */
 public class RelatórioView extends javax.swing.JFrame {
 
+    ArrayList<VendaModel> listaVendas;
+    VendaModel venda;
+
     /**
      * Creates new form RelatórioView
      */
     public RelatórioView() {
         initComponents();
+    }
+
+    public RelatórioView(int id) {
+        initComponents();
+
+        listaVendas = VendaController.buscaVenda(id);
+        venda = listaVendas.get(0);
+
+        lblIDVenda.setText(String.valueOf(venda.getIdVenda()));
+        lblDataVenda.setText(venda.getData());
+        lblNomeCliente.setText(venda.getNomeCliente());
+        lblCPFcliente.setText(venda.getCpfCliente());
+        lblValorTotal.setText(String.format("%.2f", venda.getValorTotal()));
+        loadTableProdutos();
+        setTotal();
+
+    }
+
+    public void setTotal() {
+        double total = 0;
+        for (int i = 0; i < tblProdutos.getRowCount(); i++) {
+            double subTotal = Double.parseDouble(tblProdutos.getModel().getValueAt(i, 4).toString());
+            total += subTotal;
+        }
+
+        lblValorTotal.setText(String.format("%.2f", total));
+    }
+
+    public void loadTableProdutos() { //alterar
+
+        ArrayList<String[]> linhasProdutos = venda.getProdutos();
+
+        DefaultTableModel tmVendas = new DefaultTableModel();
+        tmVendas.addColumn("ID");
+        tmVendas.addColumn("Produto");
+        tmVendas.addColumn("Quantidade");
+        tmVendas.addColumn("Valor unitário");
+        tmVendas.addColumn("Subtotal");
+        tblProdutos.setModel(tmVendas);
+
+        for (String[] p : linhasProdutos) {
+            tmVendas.addRow(p);
+        }
+
     }
 
     /**
@@ -44,7 +96,7 @@ public class RelatórioView extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblCPFcliente = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,7 +140,7 @@ public class RelatórioView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Produto", "Quantidade", "Valor Unitário", "Total Parcial"
+                "ID", "Produto", "Quantidade", "Valor Unitário", "Subtotal"
             }
         ));
         jScrollPane2.setViewportView(tblProdutos);
@@ -97,7 +149,7 @@ public class RelatórioView extends javax.swing.JFrame {
 
         jLabel2.setText("CPF: ");
 
-        jLabel4.setText("xxx.xxx.xxx/xx");
+        lblCPFcliente.setText("xxx.xxx.xxx/xx");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,32 +158,35 @@ public class RelatórioView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblIDVenda))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNomeCliente))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblQuantidadeItens))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblValorTotal))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblDataVenda))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblIDVenda))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblNomeCliente))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblQuantidadeItens))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblValorTotal))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDataVenda))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblCPFcliente)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +206,7 @@ public class RelatórioView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(lblCPFcliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -171,8 +226,8 @@ public class RelatórioView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +279,6 @@ public class RelatórioView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
@@ -233,6 +287,7 @@ public class RelatórioView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCPFcliente;
     private javax.swing.JLabel lblDataVenda;
     private javax.swing.JLabel lblIDVenda;
     private javax.swing.JLabel lblNomeCliente;

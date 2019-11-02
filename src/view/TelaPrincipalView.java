@@ -53,7 +53,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnBuscarV = new javax.swing.JButton();
         btnVisualizarV = new javax.swing.JButton();
         txtPeriodo1 = new javax.swing.JTextField();
-        txtIDCbusca = new javax.swing.JTextField();
+        txtCPFbusca = new javax.swing.JTextField();
         lblPeriodo = new javax.swing.JLabel();
         lblIDCbusca = new javax.swing.JLabel();
         txtIDV = new javax.swing.JTextField();
@@ -148,11 +148,11 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         txtPeriodo1.setPreferredSize(new java.awt.Dimension(140, 25));
 
-        txtIDCbusca.setPreferredSize(new java.awt.Dimension(140, 25));
+        txtCPFbusca.setPreferredSize(new java.awt.Dimension(140, 25));
 
         lblPeriodo.setText("Período:");
 
-        lblIDCbusca.setText("ID Cliente:");
+        lblIDCbusca.setText("CPF Cliente:");
 
         txtIDV.setPreferredSize(new java.awt.Dimension(140, 25));
 
@@ -184,7 +184,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDCbusca)
-                    .addComponent(txtIDCbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCPFbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPeriodo)
@@ -213,7 +213,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblIDCbusca)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIDCbusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCPFbusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblPeriodo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -750,6 +750,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private void btnVisualizarVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarVActionPerformed
         int linha = tblVendas.getSelectedRow();
         int id = Integer.parseInt(tblVendas.getModel().getValueAt(linha, 0).toString());
+
+        new RelatórioView(id).setVisible(true);
     }//GEN-LAST:event_btnVisualizarVActionPerformed
 
     private boolean validarBuscaProduto() {
@@ -1053,7 +1055,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblVendas;
     private javax.swing.JTextField txtCPF;
-    private javax.swing.JTextField txtIDCbusca;
+    private javax.swing.JTextField txtCPFbusca;
     private javax.swing.JTextField txtIDProduto;
     private javax.swing.JTextField txtIDV;
     private javax.swing.JTextField txtNomeCliente;
