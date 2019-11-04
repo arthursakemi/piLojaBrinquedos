@@ -256,4 +256,14 @@ public class SimulaDB {
         return true;
     }
 
+    public boolean alterarEstoque(int id, int vendido) {
+        for (ProdutoModel p : listaProdutos) {
+            if (p.getId() == id) {
+                p.setQuantidade(p.getQuantidade() - vendido);
+            }
+        }
+
+        return true;
+    }
+
 }

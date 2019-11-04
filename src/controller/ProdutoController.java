@@ -118,4 +118,8 @@ public class ProdutoController {
         return resultado;
 
     }
+
+    public static boolean atualizarEstoque(int id, int vendido) {
+        return ProdutoDAO.atualizarEstoque(id, vendido);
+    }
 }

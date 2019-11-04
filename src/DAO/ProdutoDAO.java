@@ -38,4 +38,8 @@ public class ProdutoDAO {
         return SimulaDB.getInstance().getProdutos();
     }
 
+    public static boolean atualizarEstoque(int id, int vendido) {
+        return SimulaDB.getInstance().alterarEstoque(id, vendido);
+    }
+
 }

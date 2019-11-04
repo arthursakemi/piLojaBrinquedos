@@ -566,7 +566,11 @@ public class VendaView extends javax.swing.JFrame {
                         Double.parseDouble(lblTotal.getText().replace(",", ".")))) {
 
                     JOptionPane.showMessageDialog(this, "Venda concluída com sucesso!");
+
+                    atualizarEstoque(produtos);
+
                     telaPrincipal.loadTableVendas();
+                    telaPrincipal.loadTableProdutos();
                     dispose();
 
                 } else {
@@ -581,6 +585,18 @@ public class VendaView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não há produtos no carrinho!");
         }
     }//GEN-LAST:event_btnConcluirActionPerformed
+
+    public void atualizarEstoque(ArrayList<String[]> produtos) {
+        int id, quantidade;
+
+        for (String[] p : produtos) {
+            id = Integer.parseInt(p[0]);
+            quantidade = Integer.parseInt(p[2]);
+
+            ProdutoController.atualizarEstoque(id, quantidade);
+        }
+
+    }
 
     public void loadTableProdutos() {
 
