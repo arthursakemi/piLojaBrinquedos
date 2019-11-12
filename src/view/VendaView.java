@@ -536,9 +536,8 @@ public class VendaView extends javax.swing.JFrame {
         if (!cpfString.equals("")) {
             if (Validador.validarCPF(cpfString)) {
                 cpf = Long.parseLong(cpfString);
-                ArrayList<ClienteModel> clientes = ClienteController.buscaClienteVenda(cpf);
-                if (clientes.size() > 0) {
-                    c = clientes.get(0);
+                ClienteModel c = ClienteController.buscaClienteVenda(cpf);
+                if (c != null) {
                     lblNomeCliente.setVisible(true);
                     lblNomeCliente.setText(c.getNome());
                     clienteEncontrado = true;

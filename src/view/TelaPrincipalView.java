@@ -629,7 +629,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             int linha = tblCliente.getSelectedRow();
 
             if (linha >= 0) {
-                
+
                 int id = Integer.parseInt(tblCliente.getModel().getValueAt(linha, 0).toString());
                 ClienteModel c = ClienteController.visualizar(id);
                 new CadastroClienteView(this, c).setVisible(true);
@@ -1081,9 +1081,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaCliente(long cpf) {
-        ArrayList<String[]> linhasClientes = ClienteController.buscaCliente(cpf);
+        ClienteModel c = ClienteController.buscaCliente(cpf);
 
-        if (!linhasClientes.isEmpty()) {
+        if (c != null) {
 
             DefaultTableModel tmClientes = new DefaultTableModel();
             tmClientes.addColumn("ID");
@@ -1097,9 +1097,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             tmClientes.addColumn("Telefone");
             tmClientes.addColumn("Endereço");
 
-            for (String[] c : linhasClientes) {
-                tmClientes.addRow(c);
-            }
+            tmClientes.addRow(c.toArray());
 
             tblCliente.setModel(tmClientes);
             tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));

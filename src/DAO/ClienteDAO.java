@@ -21,10 +21,8 @@ public class ClienteDAO {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-       
 
         try {
-
 
             conexao = GerenciadorConexao.abrirConexao();
             instrucaoSQL = conexao.prepareStatement("INSERT INTO clientes "
@@ -47,7 +45,7 @@ public class ClienteDAO {
             if (linhasAfetadas > 0) {
                 retorno = true;
 
-                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do cliente
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
                 if (generatedKeys.next()) {
                     c.setId(generatedKeys.getInt(1));
                 } else {
@@ -62,7 +60,6 @@ public class ClienteDAO {
             retorno = false;
         } finally {
 
-            //Libero os recursos da memória
             try {
                 if (instrucaoSQL != null) {
                     instrucaoSQL.close();
@@ -76,10 +73,61 @@ public class ClienteDAO {
 
         return retorno;
     }
-    
 
     public static boolean atualizar(ClienteModel c) {
-        return SimulaDB.getInstance().atualizarCliente(c);
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement(
+                    "UPDATE clientes "
+                    + "SET "
+                    + "nome = ?, "
+                    + "email = ?, "
+                    + "cpf = ?, "
+                    + "sexo = ?, "
+                    + "nascimento = ?, "
+                    + "estado_civil = ?, "
+                    + "celular = ?, "
+                    + "telefone = ?, "
+                    + "endereco = ? "
+                    + "WHERE id = ?;");
+
+            instrucaoSQL.setString(1, c.getNome());
+            instrucaoSQL.setString(2, c.getEmail());
+            instrucaoSQL.setLong(3, Utilidades.cpfSQL(c.getCpf()));
+            instrucaoSQL.setString(4, c.getSexo());
+            instrucaoSQL.setString(5, Utilidades.dataSQL(c.getNascimento()));
+            instrucaoSQL.setString(6, c.getEstadoCivil());
+            instrucaoSQL.setLong(7, Utilidades.telefoneSQL(c.getCelular()));
+            instrucaoSQL.setLong(8, Utilidades.telefoneSQL(c.getTelefone()));
+            instrucaoSQL.setString(9, c.getEndereco());
+            instrucaoSQL.setInt(10, c.getId());
+
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+
+            retorno = linhasAfetadas > 0;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return retorno;
     }
 
     public static boolean excluir(int cID) {
@@ -109,7 +157,6 @@ public class ClienteDAO {
             retorno = false;
         } finally {
 
-            //Libero os recursos da memória
             try {
                 if (instrucaoSQL != null) {
                     instrucaoSQL.close();
@@ -125,7 +172,7 @@ public class ClienteDAO {
     }
 
     public static ArrayList<String[]> getClientes() {
-     
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -140,26 +187,26 @@ public class ClienteDAO {
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
-                
-                listaClientes.add( new String[]{
-                rs.getString("id"),
-                rs.getString("nome"),
-                rs.getString("email"),
-                rs.getString("cpf"),
-                rs.getString("sexo"),
-                rs.getString("nascimento"),
-                rs.getString("estado_civil"),
-                rs.getString("celular"),
-                rs.getString("telefone"),
-                rs.getString("endereco")
-            });
+
+                listaClientes.add(new String[]{
+                    rs.getString("id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("cpf"),
+                    rs.getString("sexo"),
+                    rs.getString("nascimento"),
+                    rs.getString("estado_civil"),
+                    rs.getString("celular"),
+                    rs.getString("telefone"),
+                    rs.getString("endereco")
+                });
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
             listaClientes = null;
         } finally {
-            //Libero os recursos da memória
+
             try {
                 if (rs != null) {
                     rs.close();
@@ -175,11 +222,11 @@ public class ClienteDAO {
         }
 
         return listaClientes;
-    
+
     }
-    
-    public static ClienteModel visualizar(int id) {
-     
+
+    public static ClienteModel buscaCliente(int id) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -188,32 +235,32 @@ public class ClienteDAO {
         try {
 
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE id = ?;" , Statement.RETURN_GENERATED_KEYS);
-            
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE id = ?;");
+
             instrucaoSQL.setInt(1, id);
 
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
                 c = new ClienteModel(
-                Integer.parseInt(rs.getString("id")),
-                rs.getString("nome"),
-                rs.getString("email"),
-                rs.getString("cpf"),
-                rs.getString("sexo"),
-                rs.getString("nascimento"),
-                rs.getString("estado_civil"),
-                rs.getString("celular"),
-                rs.getString("telefone"),
-                rs.getString("endereco")
-            );
+                        Integer.parseInt(rs.getString("id")),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("cpf"),
+                        rs.getString("sexo"),
+                        Utilidades.dateFormat(rs.getString("nascimento")),
+                        rs.getString("estado_civil"),
+                        rs.getString("celular"),
+                        rs.getString("telefone"),
+                        rs.getString("endereco")
+                );
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
             c = null;
         } finally {
-            //Libero os recursos da memória
+
             try {
                 if (rs != null) {
                     rs.close();
@@ -229,19 +276,116 @@ public class ClienteDAO {
         }
 
         return c;
-    
+
     }
 
-    public static ArrayList<ClienteModel> buscaCliente(int id) {
-        return SimulaDB.getInstance().buscaCliente(id);
+    public static ArrayList<String[]> buscaCliente(String nome) {
+
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        ArrayList<String[]> listaClientes = new ArrayList<>();
+
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement(
+                    "SELECT * FROM clientes "
+                    + "WHERE nome LIKE ?;");
+
+            instrucaoSQL.setString(1, "%" + nome + "%");
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+
+                listaClientes.add(new String[]{
+                    rs.getString("id"),
+                    rs.getString("nome"),
+                    rs.getString("email"),
+                    rs.getString("cpf"),
+                    rs.getString("sexo"),
+                    rs.getString("nascimento"),
+                    rs.getString("estado_civil"),
+                    rs.getString("celular"),
+                    rs.getString("telefone"),
+                    rs.getString("endereco")
+                });
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            listaClientes = null;
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return listaClientes;
     }
 
-    public static ArrayList<ClienteModel> buscaCliente(String nome) {
-        return SimulaDB.getInstance().buscaCliente(nome);
-    }
+    public static ClienteModel buscaCliente(long cpf) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ClienteModel c = new ClienteModel();
 
-    public static ArrayList<ClienteModel> buscaCliente(long cpf) {
-        return SimulaDB.getInstance().buscaCliente(cpf);
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE cpf = ?;");
+
+            instrucaoSQL.setLong(1, cpf);
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                c = new ClienteModel(
+                        Integer.parseInt(rs.getString("id")),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("cpf"),
+                        rs.getString("sexo"),
+                        Utilidades.dateFormat(rs.getString("nascimento")),
+                        rs.getString("estado_civil"),
+                        rs.getString("celular"),
+                        rs.getString("telefone"),
+                        rs.getString("endereco")
+                );
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            c = null;
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return c;
     }
 
 }

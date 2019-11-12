@@ -51,11 +51,11 @@ CREATE TABLE venda_produto (
 
 INSERT INTO clientes (nome, email, cpf, sexo, nascimento, estado_civil, celular, telefone, endereco)
 VALUES
-('Ozzy Osbourne', 'ozzy@mail.com', 11111111111, 'Masculino', 01/01/2001, 'Solteiro', 11111111111, NULL ,'Rua 1, 01'),
-('Zakk Wylde', 'zakk@mail.com', 22222222222, 'Masculino', 02/02/2002, 'Divorciado', 22222222222, NULL ,'Rua 2, 02'),
-('Corey Taylor', 'corey@mail.com', 33333333333, 'Masculino', 03/03/2003, 'Casado', 33333333333, NULL ,'Rua 3, 03'),
-('Joan Jett', 'joan@mail.com', 44444444444, 'Masculino', 04/04/2004, 'Viuva', 44444444444, NULL ,'Rua 4, 04'),
-('Floor Jansen', 'floor@mail.com', 55555555555, 'Masculino', 04/04/2004, 'Solteira', 55555555555, NULL ,'Rua 4, 04');
+('Ozzy Osbourne', 'ozzy@mail.com', 11111111111, 'Masculino', '2001-01-01', 'Solteiro', 11111111111, NULL ,'Rua 1, 01'),
+('Zakk Wylde', 'zakk@mail.com', 22222222222, 'Masculino', '2002-02-02', 'Divorciado', 22222222222, NULL ,'Rua 2, 02'),
+('Corey Taylor', 'corey@mail.com', 33333333333, 'Masculino', '2003-03-03', 'Casado', 33333333333, NULL ,'Rua 3, 03'),
+('Joan Jett', 'joan@mail.com', 44444444444, 'Masculino', '2004-04-04', 'Viuva', 44444444444, NULL ,'Rua 4, 04'),
+('Floor Jansen', 'floor@mail.com', 55555555555, 'Masculino', '2005-05-05', 'Solteira', 55555555555, NULL ,'Rua 4, 04');
 
 INSERT INTO produtos (nome, marca, fornecedor, estoque, valor, descricao)
 VALUES

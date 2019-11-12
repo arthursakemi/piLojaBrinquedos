@@ -65,76 +65,20 @@ public class ClienteController {
     }
 
     public static ClienteModel visualizar(int id) {
-
-        return ClienteDAO.visualizar(id);
-    }
-
-    public static ArrayList<String[]> buscaCliente(int id) {
-        ArrayList<ClienteModel> produtos = ClienteDAO.buscaCliente(id);
-        ArrayList<String[]> resultado = new ArrayList<>();
-
-        for (ClienteModel c : produtos) {
-            resultado.add(new String[]{
-                String.valueOf(c.getId()),
-                c.getNome(),
-                c.getEmail(),
-                c.getCpf(),
-                c.getSexo(),
-                c.getNascimento(),
-                c.getEstadoCivil(),
-                c.getCelular(),
-                c.getTelefone(),
-                c.getEndereco()});
-        }
-        return resultado;
-
+        return ClienteDAO.buscaCliente(id);
     }
 
     public static ArrayList<String[]> buscaCliente(String nome) {
-        ArrayList<ClienteModel> clientes = ClienteDAO.buscaCliente(nome);
-        ArrayList<String[]> resultado = new ArrayList<>();
-
-        for (ClienteModel c : clientes) {
-            resultado.add(new String[]{
-                String.valueOf(c.getId()),
-                c.getNome(),
-                c.getEmail(),
-                c.getCpf(),
-                c.getSexo(),
-                c.getNascimento(),
-                c.getEstadoCivil(),
-                c.getCelular(),
-                c.getTelefone(),
-                c.getEndereco()});
-
-        }
-        return resultado;
+        return ClienteDAO.buscaCliente(nome);
 
     }
 
-    public static ArrayList<String[]> buscaCliente(long cpf) {
-        ArrayList<ClienteModel> clientes = ClienteDAO.buscaCliente(cpf);
-        ArrayList<String[]> resultado = new ArrayList<>();
-
-        for (ClienteModel c : clientes) {
-            resultado.add(new String[]{
-                String.valueOf(c.getId()),
-                c.getNome(),
-                c.getEmail(),
-                c.getCpf(),
-                c.getSexo(),
-                c.getNascimento(),
-                c.getEstadoCivil(),
-                c.getCelular(),
-                c.getTelefone(),
-                c.getEndereco()});
-
-        }
-        return resultado;
+    public static ClienteModel buscaCliente(long cpf) {
+        return ClienteDAO.buscaCliente(cpf);
 
     }
 
-    public static ArrayList<ClienteModel> buscaClienteVenda(long cpf) {
+    public static ClienteModel buscaClienteVenda(long cpf) {
         return ClienteDAO.buscaCliente(cpf);
     }
 
