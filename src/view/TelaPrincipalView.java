@@ -629,7 +629,9 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             int linha = tblCliente.getSelectedRow();
 
             if (linha >= 0) {
-                ClienteModel c = ClienteController.visualizar(linha, tblCliente.getModel());
+                
+                int id = Integer.parseInt(tblCliente.getModel().getValueAt(linha, 0).toString());
+                ClienteModel c = ClienteController.visualizar(id);
                 new CadastroClienteView(this, c).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um cliente para visualizar!");

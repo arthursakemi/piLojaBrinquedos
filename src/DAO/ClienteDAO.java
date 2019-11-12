@@ -83,7 +83,45 @@ public class ClienteDAO {
     }
 
     public static boolean excluir(int cID) {
-        return SimulaDB.getInstance().excluirCliente(cID);
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE id = ?",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            instrucaoSQL.setInt(1, cID);
+
+            int linhasAfetadas = instrucaoSQL.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                retorno = true;
+
+            } else {
+                retorno = false;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            retorno = false;
+        } finally {
+
+            //Libero os recursos da memória
+            try {
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return retorno;
     }
 
     public static ArrayList<String[]> getClientes() {
@@ -137,6 +175,60 @@ public class ClienteDAO {
         }
 
         return listaClientes;
+    
+    }
+    
+    public static ClienteModel visualizar(int id) {
+     
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ClienteModel c = new ClienteModel();
+
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE id = ?;" , Statement.RETURN_GENERATED_KEYS);
+            
+            instrucaoSQL.setInt(1, id);
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                c = new ClienteModel(
+                Integer.parseInt(rs.getString("id")),
+                rs.getString("nome"),
+                rs.getString("email"),
+                rs.getString("cpf"),
+                rs.getString("sexo"),
+                rs.getString("nascimento"),
+                rs.getString("estado_civil"),
+                rs.getString("celular"),
+                rs.getString("telefone"),
+                rs.getString("endereco")
+            );
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            c = null;
+        } finally {
+            //Libero os recursos da memória
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return c;
     
     }
 

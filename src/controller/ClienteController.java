@@ -64,19 +64,9 @@ public class ClienteController {
         return ClienteDAO.atualizar(c);
     }
 
-    public static ClienteModel visualizar(int linha, TableModel tabela) {
+    public static ClienteModel visualizar(int id) {
 
-        ClienteModel c = new ClienteModel(Integer.parseInt(tabela.getValueAt(linha, 0).toString()),
-                tabela.getValueAt(linha, 1).toString(),
-                tabela.getValueAt(linha, 2).toString(),
-                tabela.getValueAt(linha, 3).toString(),
-                tabela.getValueAt(linha, 4).toString(),
-                tabela.getValueAt(linha, 5).toString(),
-                tabela.getValueAt(linha, 6).toString(),
-                tabela.getValueAt(linha, 7).toString(),
-                tabela.getValueAt(linha, 8).toString(),
-                tabela.getValueAt(linha, 9).toString());
-        return c;
+        return ClienteDAO.visualizar(id);
     }
 
     public static ArrayList<String[]> buscaCliente(int id) {
