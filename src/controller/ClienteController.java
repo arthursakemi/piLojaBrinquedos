@@ -149,24 +149,8 @@ public class ClienteController {
     }
 
     public static ArrayList<String[]> getClientes() {
-        ArrayList<ClienteModel> clientes = ClienteDAO.getClientes();
-        ArrayList<String[]> listaClientes = new ArrayList<>();
+        return ClienteDAO.getClientes();
 
-        for (int i = 0; i < clientes.size(); i++) {
-            listaClientes.add(new String[]{
-                String.valueOf(clientes.get(i).getId()),
-                clientes.get(i).getNome(),
-                clientes.get(i).getEmail(),
-                clientes.get(i).getCpf(),
-                clientes.get(i).getSexo(),
-                clientes.get(i).getNascimento(),
-                clientes.get(i).getEstadoCivil(),
-                clientes.get(i).getCelular(),
-                clientes.get(i).getTelefone(),
-                clientes.get(i).getEndereco()});
-        }
-
-        return listaClientes;
     }
 
 }
