@@ -84,6 +84,21 @@ public class Utilidades {
             return false;
         }
     }
+    
+    public static String dataSQL(String data){
+        String retorno = data.replace("/", "");
+        
+        
+        return retorno.substring(4) + "-" + retorno.substring(2,4) + "-" + retorno.substring(0,2);
+    }
+    
+    public static long cpfSQL(String cpf){
+        return Long.parseLong(cpf.replace(".", "").replace("-", ""));
+    }
+    
+    public static long telefoneSQL(String tel){
+        return Long.parseLong(tel.replace("(", "").replace(")", "").replace("-", "").replace(" ", ""));
+    }
 
     public static void main(String[] args) {
         String data = "18/07/1990",
@@ -91,6 +106,8 @@ public class Utilidades {
                 fim = "20/08/1991";
 
         System.out.println(buscaPeriodo(data, inicio, fim));
+        
+        System.out.println(dataSQL(data));
     }
 
 }

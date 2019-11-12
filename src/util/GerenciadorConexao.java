@@ -15,12 +15,12 @@ public class GerenciadorConexao {
 
     public static String DRIVER = "com.mysql.cj.jdbc.Driver";
     public static String SERVER = "localhost";
-    public static String PORTA = ":3306";  // :xxxx
-    public static String DATABASE = "/lojacarro";  // /nomeDatabase
+    public static String PORTA = ":3307";  // :xxxx
+    public static String DATABASE = "/lojabrinquedos";  // /nomeDatabase
     public static String TIMEZONE = "?useTimezone=true&serverTimezone=UTC&useSSL=false";
 
     public static String LOGIN = "root";
-    public static String SENHA = "root";
+    public static String SENHA = "";
 
     public static String URL = "";
 
