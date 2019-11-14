@@ -12,7 +12,7 @@ package model;
 public class ProdutoModel {
 
     public static int produtosCadastrados;
-    private int id, quantidade;
+    private int id, estoque;
     private double valor;
     private String nome,
             marca,
@@ -28,7 +28,7 @@ public class ProdutoModel {
     public ProdutoModel(String nome,
             String marca,
             String fornecedor,
-            int quantidade,
+            int estoque,
             double valor,
             String descricao) {
 
@@ -38,7 +38,7 @@ public class ProdutoModel {
         this.marca = marca;
         this.fornecedor = fornecedor;
         this.valor = valor;
-        this.quantidade = quantidade;
+        this.estoque = estoque;
         this.descricao = descricao;
     }
 
@@ -46,7 +46,7 @@ public class ProdutoModel {
             String nome,
             String marca,
             String fornecedor,
-            int quantidade,
+            int estoque,
             double valor,
             String descricao) {
 
@@ -55,7 +55,7 @@ public class ProdutoModel {
         this.marca = marca;
         this.fornecedor = fornecedor;
         this.valor = valor;
-        this.quantidade = quantidade;
+        this.estoque = estoque;
         this.descricao = descricao;
     }
 
@@ -99,12 +99,12 @@ public class ProdutoModel {
         this.valor = valor;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getEstoque() {
+        return estoque;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setEstoque(int quantidade) {
+        this.estoque = quantidade;
     }
 
     public String getDescricao() {
@@ -113,6 +113,15 @@ public class ProdutoModel {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String[] toArray() {
+        return new String[]{String.valueOf(this.id),
+            this.nome,
+            this.marca,
+            String.valueOf(this.estoque),
+            String.valueOf(this.valor)
+        };
     }
 
 }

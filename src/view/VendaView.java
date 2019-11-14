@@ -15,6 +15,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ClienteModel;
+import model.ProdutoModel;
 import model.VendaModel;
 import util.Validador;
 
@@ -301,7 +302,7 @@ public class VendaView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod", "Nome", "Marca", "Estoque", "Valor"
+                "ID", "Nome", "Marca", "Estoque", "Valor"
             }
         ));
         jScrollPane2.setViewportView(tblProduto);
@@ -482,7 +483,7 @@ public class VendaView extends javax.swing.JFrame {
         }
 
         quantidade = Integer.parseInt(txtQuantidade.getText());
-        estoque = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 4).toString());
+        estoque = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 3).toString());
 
         if (!txtQuantidade.getText().equals("")) {
 
@@ -615,23 +616,19 @@ public class VendaView extends javax.swing.JFrame {
 
     public void loadTableProdutos() {
 
-        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
+        ArrayList<ProdutoModel> produtos = ProdutoController.loadProdutos();
 
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("Nome");
         tmProdutos.addColumn("Marca");
-        tmProdutos.addColumn("Fornecedor");
         tmProdutos.addColumn("Estoque");
         tmProdutos.addColumn("Valor");
-        tmProdutos.addColumn("Descrição");
+
         tblProduto.setModel(tmProdutos);
 
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
-
-        for (String[] p : linhasProdutos) {
-            tmProdutos.addRow(p);
+        for (ProdutoModel p : produtos) {
+            tmProdutos.addRow(p.toArray());
         }
 
     }
@@ -657,7 +654,7 @@ public class VendaView extends javax.swing.JFrame {
         produto[0] = String.valueOf(id);
         produto[1] = tblProduto.getModel().getValueAt(linha, 1).toString();
         produto[2] = String.valueOf(quantidade);
-        produto[3] = tblProduto.getModel().getValueAt(linha, 5).toString();
+        produto[3] = tblProduto.getModel().getValueAt(linha, 4).toString();
         produto[4] = String.valueOf(quantidade * Double.parseDouble(produto[3]));
 
         posicaoAdicionada = adicionado(id);
@@ -702,7 +699,7 @@ public class VendaView extends javax.swing.JFrame {
             return false;
         }
 
-        int estoque = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 4).toString());
+        int estoque = Integer.parseInt(tblProduto.getModel().getValueAt(linha, 3).toString());
 
         if (quantidade.equals("")) {
             JOptionPane.showMessageDialog(this, "Informe a quantidade desejada");
@@ -763,26 +760,21 @@ public class VendaView extends javax.swing.JFrame {
     }
 
     public void buscaProduto(int id) {
-        ArrayList<String[]> linhasProdutos = ProdutoController.buscaProduto(id);
+        ProdutoModel produto = ProdutoController.buscaProduto(id);
 
-        if (!linhasProdutos.isEmpty()) {
+        if (produto != null) {
 
             DefaultTableModel tmProdutos = new DefaultTableModel();
             tmProdutos.addColumn("ID");
             tmProdutos.addColumn("Nome");
             tmProdutos.addColumn("Marca");
-            tmProdutos.addColumn("Fornecedor");
             tmProdutos.addColumn("Valor");
             tmProdutos.addColumn("Quantidade");
-            tmProdutos.addColumn("Descrição");
 
-            for (String[] p : linhasProdutos) {
-                tmProdutos.addRow(p);
-            }
+            tmProdutos.addRow(produto.toArray());
 
             tblProduto.setModel(tmProdutos);
-            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
-            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+
         } else {
             JOptionPane.showMessageDialog(this, "Produto não encontrado!");
         }

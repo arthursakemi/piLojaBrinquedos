@@ -631,7 +631,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             if (linha >= 0) {
 
                 int id = Integer.parseInt(tblCliente.getModel().getValueAt(linha, 0).toString());
-                ClienteModel c = ClienteController.visualizar(id);
+                ClienteModel c = ClienteController.buscaCliente(id);
                 new CadastroClienteView(this, c).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um cliente para visualizar!");
@@ -673,8 +673,12 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         if (tblProduto.getRowCount() > 0) {
             int linha = tblProduto.getSelectedRow();
             if (linha >= 0) {
-                ProdutoModel p = ProdutoController.visualizar(linha, tblProduto.getModel());
+                int id = Integer.parseInt(tblProduto.getValueAt(linha, 0).toString());
+
+                ProdutoModel p = ProdutoController.visualizar(id);
+
                 new CadastroProdutoView(this, p).setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(this, "Selecione um produto para visualizar!");
             }
@@ -872,23 +876,19 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     public void loadTableProdutos() {
 
-        ArrayList<String[]> linhasProdutos = ProdutoController.getProdutos();
+        ArrayList<ProdutoModel> linhasProdutos = ProdutoController.loadProdutos();
 
         DefaultTableModel tmProdutos = new DefaultTableModel();
         tmProdutos.addColumn("ID");
         tmProdutos.addColumn("Nome");
         tmProdutos.addColumn("Marca");
-        tmProdutos.addColumn("Fornecedor");
         tmProdutos.addColumn("Estoque");
         tmProdutos.addColumn("Valor");
-        tmProdutos.addColumn("Descrição");
+
         tblProduto.setModel(tmProdutos);
 
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
-        tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
-
-        for (String[] p : linhasProdutos) {
-            tmProdutos.addRow(p);
+        for (ProdutoModel p : linhasProdutos) {
+            tmProdutos.addRow(p.toArray());
         }
 
     }
@@ -1011,26 +1011,21 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaProduto(int id) {
-        ArrayList<String[]> linhasProdutos = ProdutoController.buscaProduto(id);
+        ProdutoModel produto = ProdutoController.buscaProduto(id);
 
-        if (!linhasProdutos.isEmpty()) {
+        if (produto != null) {
 
             DefaultTableModel tmProdutos = new DefaultTableModel();
             tmProdutos.addColumn("ID");
             tmProdutos.addColumn("Nome");
             tmProdutos.addColumn("Marca");
-            tmProdutos.addColumn("Fornecedor");
             tmProdutos.addColumn("Quantidade");
             tmProdutos.addColumn("Valor");
-            tmProdutos.addColumn("Descrição");
 
-            for (String[] p : linhasProdutos) {
-                tmProdutos.addRow(p);
-            }
+            tmProdutos.addRow(produto.toArray());
 
             tblProduto.setModel(tmProdutos);
-            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(3));
-            tblProduto.removeColumn(tblProduto.getColumnModel().getColumn(5));
+
         } else {
             JOptionPane.showMessageDialog(this, "Produto não encontrado!");
         }

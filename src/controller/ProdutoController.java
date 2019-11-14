@@ -6,9 +6,8 @@
 package controller;
 
 import DAO.ProdutoDAO;
-import model.ProdutoModel;
 import java.util.ArrayList;
-import javax.swing.table.TableModel;
+import model.ProdutoModel;
 
 public class ProdutoController {
 
@@ -52,52 +51,16 @@ public class ProdutoController {
         return ProdutoDAO.atualizar(p);
     }
 
-    public static ProdutoModel visualizar(int linha, TableModel tabela) {
-
-        ProdutoModel p = new ProdutoModel(Integer.parseInt(tabela.getValueAt(linha, 0).toString()),
-                tabela.getValueAt(linha, 1).toString(),
-                tabela.getValueAt(linha, 2).toString(),
-                tabela.getValueAt(linha, 3).toString(),
-                Integer.parseInt(tabela.getValueAt(linha, 4).toString()),
-                Double.parseDouble(tabela.getValueAt(linha, 5).toString()),
-                tabela.getValueAt(linha, 6).toString());
-        return p;
+    public static ProdutoModel visualizar(int id) {
+        return ProdutoDAO.buscaProduto(id);
     }
 
-    public static ArrayList<String[]> getProdutos() {
-        ArrayList<ProdutoModel> produtos = ProdutoDAO.getProdutos();
-        ArrayList<String[]> listaProdutos = new ArrayList<>();
-
-        for (int i = 0; i < produtos.size(); i++) {
-            listaProdutos.add(new String[]{
-                String.valueOf(produtos.get(i).getId()),
-                produtos.get(i).getNome(),
-                produtos.get(i).getMarca(),
-                produtos.get(i).getFornecedor(),
-                String.valueOf(produtos.get(i).getQuantidade()),
-                String.valueOf(produtos.get(i).getValor()),
-                produtos.get(i).getDescricao()});
-        }
-
-        return listaProdutos;
+    public static ArrayList<ProdutoModel> loadProdutos() {
+        return ProdutoDAO.loadProdutos();
     }
 
-    public static ArrayList<String[]> buscaProduto(int id) {
-        ArrayList<ProdutoModel> produtos = ProdutoDAO.buscaProduto(id);
-        ArrayList<String[]> resultado = new ArrayList<>();
-
-        for (ProdutoModel p : produtos) {
-            resultado.add(new String[]{
-                String.valueOf(p.getId()),
-                p.getNome(),
-                p.getMarca(),
-                p.getFornecedor(),
-                String.valueOf(p.getQuantidade()),
-                String.valueOf(p.getValor()),
-                p.getDescricao()});
-        }
-        return resultado;
-
+    public static ProdutoModel buscaProduto(int id) {
+        return ProdutoDAO.buscaProduto(id);
     }
 
     public static ArrayList<String[]> buscaProduto(String nome) {
@@ -111,7 +74,7 @@ public class ProdutoController {
                 p.getMarca(),
                 p.getFornecedor(),
                 String.valueOf(p.getValor()),
-                String.valueOf(p.getQuantidade()),
+                String.valueOf(p.getEstoque()),
                 p.getDescricao()});
 
         }

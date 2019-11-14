@@ -5,9 +5,9 @@
  */
 package DAO;
 
+import java.util.ArrayList;
 import model.ClienteModel;
 import model.ProdutoModel;
-import java.util.ArrayList;
 import model.VendaModel;
 import util.Utilidades;
 
@@ -213,7 +213,7 @@ public class SimulaDB {
                 item.setMarca(p.getMarca());
                 item.setFornecedor(p.getFornecedor());
                 item.setValor(p.getValor());
-                item.setQuantidade(p.getQuantidade());
+                item.setEstoque(p.getEstoque());
                 item.setDescricao(p.getDescricao());
             }
         }
@@ -259,7 +259,7 @@ public class SimulaDB {
     public boolean alterarEstoque(int id, int vendido) {
         for (ProdutoModel p : listaProdutos) {
             if (p.getId() == id) {
-                p.setQuantidade(p.getQuantidade() - vendido);
+                p.setEstoque(p.getEstoque() - vendido);
             }
         }
 

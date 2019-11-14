@@ -156,11 +156,11 @@ public class ClienteModel {
     }
 
     public String[] toArray() {
-        return new String[]{String.valueOf(this.getId()),
-            this.getNome(),
-            this.getCpf(),
-            this.getEmail(),
-            this.getCelular()};
+        return new String[]{String.valueOf(this.id),
+            this.nome,
+            this.cpf,
+            this.email,
+            this.celular};
     }
 
 }

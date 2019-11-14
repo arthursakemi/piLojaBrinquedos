@@ -63,12 +63,8 @@ public class ClienteController {
         return ClienteDAO.atualizar(c);
     }
 
-    public static ClienteModel visualizar(int id) {
-        return ClienteDAO.buscaCliente(id);
-    }
-
     public static ArrayList<ClienteModel> loadClientes() {
-        return ClienteDAO.getClientes();
+        return ClienteDAO.loadClientes();
 
     }
 
@@ -82,4 +78,7 @@ public class ClienteController {
 
     }
 
+    public static ClienteModel buscaCliente(int id) {
+        return ClienteDAO.buscaCliente(id);
+    }
 }

@@ -9,7 +9,6 @@ import controller.ProdutoController;
 import javax.swing.JOptionPane;
 import model.ProdutoModel;
 import util.Validador;
-import view.TelaPrincipalView;
 
 /**
  *
@@ -47,7 +46,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         txtMarca.setText(p.getMarca());
         txtFornecedor.setText(p.getFornecedor());
         txtValor.setText(String.valueOf(p.getValor()));
-        txtQuantidade.setText(String.valueOf(p.getQuantidade()));
+        txtEstoque.setText(String.valueOf(p.getEstoque()));
         txtDescricao.setText(p.getDescricao());
         desabilitarFormulario();
         setLocationRelativeTo(null);
@@ -71,7 +70,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         lblValor = new javax.swing.JLabel();
         lblMarca = new javax.swing.JLabel();
         txtMarca = new javax.swing.JTextField();
-        txtQuantidade = new javax.swing.JTextField();
+        txtEstoque = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
         lblQuantidade = new javax.swing.JLabel();
         lblDescricao = new javax.swing.JLabel();
@@ -105,7 +104,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
 
         txtMarca.setPreferredSize(new java.awt.Dimension(400, 25));
 
-        txtQuantidade.setPreferredSize(new java.awt.Dimension(190, 25));
+        txtEstoque.setPreferredSize(new java.awt.Dimension(190, 25));
 
         txtValor.setPreferredSize(new java.awt.Dimension(190, 25));
 
@@ -181,7 +180,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCadastroProdutoLayout.createSequentialGroup()
                                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -210,7 +209,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCadastroProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDescricao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,7 +276,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
                         txtMarca.getText(),
                         txtFornecedor.getText(),
                         Double.parseDouble(txtValor.getText()),
-                        Integer.parseInt(txtQuantidade.getText()),
+                        Integer.parseInt(txtEstoque.getText()),
                         txtDescricao.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Produto atualizado com Sucesso!");
@@ -291,7 +290,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
                         txtMarca.getText(),
                         txtFornecedor.getText(),
                         Double.parseDouble(txtValor.getText()),
-                        Integer.parseInt(txtQuantidade.getText()),
+                        Integer.parseInt(txtEstoque.getText()),
                         txtDescricao.getText())) {
 
                     JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
@@ -331,7 +330,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
             return false;
         }
 
-        if (txtQuantidade.getText().equalsIgnoreCase("")) {
+        if (txtEstoque.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Informe a quantidade do produto!");
             return false;
         }
@@ -341,7 +340,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
             return false;
         }
 
-        if (!Validador.validarInt(txtQuantidade.getText())) {
+        if (!Validador.validarInt(txtEstoque.getText())) {
             JOptionPane.showMessageDialog(this, "Quantidade Inválida!");
             return false;
         }
@@ -354,7 +353,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         txtMarca.setEditable(false);
         txtFornecedor.setEditable(false);
         txtValor.setEditable(false);
-        txtQuantidade.setEditable(false);
+        txtEstoque.setEditable(false);
         txtDescricao.setEditable(false);
 
         btnSalvar.setEnabled(false);
@@ -365,7 +364,7 @@ public class CadastroProdutoView extends javax.swing.JFrame {
         txtMarca.setEditable(true);
         txtFornecedor.setEditable(true);
         txtValor.setEditable(true);
-        txtQuantidade.setEditable(true);
+        txtEstoque.setEditable(true);
         txtDescricao.setEditable(true);
 
         btnSalvar.setEnabled(true);
@@ -427,10 +426,10 @@ public class CadastroProdutoView extends javax.swing.JFrame {
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblValor;
     private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextField txtEstoque;
     private javax.swing.JTextField txtFornecedor;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

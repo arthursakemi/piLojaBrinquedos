@@ -45,12 +45,6 @@ public class ClienteDAO {
             if (linhasAfetadas > 0) {
                 retorno = true;
 
-                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    c.setId(generatedKeys.getInt(1));
-                } else {
-                    throw new SQLException("Falha ao obter o ID do cliente.");
-                }
             } else {
                 retorno = false;
             }
@@ -130,7 +124,7 @@ public class ClienteDAO {
         return retorno;
     }
 
-    public static boolean excluir(int cID) {
+    public static boolean excluir(int id) {
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -143,7 +137,7 @@ public class ClienteDAO {
                     + "SET ativo = false"
                     + "WHERE id = ?");
 
-            instrucaoSQL.setInt(1, cID);
+            instrucaoSQL.setInt(1, id);
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
 
@@ -173,7 +167,7 @@ public class ClienteDAO {
         return retorno;
     }
 
-    public static ArrayList<ClienteModel> getClientes() {
+    public static ArrayList<ClienteModel> loadClientes() {
 
         ResultSet rs = null;
         Connection conexao = null;
@@ -191,7 +185,7 @@ public class ClienteDAO {
             while (rs.next()) {
 
                 listaClientes.add(new ClienteModel(
-                        Integer.parseInt(rs.getString("id")),
+                        rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
                         rs.getString("cpf"),
@@ -232,7 +226,7 @@ public class ClienteDAO {
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ClienteModel c = new ClienteModel();
+        ClienteModel c = null;
 
         try {
 
