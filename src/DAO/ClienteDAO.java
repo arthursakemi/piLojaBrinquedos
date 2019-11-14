@@ -10,8 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import model.ClienteModel;
 import java.util.ArrayList;
+import model.ClienteModel;
 import util.GerenciadorConexao;
 import util.Utilidades;
 
@@ -138,8 +138,10 @@ public class ClienteDAO {
         try {
 
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE id = ?",
-                    Statement.RETURN_GENERATED_KEYS);
+            instrucaoSQL = conexao.prepareStatement(
+                    "UPDATE clientes"
+                    + "SET ativo = false"
+                    + "WHERE id = ?");
 
             instrucaoSQL.setInt(1, cID);
 
@@ -171,13 +173,13 @@ public class ClienteDAO {
         return retorno;
     }
 
-    public static ArrayList<String[]> getClientes() {
+    public static ArrayList<ClienteModel> getClientes() {
 
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
 
-        ArrayList<String[]> listaClientes = new ArrayList<>();
+        ArrayList<ClienteModel> listaClientes = new ArrayList<>();
 
         try {
 
@@ -188,18 +190,18 @@ public class ClienteDAO {
 
             while (rs.next()) {
 
-                listaClientes.add(new String[]{
-                    rs.getString("id"),
-                    rs.getString("nome"),
-                    rs.getString("email"),
-                    rs.getString("cpf"),
-                    rs.getString("sexo"),
-                    rs.getString("nascimento"),
-                    rs.getString("estado_civil"),
-                    rs.getString("celular"),
-                    rs.getString("telefone"),
-                    rs.getString("endereco")
-                });
+                listaClientes.add(new ClienteModel(
+                        Integer.parseInt(rs.getString("id")),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("cpf"),
+                        rs.getString("sexo"),
+                        rs.getString("nascimento"),
+                        rs.getString("estado_civil"),
+                        rs.getString("celular"),
+                        rs.getString("telefone"),
+                        rs.getString("endereco")
+                ));
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -279,19 +281,19 @@ public class ClienteDAO {
 
     }
 
-    public static ArrayList<String[]> buscaCliente(String nome) {
+    public static ArrayList<ClienteModel> buscaCliente(String nome) {
 
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
 
-        ArrayList<String[]> listaClientes = new ArrayList<>();
+        ArrayList<ClienteModel> listaClientes = new ArrayList<>();
 
         try {
 
             conexao = GerenciadorConexao.abrirConexao();
             instrucaoSQL = conexao.prepareStatement(
-                    "SELECT * FROM clientes "
+                    "SELECT * FROM clientes_ativos "
                     + "WHERE nome LIKE ?;");
 
             instrucaoSQL.setString(1, "%" + nome + "%");
@@ -300,18 +302,18 @@ public class ClienteDAO {
 
             while (rs.next()) {
 
-                listaClientes.add(new String[]{
-                    rs.getString("id"),
-                    rs.getString("nome"),
-                    rs.getString("email"),
-                    rs.getString("cpf"),
-                    rs.getString("sexo"),
-                    rs.getString("nascimento"),
-                    rs.getString("estado_civil"),
-                    rs.getString("celular"),
-                    rs.getString("telefone"),
-                    rs.getString("endereco")
-                });
+                listaClientes.add(new ClienteModel(
+                        Integer.parseInt(rs.getString("id")),
+                        rs.getString("nome"),
+                        rs.getString("email"),
+                        rs.getString("cpf"),
+                        rs.getString("sexo"),
+                        rs.getString("nascimento"),
+                        rs.getString("estado_civil"),
+                        rs.getString("celular"),
+                        rs.getString("telefone"),
+                        rs.getString("endereco")
+                ));
             }
 
         } catch (SQLException | ClassNotFoundException ex) {

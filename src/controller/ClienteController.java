@@ -6,9 +6,8 @@
 package controller;
 
 import DAO.ClienteDAO;
-import model.ClienteModel;
 import java.util.ArrayList;
-import javax.swing.table.TableModel;
+import model.ClienteModel;
 
 public class ClienteController {
 
@@ -68,22 +67,18 @@ public class ClienteController {
         return ClienteDAO.buscaCliente(id);
     }
 
-    public static ArrayList<String[]> buscaCliente(String nome) {
+    public static ArrayList<ClienteModel> loadClientes() {
+        return ClienteDAO.getClientes();
+
+    }
+
+    public static ArrayList<ClienteModel> buscaCliente(String nome) {
         return ClienteDAO.buscaCliente(nome);
 
     }
 
     public static ClienteModel buscaCliente(long cpf) {
         return ClienteDAO.buscaCliente(cpf);
-
-    }
-
-    public static ClienteModel buscaClienteVenda(long cpf) {
-        return ClienteDAO.buscaCliente(cpf);
-    }
-
-    public static ArrayList<String[]> getClientes() {
-        return ClienteDAO.getClientes();
 
     }
 

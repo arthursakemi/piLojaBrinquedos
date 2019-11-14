@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import model.ClienteModel;
 import model.VendaModel;
 import util.Validador;
@@ -536,7 +535,7 @@ public class VendaView extends javax.swing.JFrame {
         if (!cpfString.equals("")) {
             if (Validador.validarCPF(cpfString)) {
                 cpf = Long.parseLong(cpfString);
-                ClienteModel c = ClienteController.buscaClienteVenda(cpf);
+                ClienteModel c = ClienteController.buscaCliente(cpf);
                 if (c != null) {
                     lblNomeCliente.setVisible(true);
                     lblNomeCliente.setText(c.getNome());

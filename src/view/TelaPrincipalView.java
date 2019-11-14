@@ -895,29 +895,19 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     public void loadTableClientes() {
 
-        ArrayList<String[]> linhasClientes = ClienteController.getClientes();
+        ArrayList<ClienteModel> clientes = ClienteController.loadClientes();
 
         DefaultTableModel tmClientes = new DefaultTableModel();
         tmClientes.addColumn("ID");
         tmClientes.addColumn("Nome");
-        tmClientes.addColumn("Email");
         tmClientes.addColumn("CPF");
-        tmClientes.addColumn("Sexo");
-        tmClientes.addColumn("Nascimento");
-        tmClientes.addColumn("Estado Civil");
+        tmClientes.addColumn("Email");
         tmClientes.addColumn("Celular");
-        tmClientes.addColumn("Telefone");
-        tmClientes.addColumn("Endereço");
+
         tblCliente.setModel(tmClientes);
 
-        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
-        tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
-
-        for (String[] p : linhasClientes) {
-            tmClientes.addRow(p);
+        for (ClienteModel c : clientes) {
+            tmClientes.addRow(c.toArray());
         }
 
     }
@@ -1047,32 +1037,22 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaCliente(String nome) {
-        ArrayList<String[]> linhasProdutos = ClienteController.buscaCliente(nome);
+        ArrayList<ClienteModel> clientes = ClienteController.buscaCliente(nome);
 
-        if (!linhasProdutos.isEmpty()) {
+        if (!clientes.isEmpty()) {
 
             DefaultTableModel tmClientes = new DefaultTableModel();
             tmClientes.addColumn("ID");
             tmClientes.addColumn("Nome");
-            tmClientes.addColumn("Email");
             tmClientes.addColumn("CPF");
-            tmClientes.addColumn("Sexo");
-            tmClientes.addColumn("Nascimento");
-            tmClientes.addColumn("Estado Civil");
+            tmClientes.addColumn("Email");
             tmClientes.addColumn("Celular");
-            tmClientes.addColumn("Telefone");
-            tmClientes.addColumn("Endereço");
 
-            for (String[] p : linhasProdutos) {
-                tmClientes.addRow(p);
-            }
-//id, nome, cpf, email, celular
             tblCliente.setModel(tmClientes);
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+
+            for (ClienteModel c : clientes) {
+                tmClientes.addRow(c.toArray());
+            }
 
         } else {
             JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
@@ -1088,23 +1068,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             DefaultTableModel tmClientes = new DefaultTableModel();
             tmClientes.addColumn("ID");
             tmClientes.addColumn("Nome");
-            tmClientes.addColumn("Email");
             tmClientes.addColumn("CPF");
-            tmClientes.addColumn("Sexo");
-            tmClientes.addColumn("Nascimento");
-            tmClientes.addColumn("Estado Civil");
+            tmClientes.addColumn("Email");
             tmClientes.addColumn("Celular");
-            tmClientes.addColumn("Telefone");
-            tmClientes.addColumn("Endereço");
 
             tmClientes.addRow(c.toArray());
 
             tblCliente.setModel(tmClientes);
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(4));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
-            tblCliente.removeColumn(tblCliente.getColumnModel().getColumn(5));
+
         } else {
             JOptionPane.showMessageDialog(this, "Cliente não encontrado!");
         }
