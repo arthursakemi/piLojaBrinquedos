@@ -5,11 +5,10 @@
  */
 package view;
 
+import DAO.VendaDAO;
 import controller.VendaController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import model.VendaModel;
-import util.Utilidades;
 
 /**
  *
@@ -17,8 +16,7 @@ import util.Utilidades;
  */
 public class RelatórioView extends javax.swing.JFrame {
 
-    ArrayList<VendaModel> listaVendas;
-    VendaModel venda;
+    private String[] venda;
 
     /**
      * Creates new form RelatórioView
@@ -30,14 +28,14 @@ public class RelatórioView extends javax.swing.JFrame {
     public RelatórioView(int id) {
         initComponents();
 
-        listaVendas = VendaController.visualizarVenda(id);
-        venda = listaVendas.get(0);
+        venda = VendaController.visualizarVenda(id);
 
-        lblIDVenda.setText(String.valueOf(venda.getIdVenda()));
-        lblDataVenda.setText(venda.getData());
-        lblNomeCliente.setText(venda.getNomeCliente());
-        lblValorTotal.setText(String.format("%.2f", venda.getValorTotal()));
-        lblCPFcliente.setText(Utilidades.formatCPF(venda.getCpfCliente()));
+        lblIDVenda.setText(venda[0]);
+        lblDataVenda.setText(venda[1]);
+        lblNomeCliente.setText(venda[2]);
+        lblCPFcliente.setText(venda[3]);
+        lblValorTotal.setText(venda[4]);
+
         loadTableProdutos();
         setQuantidadeProdutos();
 
@@ -53,9 +51,9 @@ public class RelatórioView extends javax.swing.JFrame {
         lblQuantidadeItens.setText(String.valueOf(total));
     }
 
-    public void loadTableProdutos() { //alterar
+    public void loadTableProdutos() {
 
-        ArrayList<String[]> linhasProdutos = venda.getProdutos();
+        ArrayList<String[]> linhasProdutos = VendaDAO.LoadCarrinho(Integer.parseInt(lblIDVenda.getText()));
 
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("ID");

@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ClienteModel;
 import model.ProdutoModel;
-import model.VendaModel;
 import util.Validador;
 
 /**
@@ -38,7 +37,6 @@ public class VendaView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         loadTableProdutos();
         lblNomeCliente.setVisible(false);
-        lblIDVenda.setText(String.valueOf(VendaModel.getVendasCadastradas() + 1));
 
         tmCarrinho.addColumn("ID");
         tmCarrinho.addColumn("Nome");
@@ -56,7 +54,6 @@ public class VendaView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         loadTableProdutos();
         lblNomeCliente.setVisible(false);
-        lblIDVenda.setText(String.valueOf(VendaModel.getVendasCadastradas() + 1));
 
         tmCarrinho.addColumn("ID");
         tmCarrinho.addColumn("Nome");
@@ -88,8 +85,6 @@ public class VendaView extends javax.swing.JFrame {
         txtCPF = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
         lblNomeCliente = new javax.swing.JLabel();
-        lblIDVenda = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Data = new javax.swing.JLabel();
         lblData = new javax.swing.JLabel();
@@ -147,10 +142,6 @@ public class VendaView extends javax.swing.JFrame {
 
         lblNomeCliente.setText("Nome");
 
-        lblIDVenda.setText("xx");
-
-        jLabel2.setText("ID Venda: ");
-
         jLabel4.setText("Cliente:");
 
         Data.setText("Data:");
@@ -165,10 +156,6 @@ public class VendaView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblIDVenda))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,23 +180,20 @@ public class VendaView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lblIDVenda))
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(lblNomeCliente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Data)
-                            .addComponent(lblData)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblData))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
         );
 
@@ -576,8 +560,6 @@ public class VendaView extends javax.swing.JFrame {
 
                 if (VendaController.salvar(c.getId(),
                         lblData.getText(),
-                        c.getNome(),
-                        c.getCpf(),
                         produtos,
                         Double.parseDouble(lblTotal.getText().replace(",", ".")))) {
 
@@ -608,8 +590,6 @@ public class VendaView extends javax.swing.JFrame {
         for (String[] p : produtos) {
             id = Integer.parseInt(p[0]);
             quantidade = Integer.parseInt(p[2]);
-
-            ProdutoController.atualizarEstoque(id, quantidade);
         }
 
     }
@@ -710,7 +690,7 @@ public class VendaView extends javax.swing.JFrame {
             return false;
         }
         if (Integer.parseInt(quantidade) > estoque) {
-            JOptionPane.showMessageDialog(this, "Não há estoque suficiente");
+            JOptionPane.showMessageDialog(this, "Estoque insuficiente");
             return false;
         }
         return true;
@@ -825,7 +805,6 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JButton btnConcluir;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -840,7 +819,6 @@ public class VendaView extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblIDProduto;
-    private javax.swing.JLabel lblIDVenda;
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JLabel lblNomeProduto;
     private javax.swing.JLabel lblQuantidade;

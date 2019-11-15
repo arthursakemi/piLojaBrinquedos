@@ -57,3 +57,32 @@ CREATE VIEW clientes_ativos AS
 CREATE VIEW clientes_inativos AS
 	SELECT * FROM clientes
     WHERE ativo = false;
+    
+CREATE VIEW carrinho AS
+	SELECT id_venda, id_produto, produtos.nome, quantidade, produtos.valor, (quantidade * produtos.valor) AS subtotal
+	FROM venda_produto 
+	INNER JOIN produtos ON produtos.id = id_produto;
+    
+CREATE VIEW relatorio_vendas AS
+    SELECT vendas.id, clientes.cpf, data_venda, valor
+	FROM vendas
+	INNER JOIN clientes ON id_cliente = clientes.id;
+    
+CREATE VIEW relatorio_analitico AS
+	SELECT vendas.id, data_venda, clientes.nome, clientes.cpf, valor
+	FROM vendas
+	INNER JOIN clientes ON id_cliente = clientes.id;
+
+DELIMITER $$
+CREATE 
+    TRIGGER  atualiza_estoque
+ AFTER INSERT ON venda_produto FOR EACH ROW 
+    BEGIN
+    UPDATE produtos 
+    SET estoque = estoque - new.quantidade
+    WHERE id = new.id_produto; 
+    
+    END $$
+    
+DELIMITER ;
+    

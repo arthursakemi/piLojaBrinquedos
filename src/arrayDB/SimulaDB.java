@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package arrayDB;
 
 import java.util.ArrayList;
 import model.ClienteModel;
@@ -48,10 +48,6 @@ public class SimulaDB {
         carrinho1.add(item2);
 
         carrinho2.add(item3);
-
-        listaVendas.add(new VendaModel(10, 13, "01/10/2016", "Meggy", "44444444444", carrinho2, 74.61));
-        listaVendas.add(new VendaModel(11, 14, "16/07/2015", "Laura", "55555555555", carrinho1, 238.90));
-        listaVendas.add(new VendaModel(12, 11, "30/10/2016", "Zakk", "22222222222", carrinho2, 74.61));
 
     }
 
@@ -159,18 +155,6 @@ public class SimulaDB {
 
         for (VendaModel v : listaVendas) {
             if (v.getIdVenda() == id) {
-                resultado.add(v);
-            }
-        }
-
-        return resultado;
-    }
-
-    public ArrayList<VendaModel> buscaVenda(String cpf) {
-        ArrayList<VendaModel> resultado = new ArrayList<>();
-
-        for (VendaModel v : listaVendas) {
-            if (v.getCpfCliente().equals(cpf)) {
                 resultado.add(v);
             }
         }

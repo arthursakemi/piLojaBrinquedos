@@ -13,34 +13,31 @@ import java.util.ArrayList;
  */
 public class VendaModel {
 
-    private static int vendasCadastradas;
-
     private int idVenda,
             idCliente;
-    private String data,
-            nomeCliente,
-            cpfCliente;
+    private String cpf;
+    private String nome;
+    private String data;
     private ArrayList<String[]> produtos; // {ID Produto, nome, quantidade, valor unitario, subtotal}
     private Double valorTotal;
 
     public VendaModel() {
-        vendasCadastradas++;
-        idVenda = vendasCadastradas;
+    }
+
+    public VendaModel(int idVenda, int idCliente, String data, Double valorTotal) {
+        this.idVenda = idVenda;
+        this.idCliente = idCliente;
+        this.data = data;
+        this.valorTotal = valorTotal;
     }
 
     public VendaModel(int idCliente,
             String data,
-            String nomeCliente,
-            String cpf,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
-        vendasCadastradas++;
-        this.idVenda = vendasCadastradas;
         this.idCliente = idCliente;
         this.data = data;
-        this.nomeCliente = nomeCliente;
-        this.cpfCliente = cpf;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
     }
@@ -48,26 +45,14 @@ public class VendaModel {
     public VendaModel(int idVenda,
             int idCliente,
             String data,
-            String nomeCliente,
-            String cpf,
             ArrayList<String[]> produtos,
             Double valorTotal) {
 
         this.idVenda = idVenda;
         this.idCliente = idCliente;
         this.data = data;
-        this.cpfCliente = cpf;
-        this.nomeCliente = nomeCliente;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
-    }
-
-    public String getCpfCliente() {
-        return cpfCliente;
-    }
-
-    public void setCpfCliente(String cpfCliente) {
-        this.cpfCliente = cpfCliente;
     }
 
     public int getIdVenda() {
@@ -94,14 +79,6 @@ public class VendaModel {
         this.data = data;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
     public ArrayList<String[]> getProdutos() {
         return produtos;
     }
@@ -116,14 +93,6 @@ public class VendaModel {
 
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
-    }
-
-    public static int getVendasCadastradas() {
-        return vendasCadastradas;
-    }
-
-    public static void setVendasCadastradas(int vendasCadastradas) {
-        VendaModel.vendasCadastradas = vendasCadastradas;
     }
 
 }

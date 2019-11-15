@@ -193,7 +193,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDCbusca)
                     .addComponent(txtCPFbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPeriodo)
                     .addGroup(jPanel13Layout.createSequentialGroup()
@@ -202,10 +202,10 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane4)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -914,7 +914,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     public void loadTableVendas() { //alterar
 
-        ArrayList<String[]> linhasVendas = VendaController.getVendas();
+        ArrayList<String[]> linhasVendas = VendaController.loadVendas();
 
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("IDVenda");
@@ -942,7 +942,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaVendas(int id) {
-        ArrayList<String[]> linhasVendas = VendaController.buscaVenda(id);
+        String[] venda = VendaController.buscaVenda(id);
+
+        if (venda == null) {
+            JOptionPane.showMessageDialog(this, "Venda não encontrada!");
+            loadTableVendas();
+            return;
+        }
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("IDVenda");
         tmVendas.addColumn("CPF Cliente");
@@ -950,9 +956,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         tmVendas.addColumn("Valor Total");
         tblVendas.setModel(tmVendas);
 
-        for (String[] v : linhasVendas) {
-            tmVendas.addRow(v);
-        }
+        tmVendas.addRow(venda);
+
     }
 
     public void buscaVendas(String dataInicio, String dataFim) {
@@ -970,7 +975,15 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaVendas(String cpf) {
-        ArrayList<String[]> linhasVendas = VendaController.buscaVenda(cpf);
+
+        String[] venda = VendaController.buscaVenda(Long.parseLong(cpf));
+
+        if (venda[0].equals("")) {
+            JOptionPane.showMessageDialog(this, "Venda não encontrada!");
+            loadTableVendas();
+            return;
+        }
+
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("IDVenda");
         tmVendas.addColumn("CPF Cliente");
@@ -978,9 +991,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         tmVendas.addColumn("Valor Total");
         tblVendas.setModel(tmVendas);
 
-        for (String[] v : linhasVendas) {
-            tmVendas.addRow(v);
-        }
+        tmVendas.addRow(venda);
+
     }
 
     public void buscaProduto(String nome) {
