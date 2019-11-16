@@ -34,16 +34,24 @@ public class VendaController {
         return VendaDAO.loadVendas();
     }
 
-    public static ArrayList<String[]> visualizarVenda(int id) {
-        return VendaDAO.buscaVenda(id);
+    public static String[] visualizarVenda(int id) {
+        return VendaDAO.gerarRelatorio(id);
     }
 
-    public static ArrayList<String[]> buscaVenda(String inicio, String fim) {
+    public static ArrayList<VendaModel> buscaVenda(String inicio, String fim) {
         return VendaDAO.buscaVenda(inicio, fim);
     }
 
-    public static String[] buscaVenda(long cpf) {
+    public static VendaModel buscaVenda(int id) {
+        return VendaDAO.buscaVenda(id);
+    }
+
+    public static VendaModel buscaVenda(String cpf) {
         return VendaDAO.buscaVenda(cpf);
+    }
+
+    public static ArrayList<String[]> loadCarrinho(int id) {
+        return VendaDAO.LoadCarrinho(id);
     }
 
 }

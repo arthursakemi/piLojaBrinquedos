@@ -5,7 +5,6 @@
  */
 package view;
 
-import DAO.VendaDAO;
 import controller.VendaController;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -53,7 +52,7 @@ public class RelatórioView extends javax.swing.JFrame {
 
     public void loadTableProdutos() {
 
-        ArrayList<String[]> linhasProdutos = VendaDAO.LoadCarrinho(Integer.parseInt(lblIDVenda.getText()));
+        ArrayList<String[]> linhasProdutos = VendaController.loadCarrinho(Integer.parseInt(lblIDVenda.getText()));
 
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("ID");
@@ -286,7 +285,7 @@ public class RelatórioView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RelatórioView().setVisible(true);
+                new RelatórioView(1).setVisible(true);
             }
         });
     }

@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ClienteModel;
 import model.ProdutoModel;
+import model.VendaModel;
 import util.Utilidades;
 import util.Validador;
 
@@ -942,13 +943,15 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaVendas(int id) {
-        String[] venda = VendaController.buscaVenda(id);
+        VendaModel v = VendaController.buscaVenda(id);
 
-        if (venda == null) {
+        if (v == null) {
             JOptionPane.showMessageDialog(this, "Venda não encontrada!");
             loadTableVendas();
             return;
         }
+        String[] venda = {String.valueOf(v.getIdVenda()), v.getCpf(), v.getData(), String.valueOf(v.getValorTotal())};
+
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("IDVenda");
         tmVendas.addColumn("CPF Cliente");
@@ -961,7 +964,19 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     public void buscaVendas(String dataInicio, String dataFim) {
-        ArrayList<String[]> linhasVendas = VendaController.buscaVenda(dataInicio, dataFim);
+        ArrayList<VendaModel> vendas = VendaController.buscaVenda(dataInicio, dataFim);
+
+        ArrayList<String[]> linhasVendas = new ArrayList<>();
+
+        for (VendaModel venda : vendas) {
+            linhasVendas.add(new String[]{
+                String.valueOf(venda.getIdVenda()),
+                venda.getCpf(),
+                venda.getData(),
+                String.valueOf(venda.getValorTotal())
+            });
+        }
+
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("IDVenda");
         tmVendas.addColumn("CPF Cliente");
@@ -976,13 +991,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     public void buscaVendas(String cpf) {
 
-        String[] venda = VendaController.buscaVenda(Long.parseLong(cpf));
+        VendaModel v = VendaController.buscaVenda(cpf);
 
-        if (venda[0].equals("")) {
+        if (v == null) {
             JOptionPane.showMessageDialog(this, "Venda não encontrada!");
             loadTableVendas();
             return;
         }
+        String[] venda = {String.valueOf(v.getIdVenda()), v.getCpf(), v.getData(), String.valueOf(v.getValorTotal())};
 
         DefaultTableModel tmVendas = new DefaultTableModel();
         tmVendas.addColumn("IDVenda");

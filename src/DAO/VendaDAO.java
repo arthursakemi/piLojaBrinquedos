@@ -35,11 +35,24 @@ public class VendaDAO {
                     Statement.RETURN_GENERATED_KEYS);
 
             instrucaoSQL.setInt(1, v.getIdCliente());
-            instrucaoSQL.setString(2, v.getData());
+            instrucaoSQL.setString(2, Utilidades.dataSQL(v.getData()));
             instrucaoSQL.setDouble(3, v.getValorTotal());
 
             int linhasAfetadas = instrucaoSQL.executeUpdate();
-            int idVenda = Integer.parseInt(instrucaoSQL.getGeneratedKeys().toString());
+            int idVenda = -1;
+            if (linhasAfetadas > 0) {
+                retorno = true;
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys();
+
+                if (generatedKeys.next()) {
+                    idVenda = generatedKeys.getInt(1);
+                } else {
+                    throw new SQLException("Falha ao obter o ID do carro!");
+                }
+
+            } else {
+                retorno = false;
+            }
 
             ArrayList<String[]> carrinho = v.getProdutos();
 
@@ -74,97 +87,6 @@ public class VendaDAO {
         }
 
         return retorno;
-    }
-
-    public static ArrayList<String[]> buscaVenda(int id) {
-        ResultSet rs = null;
-        Connection conexao = null;
-        PreparedStatement instrucaoSQL = null;
-        ArrayList<String[]> venda = new ArrayList<>();
-
-        try {
-
-            conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM vendas WHERE id = ?;");
-
-            instrucaoSQL.setInt(1, id);
-
-            rs = instrucaoSQL.executeQuery();
-
-            while (rs.next()) {
-                venda.add(new String[]{
-                    rs.getString("id"),
-                    rs.getString("id_cliente"),
-                    Utilidades.dateFormat(rs.getString("data_venda")),
-                    rs.getString("valor")
-                });
-            }
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-            venda = null;
-        } finally {
-
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (instrucaoSQL != null) {
-                    instrucaoSQL.close();
-                }
-
-                GerenciadorConexao.fecharConexao();
-
-            } catch (SQLException ex) {
-            }
-        }
-
-        return venda;
-    }
-
-    public static String[] buscaVenda(long cpf) {
-        ResultSet rs = null;
-        Connection conexao = null;
-        PreparedStatement instrucaoSQL = null;
-        String[] venda = new String[4];
-
-        try {
-
-            conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement(
-                    "SELECT * FROM relatorio_vendas "
-                    + "WHERE cpf = ?;");
-
-            instrucaoSQL.setLong(1, cpf);
-
-            rs = instrucaoSQL.executeQuery();
-
-            while (rs.next()) {
-                venda[0] = rs.getString("id");
-                venda[1] = rs.getString("cpf");
-                venda[2] = Utilidades.dateFormat(rs.getString("data_venda"));
-                venda[3] = rs.getString("valor");
-            }
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (instrucaoSQL != null) {
-                    instrucaoSQL.close();
-                }
-
-                GerenciadorConexao.fecharConexao();
-
-            } catch (SQLException ex) {
-            }
-        }
-
-        return venda;
     }
 
     public static String[] gerarRelatorio(int id) {
@@ -214,11 +136,103 @@ public class VendaDAO {
         return venda;
     }
 
-    public static ArrayList<String[]> buscaVenda(String inicio, String fim) {
+    public static VendaModel buscaVenda(int id) {
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<String[]> vendas = new ArrayList<>();
+        VendaModel venda = null;
+
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM relatorio_vendas WHERE id = ?;");
+
+            instrucaoSQL.setInt(1, id);
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                venda = new VendaModel(
+                        rs.getInt("id"),
+                        rs.getString("cpf"),
+                        Utilidades.dateFormat(rs.getString("data_venda")),
+                        rs.getDouble("valor")
+                );
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            venda = null;
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return venda;
+    }
+
+    public static VendaModel buscaVenda(String cpf) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        VendaModel venda = null;
+
+        try {
+
+            conexao = GerenciadorConexao.abrirConexao();
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM relatorio_vendas WHERE cpf = ?;");
+
+            instrucaoSQL.setLong(1, Long.parseLong(cpf));
+
+            rs = instrucaoSQL.executeQuery();
+
+            while (rs.next()) {
+                venda = new VendaModel(
+                        rs.getInt("id"),
+                        rs.getString("cpf"),
+                        Utilidades.dateFormat(rs.getString("data_venda")),
+                        rs.getDouble("valor")
+                );
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            venda = null;
+        } finally {
+
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (instrucaoSQL != null) {
+                    instrucaoSQL.close();
+                }
+
+                GerenciadorConexao.fecharConexao();
+
+            } catch (SQLException ex) {
+            }
+        }
+
+        return venda;
+    }
+
+    public static ArrayList<VendaModel> buscaVenda(String inicio, String fim) {
+        ResultSet rs = null;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ArrayList<VendaModel> vendas = new ArrayList<>();
 
         try {
 
@@ -233,13 +247,12 @@ public class VendaDAO {
             rs = instrucaoSQL.executeQuery();
 
             while (rs.next()) {
-                vendas.add(new String[]{
-                    rs.getString("id"),
-                    rs.getString("cpf"),
-                    Utilidades.dateFormat(rs.getString("data_venda")),
-                    rs.getString("valor")
-
-                });
+                vendas.add(new VendaModel(
+                        rs.getInt("id"),
+                        rs.getString("cpf"),
+                        Utilidades.dateFormat(rs.getString("data_venda")),
+                        rs.getDouble("valor")
+                ));
             }
 
         } catch (SQLException | ClassNotFoundException ex) {

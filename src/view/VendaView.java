@@ -520,7 +520,7 @@ public class VendaView extends javax.swing.JFrame {
         if (!cpfString.equals("")) {
             if (Validador.validarCPF(cpfString)) {
                 cpf = Long.parseLong(cpfString);
-                ClienteModel c = ClienteController.buscaCliente(cpf);
+                c = ClienteController.buscaCliente(cpf);
                 if (c != null) {
                     lblNomeCliente.setVisible(true);
                     lblNomeCliente.setText(c.getNome());

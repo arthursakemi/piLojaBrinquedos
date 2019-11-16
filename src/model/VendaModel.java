@@ -24,9 +24,9 @@ public class VendaModel {
     public VendaModel() {
     }
 
-    public VendaModel(int idVenda, int idCliente, String data, Double valorTotal) {
+    public VendaModel(int idVenda, String cpf, String data, Double valorTotal) {
         this.idVenda = idVenda;
-        this.idCliente = idCliente;
+        this.cpf = cpf;
         this.data = data;
         this.valorTotal = valorTotal;
     }
@@ -53,6 +53,22 @@ public class VendaModel {
         this.data = data;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getIdVenda() {
