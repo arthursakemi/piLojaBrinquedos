@@ -54,16 +54,16 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         btnBuscarVenda = new javax.swing.JButton();
         btnVisualizarV = new javax.swing.JButton();
-        txtPeriodo1 = new javax.swing.JTextField();
-        txtCPFbusca = new javax.swing.JTextField();
         lblPeriodo = new javax.swing.JLabel();
         lblIDCbusca = new javax.swing.JLabel();
         txtIDVenda = new javax.swing.JTextField();
         lblIDV = new javax.swing.JLabel();
-        txtPeriodo2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblVendas = new javax.swing.JTable();
+        txtPeriodo1 = new javax.swing.JFormattedTextField();
+        txtPeriodo2 = new javax.swing.JFormattedTextField();
+        txtCPFbusca = new javax.swing.JFormattedTextField();
         btnNovaVenda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblValorTotal = new javax.swing.JLabel();
@@ -91,8 +91,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         btnExcluirCliente = new javax.swing.JButton();
         txtNomeCliente = new javax.swing.JTextField();
         lblNomeC = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
         lblIDC = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JFormattedTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCliente = new javax.swing.JTable();
         AtualizarC = new javax.swing.JButton();
@@ -155,10 +155,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        txtPeriodo1.setPreferredSize(new java.awt.Dimension(140, 25));
-
-        txtCPFbusca.setPreferredSize(new java.awt.Dimension(140, 25));
-
         lblPeriodo.setText("Período:");
 
         lblIDCbusca.setText("CPF Cliente:");
@@ -166,8 +162,6 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         txtIDVenda.setPreferredSize(new java.awt.Dimension(140, 25));
 
         lblIDV.setText("ID Venda:");
-
-        txtPeriodo2.setPreferredSize(new java.awt.Dimension(140, 25));
 
         jLabel1.setText("-");
 
@@ -180,6 +174,31 @@ public class TelaPrincipalView extends javax.swing.JFrame {
             }
         ));
         jScrollPane4.setViewportView(tblVendas);
+
+        try {
+            txtPeriodo1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtPeriodo1.setMinimumSize(new java.awt.Dimension(4, 25));
+        txtPeriodo1.setName(""); // NOI18N
+        txtPeriodo1.setPreferredSize(new java.awt.Dimension(119, 25));
+
+        try {
+            txtPeriodo2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtPeriodo2.setMinimumSize(new java.awt.Dimension(4, 25));
+        txtPeriodo2.setName(""); // NOI18N
+        txtPeriodo2.setPreferredSize(new java.awt.Dimension(119, 25));
+
+        try {
+            txtCPFbusca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCPFbusca.setPreferredSize(new java.awt.Dimension(4, 25));
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -194,19 +213,19 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDCbusca)
                     .addComponent(txtCPFbusca, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPeriodo)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(txtPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addComponent(lblPeriodo))
+                .addGap(18, 18, 18)
+                .addComponent(txtPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+            .addComponent(jScrollPane4)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,18 +237,19 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblIDV)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIDVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtIDVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCPFbusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblIDCbusca)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCPFbusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(31, 31, 31))
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(lblPeriodo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
                                     .addComponent(txtPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)))))
+                                    .addComponent(txtPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -505,9 +525,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
         lblNomeC.setText("Nome:");
 
-        txtCPF.setPreferredSize(new java.awt.Dimension(140, 25));
-
         lblIDC.setText("CPF");
+
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCPF.setPreferredSize(new java.awt.Dimension(4, 25));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -517,8 +542,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIDC)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeC)
                     .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -753,8 +778,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         if (tblProduto.getRowCount() > 0) {
 
             if (validarBuscaCliente()) {
-                if (!txtCPF.getText().equals("")) {
-                    cpf = Long.parseLong(txtCPF.getText());
+                if (!txtCPF.getText().replace(".", "").replace("-", "").replace(" ", "").equals("")) {
+                    cpf = Long.parseLong(txtCPF.getText().replace(".", "").replace("-", "").replace(" ", ""));
                     buscaCliente(cpf);
                 } else {
                     nome = txtNomeCliente.getText().toLowerCase();
@@ -802,8 +827,8 @@ public class TelaPrincipalView extends javax.swing.JFrame {
         if (validarBuscaVendas()) {
             if (!txtIDVenda.getText().equalsIgnoreCase("")) {
                 buscaVendas(Integer.parseInt(txtIDVenda.getText()));
-            } else if (!txtCPFbusca.getText().equalsIgnoreCase("")) {
-                buscaVendas(txtCPFbusca.getText());
+            } else if (!txtCPFbusca.getText().replace(".", "").replace("-", "").replace(" ", "").equalsIgnoreCase("")) {
+                buscaVendas(txtCPFbusca.getText().replace(".", "").replace("-", "").replace(" ", ""));
             } else {
                 buscaVendas(txtPeriodo1.getText(), txtPeriodo2.getText());
             }
@@ -815,16 +840,16 @@ public class TelaPrincipalView extends javax.swing.JFrame {
 
     private boolean validarBuscaVendas() {
         boolean idPreenchido = !txtIDVenda.getText().equalsIgnoreCase(""),
-                cpfPreenchido = !txtCPFbusca.getText().equalsIgnoreCase(""),
-                inicioPeriodo = !txtPeriodo1.getText().replace("/", "").equalsIgnoreCase(""),
-                fimPeriodo = !txtPeriodo2.getText().replace("/", "").equalsIgnoreCase("");
+                cpfPreenchido = !txtCPFbusca.getText().replace(".", "").replace("-", "").replace(" ", "").equalsIgnoreCase(""),
+                inicioPeriodo = !txtPeriodo1.getText().replace("/", "").replace(" ", "").equalsIgnoreCase(""),
+                fimPeriodo = !txtPeriodo2.getText().replace("/", "").replace(" ", "").equalsIgnoreCase("");
 
         if (idPreenchido || cpfPreenchido || (inicioPeriodo && fimPeriodo)) {
             if (idPreenchido && !Validador.validarInt(txtIDVenda.getText())) {
                 JOptionPane.showMessageDialog(this, "ID de venda Inválido!");
                 return false;
             }
-            if (cpfPreenchido && !Validador.validarCPF(txtCPFbusca.getText())) {
+            if (cpfPreenchido && !Validador.validarCPF(txtCPFbusca.getText().replace(".", "").replace("-", "").replace(" ", ""))) {
                 JOptionPane.showMessageDialog(this, "CPF Inválido!");
                 return false;
             }
@@ -832,7 +857,7 @@ public class TelaPrincipalView extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Período Inválido!");
                 return false;
             }
-            if (inicioPeriodo && fimPeriodo && Utilidades.dataPosterior(txtPeriodo1.getText().split("/"), txtPeriodo2.getText().split("/"))) {
+            if (inicioPeriodo && fimPeriodo && !Utilidades.dataPosterior(txtPeriodo1.getText().split("/"), txtPeriodo2.getText().split("/"))) {
                 JOptionPane.showMessageDialog(this, "Período Inválido!");
                 return false;
             }
@@ -860,14 +885,14 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     }
 
     private boolean validarBuscaCliente() {
-        boolean idPreenchido = !txtCPF.getText().equalsIgnoreCase("");
+        boolean idPreenchido = !txtCPF.getText().replace(".", "").replace("-", "").replace(" ", "").equalsIgnoreCase("");
         boolean nomePreenchido = !txtNomeCliente.getText().equalsIgnoreCase("");
 
         if (!idPreenchido && !nomePreenchido) {
             JOptionPane.showMessageDialog(this, "Informe o ID ou o Nome do cliente!");
             return false;
 
-        } else if (idPreenchido && !Validador.validarCPF(txtCPF.getText())) {
+        } else if (idPreenchido && !Validador.validarCPF(txtCPF.getText().replace(".", "").replace("-", "").replace(" ", ""))) {
             JOptionPane.showMessageDialog(this, "CPF inválido!");
             return false;
         }
@@ -1186,13 +1211,13 @@ public class TelaPrincipalView extends javax.swing.JFrame {
     private javax.swing.JTable tblCliente;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblVendas;
-    private javax.swing.JTextField txtCPF;
-    private javax.swing.JTextField txtCPFbusca;
+    private javax.swing.JFormattedTextField txtCPF;
+    private javax.swing.JFormattedTextField txtCPFbusca;
     private javax.swing.JTextField txtIDProduto;
     private javax.swing.JTextField txtIDVenda;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeProduto;
-    private javax.swing.JTextField txtPeriodo1;
-    private javax.swing.JTextField txtPeriodo2;
+    private javax.swing.JFormattedTextField txtPeriodo1;
+    private javax.swing.JFormattedTextField txtPeriodo2;
     // End of variables declaration//GEN-END:variables
 }

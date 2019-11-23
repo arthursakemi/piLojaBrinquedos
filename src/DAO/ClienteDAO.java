@@ -27,7 +27,17 @@ public class ClienteDAO {
             conexao = GerenciadorConexao.abrirConexao();
             instrucaoSQL = conexao.prepareStatement("INSERT INTO clientes "
                     + "(nome,email,cpf,sexo,nascimento,estado_civil,celular,telefone,endereco) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);",
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    + "ON DUPLICATE KEY UPDATE "
+                    + "nome = VALUES(nome), "
+                    + "email = VALUES(email), "
+                    + "sexo = VALUES(sexo), "
+                    + "nascimento = VALUES(nascimento), "
+                    + "estado_civil = VALUES(estado_civil), "
+                    + "celular = VALUES(celular), "
+                    + "telefone = VALUES(telefone), "
+                    + "endereco = VALUES(endereco), "
+                    + "ativo = true;",
                     Statement.RETURN_GENERATED_KEYS);
 
             instrucaoSQL.setString(1, c.getNome());
@@ -133,9 +143,9 @@ public class ClienteDAO {
 
             conexao = GerenciadorConexao.abrirConexao();
             instrucaoSQL = conexao.prepareStatement(
-                    "UPDATE clientes"
-                    + "SET ativo = false"
-                    + "WHERE id = ?");
+                    "UPDATE clientes "
+                    + "SET ativo = false "
+                    + "WHERE id = ?;");
 
             instrucaoSQL.setInt(1, id);
 
@@ -178,7 +188,7 @@ public class ClienteDAO {
         try {
 
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes;");
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes_ativos;");
 
             rs = instrucaoSQL.executeQuery();
 
@@ -336,7 +346,7 @@ public class ClienteDAO {
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ClienteModel c = new ClienteModel();
+        ClienteModel c = null;
 
         try {
 

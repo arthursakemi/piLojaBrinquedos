@@ -24,22 +24,22 @@ public class Utilidades {
     }
 
     public static boolean dataPosterior(String[] data, String[] limite) {
-        int[] dataPesquisa = new int[3];
+        int[] dataInicio = new int[3];
         int[] dataLimite = new int[3];
         boolean anoMaior, mesMaior, diaMaior,
                 anoIgual, mesIgual, diaIgual;
 
         for (int i = 0; i < 3; i++) {
-            dataPesquisa[i] = Integer.parseInt(data[i]);
+            dataInicio[i] = Integer.parseInt(data[i]);
             dataLimite[i] = Integer.parseInt(limite[i]);
         }
 
-        anoMaior = dataPesquisa[2] > dataLimite[2];
-        mesMaior = dataPesquisa[1] > dataLimite[1];
-        diaMaior = dataPesquisa[0] > dataLimite[0];
-        anoIgual = dataPesquisa[2] == dataLimite[2];
-        mesIgual = dataPesquisa[1] == dataLimite[1];
-        diaIgual = dataPesquisa[0] == dataLimite[0];
+        anoMaior = dataInicio[2] < dataLimite[2];
+        mesMaior = dataInicio[1] < dataLimite[1];
+        diaMaior = dataInicio[0] < dataLimite[0];
+        anoIgual = dataInicio[2] == dataLimite[2];
+        mesIgual = dataInicio[1] == dataLimite[1];
+        diaIgual = dataInicio[0] == dataLimite[0];
 
         if (anoMaior) {
             return true;

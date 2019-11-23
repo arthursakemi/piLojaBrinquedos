@@ -47,7 +47,7 @@ public class VendaDAO {
                 if (generatedKeys.next()) {
                     idVenda = generatedKeys.getInt(1);
                 } else {
-                    throw new SQLException("Falha ao obter o ID do carro!");
+                    throw new SQLException("Falha ao obter o ID da venda!");
                 }
 
             } else {

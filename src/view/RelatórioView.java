@@ -38,6 +38,8 @@ public class RelatórioView extends javax.swing.JFrame {
         loadTableProdutos();
         setQuantidadeProdutos();
 
+        this.setLocationRelativeTo(null);
+
     }
 
     public void setQuantidadeProdutos() {
