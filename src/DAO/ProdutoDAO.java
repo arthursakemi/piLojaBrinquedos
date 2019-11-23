@@ -20,7 +20,17 @@ import util.GerenciadorConexao;
  */
 public class ProdutoDAO {
 
+    /**
+     * Metodo para salvar novo produto no Banco de Dados SQL
+     *
+     * @see model.ProdutoModel
+     * @param p Objeto tipo Produto
+     * @return boolean true : sucesso / false : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean salvar(ProdutoModel p) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -68,7 +78,17 @@ public class ProdutoDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para atualizar determinado Produto no Banco de Dados SQL
+     *
+     * @see model.ProdutoModel
+     * @param p Objeto tipo Produto
+     * @return boolean true : sucesso / false : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean atualizar(ProdutoModel p) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -122,7 +142,16 @@ public class ProdutoDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para excluir um Produto do Banco de Dados SQL
+     *
+     * @param id variavel tipo INT com parametro
+     * @return boolean true : sucesso / false : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean excluir(int id) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -164,7 +193,22 @@ public class ProdutoDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para carregar Tabela de Produtos
+     *
+     * @see model.ProdutoModel
+     * @return ArrayList com produtos.
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<ProdutoModel> loadProdutos() {
+        /**
+         * Metodo para carregar Tabela de Produtos
+         *
+         * @see model.ProdutoModel
+         * @return ArrayList com produtos.
+         *
+         */
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -213,7 +257,17 @@ public class ProdutoDAO {
         return produtos;
     }
 
+    /**
+     * Metodo para carregar determinado Produto no Banco de Dados SQL
+     *
+     * @see model.ProdutoModel
+     * @param id variavel tipo int com parametro
+     * @return Objeto tipo Produto com dados
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ProdutoModel buscaProduto(int id) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -266,7 +320,16 @@ public class ProdutoDAO {
         return produto;
     }
 
+    /**
+     * Metodo para carregar determinado Produto no Banco de Dados SQL
+     *
+     * @see model.ProdutoModel
+     * @return ArrayList com Produtos iguais ou com parte da String no nome
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<ProdutoModel> buscaProduto(String nome) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;

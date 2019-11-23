@@ -21,7 +21,16 @@ import util.Utilidades;
  */
 public class VendaDAO {
 
+    /**
+     * Metodo para salvar venda na tabela vendas do Banco de Dados SQL
+     *
+     * @param v Objeto tipo Venda
+     * @return boolean true : sucesso / false : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean salvar(VendaModel v) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -47,7 +56,7 @@ public class VendaDAO {
                 if (generatedKeys.next()) {
                     idVenda = generatedKeys.getInt(1);
                 } else {
-                    throw new SQLException("Falha ao obter o ID do carro!");
+                    throw new SQLException("Falha ao obter o ID!");
                 }
 
             } else {
@@ -89,7 +98,16 @@ public class VendaDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para carregar relatório analitico
+     *
+     * @param id variavel tipo INT com parametro
+     * @return Vetor de String com 5 espacos com dados da venda
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static String[] gerarRelatorio(int id) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -136,7 +154,17 @@ public class VendaDAO {
         return venda;
     }
 
+    /**
+     * Metodo para carregar determinada Venda
+     *
+     * @see model.VendaModel
+     * @param id variavel tipo INT com parametro (id)
+     * @return Objeto tipo Venda com dados : sucesso / Objeto vazio : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static VendaModel buscaVenda(int id) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -182,7 +210,17 @@ public class VendaDAO {
         return venda;
     }
 
+    /**
+     * Metodo para carregar determinada Venda
+     *
+     * @see model.VendaModel
+
+     * @return Objeto tipo Venda com dados : sucesso / Objeto vazio : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static VendaModel buscaVenda(String cpf) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -228,7 +266,16 @@ public class VendaDAO {
         return venda;
     }
 
+    /**
+     * Metodo para carregar determinadas Vendas em um intervalo
+     *
+     * @see model.VendaModel
+     * @return ArrayList de objetos tipo Venda
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<VendaModel> buscaVenda(String inicio, String fim) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -277,7 +324,15 @@ public class VendaDAO {
         return vendas;
     }
 
+    /**
+     * Metodo para carregar tabela de vendas
+     *
+     * @return ArrayList de String com vendas
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<String[]> loadVendas() {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -323,7 +378,16 @@ public class VendaDAO {
         return vendas;
     }
 
+    /**
+     * Metodo para carregar carrinho do Banco de Dados SQL
+     *
+     * @param id variavel tipo INT com parametro
+     * @return ArrayList tipo String com Produtos
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<String[]> LoadCarrinho(int id) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -373,7 +437,18 @@ public class VendaDAO {
         return produtos;
     }
 
+    /**
+     * Metodo para salvar no Banco de Dados SQL venda(s) do(s) Produto(s)
+     *
+     * @param idVenda variavel tipo int com parametro
+     * @param idProduto variavel tipo int com parametro
+     * @param quantidade variavel tipo int com parametro
+     * @return boolean true : sucesso / false : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean SalvarCarrinho(int idVenda, int idProduto, int quantidade) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
