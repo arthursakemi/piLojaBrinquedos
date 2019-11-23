@@ -24,7 +24,7 @@ public class ClienteDAO {
      * @see model.ClienteModel
      * @param c Objeto do tipo Cliente
      * @return boolean - true: sucesso , false:falha
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     public static boolean salvar(ClienteModel c) {
         boolean retorno = false;
@@ -83,7 +83,7 @@ public class ClienteDAO {
      * @see model.ClienteModel
      * @param c Objeto tipo Cliente
      * @return boolean - true: sucesso , false:falha
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     
     public static boolean atualizar(ClienteModel c) {
@@ -148,7 +148,7 @@ public class ClienteDAO {
      * 
      * @param id Id obtida tipo INT
      * @return boolean - true: sucesso , false:falha
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     public static boolean excluir(int id) {
         boolean retorno = false;
@@ -197,8 +197,9 @@ public class ClienteDAO {
     /**
      * Metodo para carregar do Banco de Dados SQL os dados de todos clientes
      * 
+     * @see model.ClienteModel
      * @return ArrayList com dados dos Clientes
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     public static ArrayList<ClienteModel> loadClientes() {
 
@@ -256,10 +257,12 @@ public class ClienteDAO {
 
     
     /**
-     * Metodo para 
+     * Metodo para localizar Cliente no Banco de Dados SQL pelo ID
+     * 
+     * @see model.ClienteModel
      * @param id Objeto tipo Cliente
      * @return Objeto tipo Cliente, com dados do cliente solicitado: sucesso / Objeto null : false
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     public static ClienteModel buscaCliente(int id) {
 
@@ -318,11 +321,12 @@ public class ClienteDAO {
     
     
     /**
-     * Metodo para buscar dados do Cliente com base no nome
+     * Metodo para buscar dados do Cliente com base no NOME
      * 
+     * @see model.ClienteModel
      * @param nome String com parametro de pesquisa
      * @return Arraylist com dados do cliente solicitado : sucesso / ArrayList vazia : falha
-     * @throws java.sql.SQLException
+     * @throws SQLException
      */
     public static ArrayList<ClienteModel> buscaCliente(String nome) {
 
@@ -384,8 +388,11 @@ public class ClienteDAO {
     
     /**
      * Metodo para buscar dados do Cliente com base no CPF
+     * 
+     * @see model.ClienteModel
      * @param cpf variável tipo LONG com CPF
-     * @return Obejeto tipo Cliente com dados solicitados : sucesso / Obejto tipo Cliente vazio : falha
+     * @return Objeto tipo Cliente com dados solicitados : sucesso / Obejto tipo Cliente vazio : falha
+     * @throws SQLException
      */
     public static ClienteModel buscaCliente(long cpf) {
         ResultSet rs = null;
