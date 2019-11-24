@@ -24,6 +24,14 @@ public class VendaModel {
     public VendaModel() {
     }
 
+    /**
+     * Metodo para criar objeto tipo Venda
+     * 
+     * @param idVenda
+     * @param cpf
+     * @param data
+     * @param valorTotal 
+     */
     public VendaModel(int idVenda, String cpf, String data, Double valorTotal) {
         this.idVenda = idVenda;
         this.cpf = cpf;
@@ -31,6 +39,14 @@ public class VendaModel {
         this.valorTotal = valorTotal;
     }
 
+    /**
+     * Metodo para criar objeto tipo Venda
+     * 
+     * @param idCliente
+     * @param data
+     * @param produtos
+     * @param valorTotal 
+     */
     public VendaModel(int idCliente,
             String data,
             ArrayList<String[]> produtos,
