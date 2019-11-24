@@ -11,6 +11,12 @@ package util;
  */
 public class Utilidades {
 
+    /**
+     * Metodo para formatar CPF com o Bando de Dados SQL
+     * 
+     * @param raw String com CPF
+     * @return String com CPF formatado
+     */
     public static String formatCPF(String raw) {
         return raw.substring(0, 3) + "." + raw.substring(3, 6) + "." + raw.substring(6, 9) + "/" + raw.substring(9);
 

@@ -29,6 +29,19 @@ public class ClienteModel {
         this.id = clientesCadastrados;
     }
 
+    /**
+     * Metodo para criar objeto tipo Cliente
+     * 
+     * @param nome
+     * @param email
+     * @param cpf
+     * @param sexo
+     * @param nascimento
+     * @param estadoCivil
+     * @param celular
+     * @param telefone
+     * @param endereco 
+     */
     public ClienteModel(String nome,
             String email,
             String cpf,
@@ -52,6 +65,20 @@ public class ClienteModel {
         this.endereco = endereco;
     }
 
+    /**
+     * Metodo para criar objeto tipo Cliente
+     * 
+     * @param id
+     * @param nome
+     * @param email
+     * @param cpf
+     * @param sexo
+     * @param nascimento
+     * @param estadoCivil
+     * @param celular
+     * @param telefone
+     * @param endereco 
+     */
     public ClienteModel(int id,
             String nome,
             String email,

@@ -7,6 +7,12 @@ package util;
 
 public class Validador {
 
+    /**
+     * Metodo para verificar se é um numero inteiro uma String
+     *
+     * @param x String
+     * @return true: sucesso / false : nao é um numero inteiro
+     */
     public static boolean validarInt(String x) {
 
         try {
@@ -18,6 +24,12 @@ public class Validador {
         return true;
     }
 
+    /**
+     * Metodo para verificar se é um numero Double uma String
+     *
+     * @param x String
+     * @return true: sucesso / false : nao é um numero inteiro
+     */
     public static boolean validarDouble(String x) {
         try {
             double n = Double.parseDouble(x);

@@ -25,6 +25,16 @@ public class ProdutoModel {
 
     }
 
+    /**
+     * Metodo para criar objeto tipo Produto
+     *
+     * @param nome
+     * @param marca
+     * @param fornecedor
+     * @param estoque
+     * @param valor
+     * @param descricao
+     */
     public ProdutoModel(String nome,
             String marca,
             String fornecedor,
@@ -42,6 +52,17 @@ public class ProdutoModel {
         this.descricao = descricao;
     }
 
+    /**
+     * Metodo para criar objeto tipo Produto
+     *
+     * @param pID
+     * @param nome
+     * @param marca
+     * @param fornecedor
+     * @param estoque
+     * @param valor
+     * @param descricao
+     */
     public ProdutoModel(int pID,
             String nome,
             String marca,

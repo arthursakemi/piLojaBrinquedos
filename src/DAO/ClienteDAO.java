@@ -17,7 +17,17 @@ import util.Utilidades;
 
 public class ClienteDAO {
 
+    /**
+     * Metodo para salvar Dados do Cliente no Banco de Dados SQL
+     *
+     * @see model.ClienteModel
+     * @param c Objeto do tipo Cliente
+     * @return boolean - true: sucesso , false:falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean salvar(ClienteModel c) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -78,7 +88,17 @@ public class ClienteDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para atualizar Dados de um Cliente usando seu ID
+     *
+     * @see model.ClienteModel
+     * @param c Objeto tipo Cliente
+     * @return boolean - true: sucesso , false:falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean atualizar(ClienteModel c) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -134,7 +154,16 @@ public class ClienteDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para excluir cliente do Banco de Dados SQL
+     *
+     * @param id Id obtida tipo INT
+     * @return boolean - true: sucesso , false:falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static boolean excluir(int id) {
+
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -177,6 +206,14 @@ public class ClienteDAO {
         return retorno;
     }
 
+    /**
+     * Metodo para carregar do Banco de Dados SQL os dados de todos clientes
+     *
+     * @see model.ClienteModel
+     * @return ArrayList com dados dos Clientes
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<ClienteModel> loadClientes() {
 
         ResultSet rs = null;
@@ -231,6 +268,16 @@ public class ClienteDAO {
 
     }
 
+    /**
+     * Metodo para localizar Cliente no Banco de Dados SQL pelo ID
+     *
+     * @see model.ClienteModel
+     * @param id Objeto tipo Cliente
+     * @return Objeto tipo Cliente, com dados do cliente solicitado: sucesso /
+     * Objeto null : false
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ClienteModel buscaCliente(int id) {
 
         ResultSet rs = null;
@@ -285,6 +332,16 @@ public class ClienteDAO {
 
     }
 
+    /**
+     * Metodo para buscar dados do Cliente com base no NOME
+     *
+     * @see model.ClienteModel
+     * @param nome String com parametro de pesquisa
+     * @return Arraylist com dados do cliente solicitado : sucesso / ArrayList
+     * vazia : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ArrayList<ClienteModel> buscaCliente(String nome) {
 
         ResultSet rs = null;
@@ -342,7 +399,18 @@ public class ClienteDAO {
         return listaClientes;
     }
 
+    /**
+     * Metodo para buscar dados do Cliente com base no CPF
+     *
+     * @see model.ClienteModel
+     * @param cpf variável tipo LONG com CPF
+     * @return Objeto tipo Cliente com dados solicitados : sucesso / Obejto tipo
+     * Cliente vazio : falha
+     * @throws java.lang.ClassFormatError Erro na coneccao com o Banco de Dados
+     * SQL
+     */
     public static ClienteModel buscaCliente(long cpf) {
+
         ResultSet rs = null;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
