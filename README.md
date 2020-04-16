@@ -24,3 +24,9 @@ Por fim, o relatório de vendas permitirá que o usuário visualize na própria 
 
 * Java (Utilizando a biblioteca Swing);
 * MySQL;
+
+
+## Contributors
+<a href="https://github.com/arthursakemi/piLojaBrinquedos/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=arthursakemi/piLojaBrinquedos" />
+</a>
